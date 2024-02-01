@@ -1,0 +1,84 @@
+/* Base Styles */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1%; /* Adjust the padding */
+  height: 50px; /* Adjust the height for larger screens */
+  background-color: rgb(0, 0, 0);
+  backdrop-filter: blur(3px) brightness(0.8);
+}
+
+.list {
+    display: flex;
+    margin-top: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+   
+    height: 3rem;
+    width: 10rem;
+    overflow-y: hidden;
+    transition: height 0.2s ease-in-out;
+  
+  padding-top: 0.3rem;
+}
+
+.list:hover{
+    height:25rem;
+    background-color: rgba(0, 0, 0, 0.767);
+    backdrop-filter: blur(3px) brightness(0.8);
+}
+
+.navbar ul {
+ 
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+ /* border: solid red 3px; */
+ padding: 0%;
+ list-style: none;
+    gap: 3rem;
+    width: 7rem;
+    overflow-y: hidden;
+
+}
+
+
+.navbar a,
+.navbar ul a {
+  text-decoration: none;
+  color: rgb(83, 254, 171);
+  font-family: sans-serif;
+}
+.navbar a:hover,
+.navbar ul a:hover {
+  text-decoration: none;
+  color: rgb(240, 240, 240);
+}
+.logo {
+  display: flex;
+  align-items: center; /* Align logo vertically in the middle */
+  color: white;
+}
+
+.logo img {
+  max-width: 100%; /* Make the logo responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically for small screens */
+    text-align: center; /* Center-align text */
+  }
+
+  .navbar ul {
+    width: 100%; /* Full width for small screens */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center-align items */
+  }
+}
