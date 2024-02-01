@@ -8,7 +8,7 @@ const notFound=require('./Middlewares/notFound')
 const connectDB=require('./DB/connect');
 //require routes
 const authRouter=require('./Routes/auth');
-
+const messagesRouter=require('./Routes/messages');
 //---------------------------------------------------middlewares--------------------------------->>>
 app.use(express.json());
 
@@ -18,6 +18,7 @@ app.use(express.json());
 
 app.use('/api/v1/test',testRouter);
 app.use('/api/v1/auth',authRouter);
+app.use('/api/v1/messages',messagesRouter);
 
 //errors
 app.use(notFound);
