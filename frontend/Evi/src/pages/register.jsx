@@ -23,7 +23,7 @@ const Regester = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform registration logic here
+   const response=fetch()
     console.log("Registration data:", formData);
   };
 
