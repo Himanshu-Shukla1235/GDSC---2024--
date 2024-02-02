@@ -1,4 +1,4 @@
-.mainH {
+/* .mainH {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -8,7 +8,7 @@
 
     border: solid 3px red;
     height: 2000px;
-}
+} */
 
 .boxH {
     display: flex;
