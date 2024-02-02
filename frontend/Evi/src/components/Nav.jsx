@@ -1,50 +1,105 @@
-import React from "react";
+import React ,{useState}from "react";
 import "../components/nav.css";
 import { NavLink } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { green, red } from "@mui/material/colors";
 const username = "Username";
 
-const Navbar = () => {
-  return (
-    <nav className="navbar">
-      <div className="logo">
-        {" "}
-        <h1 style={{fontFamily:"sans-serif",color:"green"}}>E</h1>
-      </div>
-      <div className="list">
-        {" "}
-        <Avatar
-          alt="Travis Howard"
-          src="https://avatars.githubusercontent.com/u/145251086?v=4"
-        />{" "}
-        <h1 style={{ color: "white", fontFamily: "sans-serif", fontSize: 13 }}>
-          {username}
-        </h1>
-        <ul>
-          <li>
-            <NavLink to={"/"}>Home</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/login "}>Login</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/contact"}>Contact</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/regester "}>Regester</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/settings "}>Settings</NavLink>
-          </li>
+import { useRef } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+// import "../Styles/main.css";
 
-          <li>
-            <NavLink to={"/about"}>About</NavLink>
-          </li>
-        </ul>
+function Navbar() {
+	const navRef = useRef();
+
+	const showNavbar = () => {
+		navRef.current.classList.toggle(
+			"responsive_nav"
+		);
+	};
+
+	return (
+		<header>
+			<div className="mainComponent">
+        <h3>LOGO</h3>
+			<nav ref={navRef}>
+				<a href="/#">Home</a>
+				<a href="/#">My work</a>
+				<a href="/#">Blog</a>
+				<a href="/#">About me</a>
+				<button
+					className="nav-btn nav-close-btn"
+					onClick={showNavbar}>
+					<FaTimes />
+				</button>
+			</nav>
+			<button
+				className="nav-btn"
+				onClick={showNavbar}>
+				<FaBars />
+			</button>
       </div>
-    </nav>
-  );
-};
+		</header>
+	);
+}
 
 export default Navbar;
+
+// const Navbar = () => {
+//   const [isOpen,setIsOpen]=useState(false);
+
+//   const toogleNav=()=>{
+//     setIsOpen(!isOpen);
+//   }
+
+//   return (
+//     <>
+//     <nav className="navbar">
+
+//      <div className="mainElement">
+//        <ul className="navElements">
+//         <li className="logo"><a href="#">logo</a></li>
+//         <li>Home</li>
+//         <li>Contact</li>
+//         <li>About us</li>
+//         <li>Photo</li>
+//       </ul>
+//      </div>
+//      <button>☰</button>
+      
+//     </nav>
+    
+//     </>
+//   );
+// };
+
+// export default Navbar;
+// import  { useState } from 'react';
+
+// const Navbar = () => {
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   const toggleNav = () => {
+//     setIsOpen(!isOpen);
+//   };
+
+//   return (
+//     <nav className={`navbar ${isOpen ? 'open' : ''}`}>
+//       <div className="mainElement">
+//         <button className="toggle-button" onClick={toggleNav}>
+//           ☰
+//         </button>
+//         <ul className="navElements">
+//           <li className="logo"><a href="#">logo</a></li>
+//           <li>Home</li>
+//           <li>Contact</li>
+//           <li>About us</li>
+//           <li>Photo</li>
+//         </ul>
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
+

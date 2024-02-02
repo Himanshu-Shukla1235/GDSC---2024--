@@ -1,0 +1,22 @@
+header{
+    position:sticky;
+    top: 0;
+    /* backdrop-filter: blur(7px); */
+
+}
+main {
+    /* Ensure content inside main exceeds viewport height */
+    height: 200vh;
+
+    /* Set a background image with the correct URL (remove extra spaces) */
+    background: url("https://www.shutterstock.com/image-photo/summer-lake-on-green-natur-260nw-1711600924.jpg");
+
+    /* Set background size based on your design preference (cover, contain, etc.) */
+    background-size: cover;
+
+    /* Set background repeat based on your design preference (repeat, no-repeat, etc.) */
+    background-repeat: no-repeat;
+
+    /* Enable vertical scrolling if content exceeds viewport height */
+    overflow-y: auto;
+}
