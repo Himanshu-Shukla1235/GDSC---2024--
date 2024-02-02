@@ -25,7 +25,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </header>
-      <main></main>
+      <main className="main0"></main>
     </>
   );
 }
