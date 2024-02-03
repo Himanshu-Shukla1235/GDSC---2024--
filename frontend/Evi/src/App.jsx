@@ -7,6 +7,7 @@ import Contact from "./pages/contact";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Home from "./pages/home"
+import Chat from "./pages/chat.jsx"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
 
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/chat" element={<Chat/>}/>
           </Routes>
         </BrowserRouter>
       

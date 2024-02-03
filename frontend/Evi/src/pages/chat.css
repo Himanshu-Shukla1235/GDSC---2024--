@@ -1,0 +1,65 @@
+.header1 {
+    position: sticky;
+    top: 0;
+
+    z-index: 2000;
+}
+
+.footer {
+    position: sticky;
+    bottom: 0;
+}
+
+
+/* 
+.chatContainer{
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: 2fr;
+} */
+
+/* .chatMain{
+    overflow-y: hidden;
+} */
+.chatContainer {
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    height: 80vh;
+    overflow-y: hidden;
+    margin-bottom: 10px;
+}
+
+.chatRoomSection{
+    border: 1px solid red;
+}
+
+.chatMessagesSection{
+    border: 1px solid red;
+}
+
+/* ====================chat room section */
+
+.chatRoomSection{
+    border: 1px solid green;
+    display: grid;
+    grid-template-rows: 5% 90%;
+}
+.chatSearchSection{
+    border: 1px solid blue;
+}
+
+/* ==================messages section */
+
+.chatMessagesSection{
+    display: grid;
+    grid-template-rows: 5% 90% 5%;
+
+}
+
+.chatRoomName{
+    border: 1px solid pink;
+}
+.messagesDisplayArea{
+    border: 1px solid brown;
+}
