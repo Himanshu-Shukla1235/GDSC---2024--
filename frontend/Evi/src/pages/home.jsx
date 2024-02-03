@@ -22,6 +22,7 @@ const Home = () => {
         <div className="boxH3"><div className="boxH31"></div></div>
         <div className="boxH1"></div>
       </main>
+      <footer className="footer"><Footer></Footer></footer>
       
     </>
   );
