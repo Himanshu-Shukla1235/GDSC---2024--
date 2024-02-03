@@ -5,7 +5,7 @@ import "./App.css";
 import Nav from "./components/Nav";
 import Contact from "./pages/contact";
 import Login from "./pages/login";
-import Regester from "./pages/register";
+import Register from "./pages/register";
 import Home from "./pages/home"
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
 
             <Route path="/contact" element={<Contact />} />
 
-            <Route path="/regester" element={<Regester />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>

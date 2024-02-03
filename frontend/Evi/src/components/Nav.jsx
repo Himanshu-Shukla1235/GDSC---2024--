@@ -22,10 +22,11 @@ function Navbar() {
         <h3>LOGO</h3>
 			<nav ref={navRef}>
 				
-			    <a onClick={showNavbar}><NavLink to={'/home'}>Home</NavLink></a>
+			    <a onClick={showNavbar}><NavLink to={'/'}>Home</NavLink></a>
 				<a onClick={showNavbar}><NavLink to={'/contact'}>contact</NavLink></a>
 				<a onClick={showNavbar}><NavLink to={'/about'}>about</NavLink></a>
 				<a onClick={showNavbar}><NavLink to={'/login'}>login</NavLink></a>
+				<a onClick={showNavbar}><NavLink to={'/register'}>Register</NavLink></a>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>
