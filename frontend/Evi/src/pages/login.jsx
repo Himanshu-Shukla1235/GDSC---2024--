@@ -1,102 +1,67 @@
-import React from "react";
-import { useState } from "react";
-import "./Login.css";
-import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
+import React, { useState } from 'react';
+import './Login.css'; // Import your CSS file
+import Navbar from '../components/Nav';
 
-import Navbar from "../components/Nav";
+const AuthForm = () => {
+  const [isSignUp, setIsSignUp] = useState(false);
 
-const Regester = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform registration logic here
-    console.log("Registration data:", formData);
+  const handleToggleForm = () => {
+    setIsSignUp((prev) => !prev);
   };
 
   return (
     <>
-      <header><Navbar></Navbar></header>
-      <main className="main">
-        <div className="form">
-          <form className="Form">
-          <h1 style={{ color: "green", fontFamily: "sans-serif", fontSize: 30 }}>
-        Login
-        </h1>
-           
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              // placeholder="Email"
-              required
-            />
-
-           
-
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              // placeholder="Password"
-              required
-            />
-
-           
-
-            <Button
-              variant="contained"
-              type="submit"
-              style={{ backgroundColor: "green", height: 25 ,width:115,borderRadius:13}}
-            >
-              Submit
-            </Button>
-            <div className="Loginopt">
-              {" "}
-              <Stack direction="row" spacing={2}>
-                <Avatar
-                  alt="Remy Sharp"
-                  sx={{ width: 24, height: 24 }}
-                  src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
-                />
-                <Avatar
-                  alt="Travis Howard"
-                  sx={{ width: 24, height: 24 }}
-                  src="https://static.dezeen.com/uploads/2023/07/x-logo-twitter-elon-musk_dezeen_2364_col_0.jpg"
-                />
-                <Avatar
-                  alt="Cindy Baker"
-                  sx={{ width: 24, height: 24 }}
-                  src=""
-                />
-              </Stack>
-            </div>
-          </form>
+    <header className='header1'><Navbar></Navbar></header>
+    <div className='inputBody'>
+    <div  className={`container ${isSignUp ? 'right-panel-active' : ''}`}>
+      <div className="form-container sign-up-container">
+        <form  className="inputForm" action="#">
+          <h1>Create Account</h1>
+          <div className="social-container">
+            <a href="#" className="social inputA"><i className="fab fa-facebook-f"></i></a>
+            <a href="#" className="social inputA"><i className="fab fa-google-plus-g"></i></a>
+            <a href="#" className="social inputA"><i className="fab fa-linkedin-in"></i></a>
+          </div>
+          <span className='inputSpan'>or use your email for registration</span>
+          <input className="loginInput"type="text" placeholder="Name" />
+          <input className="loginInput"type="email" placeholder="Email" />
+          <input className="loginInput"type="password" placeholder="Password" />
+          <button className='inputButton' >Sign Up</button>
+        </form>
+      </div>
+      <div className="form-container sign-in-container">
+        <form className="inputForm" action="#">
+          <h1>Sign in</h1>
+          <div className="social-container">
+            <a href="#" className="social inputA"><i className="fab fa-facebook-f"></i></a>
+            <a href="#" className="social inputA"><i className="fab fa-google-plus-g"></i></a>
+            <a href="#" className="social inputA"><i className="fab fa-linkedin-in"></i></a>
+          </div>
+          <span className='inputSpan'>or use your account</span>
+          <input className="loginInput"type="email" placeholder="Email" />
+          <input className="loginInput"type="password" placeholder="Password" />
+          <a className='inputA'href="#">Forgot your password?</a>
+          <button className='inputButton'>Sign In</button>
+        </form>
+      </div>
+      <div className="overlay-container">
+        <div className="overlay">
+          <div className={`overlay-panel overlay-left ${isSignUp ? 'overlay-left-active' : ''}`}>
+            <h1>Welcome Back!</h1>
+            <p className='inputP'>To keep connected with us please login with your personal info</p>
+            <button className="ghost inputButton" onClick={handleToggleForm}>Sign In</button>
+          </div>
+          <div className={`overlay-panel overlay-right ${isSignUp ? 'overlay-right-active' : ''}`}>
+            <h1>Hello, Friend!</h1>
+            <p className='inputP'>Enter your personal details and start the journey with us</p>
+            <button className="ghost inputButton" onClick={handleToggleForm}>Sign Up</button>
+          </div>
         </div>
-      </main>
+      </div>
+    </div>
+    </div>
     </>
   );
 };
 
-export default Regester;
+export default AuthForm;
