@@ -13,7 +13,11 @@ function App() {
     <>
       
         <BrowserRouter>
+<<<<<<< HEAD
           
+=======
+        
+>>>>>>> 14ff3e95036af2e6d4ecd1ecf45c82626eb63b72
           <Routes>
             <Route path="/" element={<Home />} />
 

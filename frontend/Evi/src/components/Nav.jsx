@@ -1,4 +1,4 @@
-import React ,{useState}from "react";
+import React, { useState } from "react";
 import "../components/nav.css";
 import { NavLink } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
@@ -10,13 +10,11 @@ import { FaBars, FaTimes } from "react-icons/fa";
 // import "../Styles/main.css";
 
 function Navbar() {
-	const navRef = useRef();
+  const navRef = useRef();
 
-	const showNavbar = () => {
-		navRef.current.classList.toggle(
-			"responsive_nav"
-		);
-	};
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive_nav");
+  };
 
 	return (
 		<div className="header">
@@ -69,9 +67,9 @@ export default Navbar;
 //       </ul>
 //      </div>
 //      <button>☰</button>
-      
+
 //     </nav>
-    
+
 //     </>
 //   );
 // };
@@ -105,4 +103,3 @@ export default Navbar;
 // };
 
 // export default Navbar;
-
