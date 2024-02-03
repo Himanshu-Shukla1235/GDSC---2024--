@@ -19,14 +19,15 @@ function Navbar() {
 	};
 
 	return (
-		<header className="header">
+		<div className="header">
 			<div className="mainComponent">
         <h3>LOGO</h3>
 			<nav ref={navRef}>
-			<navlink></navlink>	<a href="/">Home</a>
-				<a href="/#">My work</a>
-				<a href="/#">Blog</a>
-				<a href="/#">About me</a>
+				
+			    <a onClick={showNavbar}><NavLink to={'/home'}>Home</NavLink></a>
+				<a onClick={showNavbar}><NavLink to={'/contact'}>contact</NavLink></a>
+				<a onClick={showNavbar}><NavLink to={'/about'}>about</NavLink></a>
+				<a onClick={showNavbar}><NavLink to={'/login'}>login</NavLink></a>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>
@@ -39,7 +40,7 @@ function Navbar() {
 				<FaBars />
 			</button>
       </div>
-		</header>
+		</div>
    
 	);
 }

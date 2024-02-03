@@ -11,8 +11,7 @@ import Home from "./pages/home"
 function App() {
   return (
     <>
-      <header >
-        {" "}
+      
         <BrowserRouter>
           <Nav></Nav>
           <Routes>
@@ -24,8 +23,8 @@ function App() {
             <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
-      </header>
-      <main className="mainA"></main>
+      
+    
     </>
   );
 }
