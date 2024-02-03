@@ -7,18 +7,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
+    /* border: 1px solid green; */
+    padding-bottom: 20px;
 }
 
-#bottomnav{
+/* #bottomnav{
     width: 400px;
     display: -ms-inline-grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 
     justify-content: space-between;
     border: 1px solid red;
+} */
+#bottomnav {
+    width: 450px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    border-radius: 20px;
+    background-color: rgba(3, 3, 3, 0.487);
+    backdrop-filter: blur(8px);
+    
 }
 #bottomnav a{
-    border: 1px solid red;
+    /* border: 1px solid rgb(100, 186, 25); */
+    text-decoration: none;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: antiquewhite;
+    font-weight: bold;
+    
+}
+#bottomnav a:hover{
+    color: rgb(93, 212, 119);
+    background-color: rgb(255, 255, 255,0);
+    /* backdrop-filter: blur(7px); */
 }
 
