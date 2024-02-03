@@ -36,16 +36,73 @@ const Chat = () => {
       <div className="chatContainer">
         <div className='chatRoomSection'>
           <div className="chatSearchSection">
-            <input type="text" placeholder={placeholder} />
+            <input className='chatRoomSearchBtn' type="text" placeholder={placeholder} />
+            <button className='createNewRoomBtn'>+</button>
           </div>
           <div className="displayChatRooms">
-            display room
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
           </div>
         </div>
         <div className="chatMessagesSection">
           <div className="chatRoomName">name</div>
           <div className="messagesDisplayArea">messages</div>
-          <div className="messagesSendOption">send</div>
+          <div className="messagesSendOption">
+            <input className="sendMessageInput"type="text" /><button className="sendMessageBtn
+            ">Send</button>
+          </div>
         </div>
       </div>
       <footer className='footer'><Footer></Footer></footer>

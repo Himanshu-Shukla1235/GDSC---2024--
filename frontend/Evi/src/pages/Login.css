@@ -41,8 +41,8 @@ p {
 
 .inputButton {
   border-radius: 20px;
-  border: 1px solid #3f6e41;
-  background-color: #afee8a;
+  border: 1px solid #e8e8e8;
+  background-color: #c4c4c4;
   color: #191919;
   font-size: 12px;
   font-weight: bold;
@@ -158,9 +158,9 @@ p {
 }
 
 .overlay {
-  background: #267724;
-  background: -webkit-linear-gradient(to right, #438520, #5aa536);
-  background: linear-gradient(to right, #9bdb6d, #75a51b);
+  background: #a6a6a6;
+  background: -webkit-linear-gradient(to right, #a3a3a3, #5aa536);
+  background: linear-gradient(to right, #c0c0c0, #8f8f8f);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
