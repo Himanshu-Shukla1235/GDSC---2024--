@@ -11,7 +11,7 @@ const footer = () => {
           <div id="bottomnav">
             <a href="#">Feed</a>
             <a href="#" class="mid">Chat</a>
-            <a href="#" class="mid">Carbon Calculator</a>
+            <a href="#" class="mid">Carbon</a>
             <a href="#">Earth</a>
           </div>
         </div>
