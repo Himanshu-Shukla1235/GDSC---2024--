@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#homefooter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+}
+
+#bottomnav{
+    width: 400px;
+    display: -ms-inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    justify-content: space-between;
+    border: 1px solid red;
+}
+#bottomnav a{
+    border: 1px solid red;
+}
+

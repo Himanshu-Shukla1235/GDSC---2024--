@@ -4,6 +4,7 @@ import "./Regester.css";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import Navbar from "../components/Nav";
 
 const Regester = () => {
   const [formData, setFormData] = useState({
@@ -29,6 +30,7 @@ const Regester = () => {
 
   return (
     <>
+    <header><Navbar></Navbar></header>
       <main className="main">
         <div className="form">
           <form className="Form">
