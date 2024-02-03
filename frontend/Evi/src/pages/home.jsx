@@ -14,26 +14,15 @@ const Home = () => {
 
   return (
     <>
-<<<<<<< HEAD
-      <header className="header"><Navbar></Navbar></header>
-      <main className="mainH">
-        {/* <div className="boxH">
-        <Slideshow images={images}></Slideshow>
-=======
-      <header>  <Nav></Nav></header>
+      <header className="header1"><Nav></Nav></header>
       <main className="main2">
         <div className="boxH">
        
->>>>>>> 14ff3e95036af2e6d4ecd1ecf45c82626eb63b72
         </div>
         <div><div></div></div>
         <div className="boxH1"></div>
       </main>
-<<<<<<< HEAD
-      <footer><Footer></Footer></footer>
-=======
       
->>>>>>> 14ff3e95036af2e6d4ecd1ecf45c82626eb63b72
     </>
   );
 };
