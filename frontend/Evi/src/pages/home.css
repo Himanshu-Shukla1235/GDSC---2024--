@@ -1,16 +1,15 @@
-.header1{
- position: sticky;
- top: 0;
- 
- z-index: 2000;
+.header1 {
+  position: sticky;
+  top: 0;
+
+  z-index: 2000;
 }
-.footer{
-    position: sticky;
-    bottom: 0;
+.footer {
+  position: sticky;
+  bottom: 0;
 }
 
 .main2 {
-    
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -21,10 +20,13 @@
   height: 3000px;
 }
 
-.boxH {
+.boxH1 {
   display: flex;
   height: 80vh;
   width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+
   /* border: solid 3px red; */
 
   background-size: cover;
@@ -37,27 +39,51 @@
 }
 @keyframes slideshow {
   0%,
-  49.2% {
+  24.2% {
     background-image: url("https://wallpapercave.com/wp/wp2060643.jpg");
   }
-  50%,
-  99.2% {
+  25%, 
+  49.2% {
     background-image: url("https://r4.wallpaperflare.com/wallpaper/764/431/702/river-trees-forest-clouds-wallpaper-d4ba55cd41062d25051044aa61cfaf9c.jpg");
   }
-  100% {
+ 50%,100% {
     background-image: url("https://r4.wallpaperflare.com/wallpaper/270/709/236/macos-mojave-macbook-pro-apple-computer-wallpaper-07ff12647fa5af1aef72f49111118755.jpg");
   }
 }
-.boxH1 {
+.boxH11 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:flex-start;
+  height: 45rem;
+  width: 40rem;
+  /* border: solid 3px red; */
+  margin-left: 40px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.162);
+  backdrop-filter: blur(1px);
+  color: rgb(232, 229, 229);
+}
+.green-cursor {
+  color: green;
+}
+.boxH2 {
   display: flex;
   height: 60vh;
   width: 190vh;
-  background-color: rgba(0, 0, 0, 0.342);
+ 
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   margin-top: 50px;
+}
+.boxH21{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:center;
+  width: 50vh;
 }
 .boxH3 {
   display: flex;
@@ -71,4 +97,5 @@
   margin-top: 50px;
   border: solid 3px center;
   border: solid red 3px;
+  color: red;
 }
