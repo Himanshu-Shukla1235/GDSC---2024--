@@ -1,4 +1,4 @@
-/* .mainH {
+.mainH {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -6,9 +6,9 @@
     background-color: white;
     
 
-    border: solid 3px red;
-    height: 2000px;
-} */
+    border: solid 3px rgb(234, 255, 0);
+    height: 20px;
+}
 
 .boxH {
     display: flex;
@@ -30,5 +30,5 @@
     background-position: center;
     background-repeat: no-repeat; 
     margin-top: 50px;
-
+    
 }

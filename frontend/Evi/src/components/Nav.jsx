@@ -19,11 +19,11 @@ function Navbar() {
 	};
 
 	return (
-		<header>
+		<header className="header">
 			<div className="mainComponent">
         <h3>LOGO</h3>
 			<nav ref={navRef}>
-				<a href="/#">Home</a>
+			<navlink></navlink>	<a href="/">Home</a>
 				<a href="/#">My work</a>
 				<a href="/#">Blog</a>
 				<a href="/#">About me</a>
@@ -40,6 +40,7 @@ function Navbar() {
 			</button>
       </div>
 		</header>
+   
 	);
 }
 

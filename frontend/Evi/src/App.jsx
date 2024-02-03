@@ -11,7 +11,7 @@ import Home from "./pages/home"
 function App() {
   return (
     <>
-      <header>
+      <header >
         {" "}
         <BrowserRouter>
           <Nav></Nav>
@@ -25,7 +25,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </header>
-      <main className="main0"></main>
+      <main className="mainA"></main>
     </>
   );
 }

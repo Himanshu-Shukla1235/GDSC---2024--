@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <>
-      <header className="header"></header>
+      {/* <header className="header"></header> */}
       <main className="mainH">
         {/* <div className="boxH">
         <Slideshow images={images}></Slideshow>

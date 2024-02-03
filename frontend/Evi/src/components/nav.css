@@ -7,14 +7,8 @@
   font-family: "Titillium Web", sans-serif;
 }
 
-:root {
-  --mainColor: rgba(255, 255, 255, 1);
-  --mainColorLight: #5767aa;
-  --secondaryColor: #6d6d6d;
-  --textColor: #000000;
-}
 
-header {
+.header {
   display: flex;
   /* align-items: center;
   justify-content: space-between; */
@@ -24,6 +18,7 @@ header {
   /* background-color: var(--mainColor); */
   color: var(--textColor);
   /* backdrop-filter: blur(10px); */
+  /* border: solid 3px rgb(6, 217, 241); */
 }
 
 nav a {
@@ -36,7 +31,7 @@ nav a:hover {
   color: var(--secondaryColor);
 }
 
-header .nav-btn {
+.header .nav-btn {
   padding: 5px;
   cursor: pointer;
   background: transparent;
@@ -48,7 +43,7 @@ header .nav-btn {
   font-size: 1.8rem;
 }
 
-header div,
+.header div,
 nav {
   display: flex;
   align-items: center;
@@ -57,12 +52,12 @@ nav {
 .mainComponent{
   display: flex;
   justify-content: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   backdrop-filter: blur(7px);
 }
 
 @media only screen and (max-width: 1024px) {
-  header .nav-btn {
+  .header .nav-btn {
     visibility: visible;
     opacity: 1;
     /* background-color: white; */
@@ -71,7 +66,7 @@ nav {
     backdrop-filter: none;
   }
 
-  header nav {
+  .header nav {
     position: fixed;
     top: -100vh;
     left: 0;
@@ -86,7 +81,7 @@ nav {
     transition: 1s;
   }
 
-  header .responsive_nav {
+ .header .responsive_nav {
     transform: translateY(100vh);
   }
 
