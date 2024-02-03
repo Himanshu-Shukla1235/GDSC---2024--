@@ -1,4 +1,4 @@
-import React ,{useState}from "react";
+import React, { useState } from "react";
 import "../components/nav.css";
 import { NavLink } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
@@ -10,38 +10,31 @@ import { FaBars, FaTimes } from "react-icons/fa";
 // import "../Styles/main.css";
 
 function Navbar() {
-	const navRef = useRef();
+  const navRef = useRef();
 
-	const showNavbar = () => {
-		navRef.current.classList.toggle(
-			"responsive_nav"
-		);
-	};
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive_nav");
+  };
 
-	return (
-		<header className="header">
-			<div className="mainComponent">
+  return (
+    <header className="header">
+      <div className="mainComponent">
         <h3>LOGO</h3>
-			<nav ref={navRef}>
-			<navlink></navlink>	<a href="/">Home</a>
-				<a href="/#">My work</a>
-				<a href="/#">Blog</a>
-				<a href="/#">About me</a>
-				<button
-					className="nav-btn nav-close-btn"
-					onClick={showNavbar}>
-					<FaTimes />
-				</button>
-			</nav>
-			<button
-				className="nav-btn"
-				onClick={showNavbar}>
-				<FaBars />
-			</button>
+        <nav ref={navRef}>
+          <a href="/">Home</a>
+          <a href="/#">My work</a>
+          <a href="/#">Blog</a>
+          <a href="/#">About me</a>
+          <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+            <FaTimes />
+          </button>
+        </nav>
+        <button className="nav-btn" onClick={showNavbar}>
+          <FaBars />
+        </button>
       </div>
-		</header>
-   
-	);
+    </header>
+  );
 }
 
 export default Navbar;
@@ -67,9 +60,9 @@ export default Navbar;
 //       </ul>
 //      </div>
 //      <button>☰</button>
-      
+
 //     </nav>
-    
+
 //     </>
 //   );
 // };
@@ -103,4 +96,3 @@ export default Navbar;
 // };
 
 // export default Navbar;
-
