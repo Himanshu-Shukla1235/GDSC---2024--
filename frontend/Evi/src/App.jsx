@@ -11,7 +11,7 @@ import Home from "./pages/home"
 function App() {
   return (
     <>
-     
+      
         <BrowserRouter>
         
           <Routes>
@@ -23,6 +23,7 @@ function App() {
             <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
+      
     
     </>
   );
