@@ -36,15 +36,15 @@ const addMessage=async(req,res,next)=>{
 }
 
 const getAllMessages=async(req,res,next)=>{
-    const {from}=req.body;
+    // const {from}=req.query;
     var messages=await messageModel.find({}).sort({updatedAt:1});
 
-    messages=messages.map((msg)=>{
-        return {
-            formSelf:msg.sender.toString()==from,
-            message:msg.message.text,
-        }
-    })
+    // messages=messages.map((msg)=>{
+    //     return {
+    //         formSelf:msg.sender.toString()==from,
+    //         message:msg.message.text,
+    //     }
+    // })
 
     res.json(messages)
 }

@@ -9,8 +9,10 @@ const connectDB=require('./DB/connect');
 //require routes
 const authRouter=require('./Routes/auth');
 const messagesRouter=require('./Routes/messages');
+const cors=require('cors')
 //---------------------------------------------------middlewares--------------------------------->>>
 app.use(express.json());
+app.use(cors())
 
 
 
