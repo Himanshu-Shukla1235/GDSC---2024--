@@ -11,7 +11,7 @@
   border: 1px solid rgb(26, 21, 21);
   border-radius: 20px;
   width: 450px;
-  height: 60vh;
+  height: 70vh;
   margin-bottom: 80px;
   background-color: rgba(167, 172, 169, 0.3);
 
@@ -39,7 +39,7 @@
 
 .loginButton {
   padding: 10px;
-  background: rgb(117, 214, 149);
+  background: rgb(70, 132, 91);
   border: none;
   font-weight: bold;
   color: aliceblue;
@@ -56,5 +56,17 @@
   margin-top: 20px;
 }
 .loginRegister:hover{
-  color: rgb(157, 81, 81);
+  color: rgb(43, 88, 202);
+  
+}
+
+.errorLogin{
+  color:rgb(206, 22, 22);
+}
+.errorHandler{
+  margin-top: 10px;
+  
+  display: flex;
+  justify-content: center;
+
 }
