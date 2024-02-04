@@ -13,7 +13,7 @@ const footer = () => {
             <a href="#">Feed</a>
             <a class="mid"><NavLink to={'/chat'}>Chat</NavLink></a>
             <a href="#" class="mid">Carbon</a>
-            <a href="#">Earth</a>
+            <a href="/earth">Earth</a>
           </div>
         </div>
     </div>

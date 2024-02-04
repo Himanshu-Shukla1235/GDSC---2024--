@@ -6,27 +6,25 @@ import Nav from "./components/Nav";
 import Contact from "./pages/contact";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import Home from "./pages/home"
-import Chat from "./pages/chat.jsx"
+import Home from "./pages/home";
+import Chat from "./pages/chat.jsx";
+import Earth from "../src/pages/earth.jsx";
 
 function App() {
   return (
     <>
-      
-        <BrowserRouter>
-        
-          <Routes>
-            <Route path="/" element={<Home />} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-            <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
 
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/chat" element={<Chat/>}/>
-          </Routes>
-        </BrowserRouter>
-      
-    
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/earth" element={<Earth />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
