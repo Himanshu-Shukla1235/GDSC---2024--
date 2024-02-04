@@ -18,8 +18,9 @@ function Navbar() {
 
 	return (
 		<div className="header">
+		<h3>LOGO</h3>
 			<div className="mainComponent">
-        <h3>LOGO</h3>
+        
 			<nav ref={navRef}>
 				
 			    <a onClick={showNavbar}><NavLink to={'/'}>Home</NavLink></a>
@@ -39,6 +40,8 @@ function Navbar() {
 				<FaBars />
 			</button>
       </div>
+	  <div className="avatar" > <Avatar alt="himanshu" src=""></Avatar></div>
+	 
 		</div>
    
 	);

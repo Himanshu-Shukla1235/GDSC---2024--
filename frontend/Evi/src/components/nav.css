@@ -9,17 +9,23 @@
 
 .header {
   display: flex;
-  /* align-items: center;
-  justify-content: space-between; */
-  justify-content: center;
+
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   height: 30px;
-  padding: 0 2rem;
+
+  padding-top: 1%;
+  margin-bottom: 1.5rem;
+  padding-right: 1%;
+  padding-left: 1%;
 
   color: var(--textColor);
 
   /* backdrop-filter: blur(10px); */
   /* border: solid 3px rgb(6, 217, 241); */
   z-index: 1000;
+
 }
 
 nav a {
@@ -102,5 +108,13 @@ nav {
 
   nav a {
     font-size: 1.5rem;
+  }
+
+}
+@media only screen and (max-width: 600px) {
+  /* ... Other existing styles ... */
+
+  .avatar {
+    display: none !important; /* Add this rule to hide the avatar */
   }
 }

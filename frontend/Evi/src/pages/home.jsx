@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Navbar from "../components/Nav";
 import Footer from "../components/footer";
 import { Cursor, Typewriter } from "react-simple-typewriter";
@@ -15,11 +15,37 @@ const Home = () => {
     // You can set the final text or perform any other action here
     setTypedText("manshi");
   };
+  const [boxH21,setanim]=useState(false)
 
+  // useEffect(() => {
+  //   // Scroll to the element with the specified name when the component mounts
+  //   scroller.scrollTo("animatedContainer", {
+  //     duration: 800,
+  //     delay: 0,
+  //     smooth: "easeInOutQuart",
+  //   });
+  // }, []);
+  useEffect(() => {
+    const changeBackground = () => {
+      if (window.scrollY >= 90) {
+        setanim(true);
+      } else {
+        setanim(false);
+      }
+    };
+  
+    window.addEventListener("scroll", changeBackground);
+  
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", changeBackground);
+    };
+  }, []);
 
   return (
     <>
       <header className="header1">
+      
         <Nav />
       </header>
       <main className="main2">
@@ -35,7 +61,7 @@ const Home = () => {
         </div>
         <div className="boxH2">
          
-          <div className="boxH21"> <h1>
+          <div className={boxH21 ?`boxH21 active`:"boxH21"}> <h1>
           "Welcome to our platform dedicated to promoting a healthy Earth and environment."
           
           </h1></div>
