@@ -81,12 +81,13 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%; /* Adjusted width for responsiveness */
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+  opacity: 1;
+  
 }
 
-.boxH21 .active{
+.boxH21 .active1{
   opacity: 1;
+  color: red;
 }
 
 .boxH3 {
