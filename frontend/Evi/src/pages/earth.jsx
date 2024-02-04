@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import Navbar from "../components/Nav";
 import TextField from "@mui/material/TextField";
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+import { NavLink } from "react-router-dom";
 
 import "../pages/earth.css";
 const earth = () => {
@@ -17,6 +18,11 @@ const earth = () => {
         
         <div className="boxE2">
           <Map></Map>
+        </div>
+        <div className="boxE3">
+          <div>
+          <NavLink to={'/airQuality'}>air</NavLink>
+          </div>
         </div>
       </main>
       <footer className="footerE">

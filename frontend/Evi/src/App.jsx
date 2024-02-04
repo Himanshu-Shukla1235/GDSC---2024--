@@ -9,6 +9,7 @@ import Register from "./pages/register";
 import Home from "./pages/home";
 import Chat from "./pages/chat.jsx";
 import Earth from "../src/pages/earth.jsx";
+import Air from "./components/airquality.jsx";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/earth" element={<Earth />} />
+          <Route path="/airQuality" element={<Air></Air>} />
+          
         </Routes>
       </BrowserRouter>
     </>
