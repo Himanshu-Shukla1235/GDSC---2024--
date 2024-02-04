@@ -3,31 +3,77 @@ import './chat.css';
 import { Typewriter } from 'react-simple-typewriter';
 import Navbar from '../components/Nav';
 import Footer from '../components/footer';
+import axios from 'axios'; 
+
 
 const Chat = () => {
   const [placeholder, setPlaceholder] = useState("");
   const word = ["s", "e", "a", "r", "c", "h", " ", "f", "o", "r", " ", "c", "h", "a", "t", "r", "o", "o", "m", "s"];
   const [i, setI] = useState(0);
   const [shouldContinue, setShouldContinue] = useState(true);
+  const [messages,setMessages]=useState([]);
+  const [sendMessage,setSendMessage]=useState("");
+
+  //for send message
+const onChangeSendMessage=(e)=>{
+  console.log(sendMessage)
+  setSendMessage(e.target.value)
+}
+
+useEffect(()=>{
+  const messagesURL='http://localhost:5000/api/v1/messages/allMessages'
+  
+  const fetching=async()=>{
+    try {
+      const data=await axios.get(messagesURL,{timeout:5000});
+      let Datamessages=data.data;
+      console.log(Datamessages);
+
+      //make sure it is empty
+      setMessages([]);
+      
+      setMessages((prevMessage)=>[
+        ...prevMessage,...Datamessages.map((item)=>item.message.text)
+      ])
+      
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  fetching()
+},[])
+
+
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (!shouldContinue) {
-        clearInterval(intervalId); // Stop the interval permanently
-        return;
-      }
+  const intervalId = setInterval(() => {
+    // Your existing code
+  }, 100);
 
-      setPlaceholder((prevPlaceholder) => prevPlaceholder + word[i]);
-      setI((prevI) => prevI + 1);
+  return () => clearInterval(intervalId);
+}, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
 
-      if (i === word.length - 1) {
-        setPlaceholder(placeholder);
-        setShouldContinue(false); // Set shouldContinue to false to stop the interval permanently
-      }
-    }, 100);
 
-    return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, [i, word, shouldContinue]);
+
+ const addMessage = async(e) => {
+  e.preventDefault();
+ 
+     try {
+      const see=await axios.post('http://localhost:5000/api/v1/messages/add',{
+    from:"65bbe4a029da132ca2527fcd",
+    message:sendMessage})
+
+       setMessages((prevMessage)=>[
+        ...prevMessage,sendMessage
+       ])
+       setSendMessage("");
+        
+     } catch (error) {
+      console.log(error);
+     }
+     
+}
 
   return (
     <>
@@ -98,10 +144,17 @@ const Chat = () => {
         </div>
         <div className="chatMessagesSection">
           <div className="chatRoomName">name</div>
-          <div className="messagesDisplayArea">messages</div>
+          <div className="messagesDisplayArea">
+               {messages.map((message, index) => (
+                 <a key={index} className="chatMessageUser">
+                   {message}
+                 </a>
+               ))}
+          </div>
+
           <div className="messagesSendOption">
-            <input className="sendMessageInput"type="text" /><button className="sendMessageBtn
-            ">Send</button>
+            <input className="sendMessageInput"type="text" value={sendMessage} onChange={onChangeSendMessage}/>
+            <button className="sendMessageBtn" onClick={addMessage}>Send</button>
           </div>
         </div>
       </div>
