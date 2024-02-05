@@ -55,11 +55,22 @@
   align-items: center;
 
   /* border: solid 3px rgb(238, 6, 6); */
-  height: 50rem;
+  height:200vh;
   width: 90%;
   overflow-y: hidden;
-  background-color: rgb(209, 253, 209);
+  background-color: rgba(152, 151, 151, 0.11);
   margin: 3%;
+  backdrop-filter: blur(10px);
+  gap: 5px;
+  padding: 70px;
+}
+.boxE31 {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(10px);
 }
 
 .footerE {

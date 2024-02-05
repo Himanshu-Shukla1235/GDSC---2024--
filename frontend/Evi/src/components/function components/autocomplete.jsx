@@ -57,7 +57,9 @@ const LocationSearch = ({ onLocationSelect }) => {
   };
 
   const handleSelectLocation = (selectedLocation) => {
-    setSearchTerm(`${selectedLocation.name},${selectedLocation.region}, ${selectedLocation.country}`);
+    setSearchTerm(
+      `${selectedLocation.name},${selectedLocation.region}, ${selectedLocation.country}`
+    );
     setSelectedLocation(selectedLocation);
     setShowResults(false); // Hide search results
     console.log(selectedLocation.lat, selectedLocation.lon);
@@ -102,7 +104,7 @@ const LocationSearch = ({ onLocationSelect }) => {
                 </InputAdornment>
               ),
             }}
-            style={{ width: "200px" }}
+            style={{ width: "350px" }}
           />
         </div>
         {showResults && ( // Only render search results if showResults is true

@@ -17,12 +17,20 @@ const earth = () => {
       <main className="mainE">
         
         <div className="boxE2">
+        
           <Map></Map>
         </div>
         <div className="boxE3">
-          <div>
-          <NavLink to={'/airQuality'}>air</NavLink>
+          <div  className="boxE31">
+          <NavLink to={'/airQuality'}>AIRQUAITY</NavLink>
           </div>
+          <div  className="boxE31">
+          <NavLink to={'/airQuality'}>AIRQUAITY</NavLink>
+          </div>
+          <div  className="boxE31">
+          <NavLink to={'/airQuality'}>AIRQUAITY</NavLink>
+          </div>
+
         </div>
       </main>
       <footer className="footerE">

@@ -7,10 +7,8 @@ import AutocompletePl from "../components/function components/autocomplete";
 const Gmap = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
 
-  const [selectedLocationFromSearch, setSelectedLocationFromSearch] = useState(null);
-  
-
-  
+  const [selectedLocationFromSearch, setSelectedLocationFromSearch] =
+    useState(null);
 
   const getLocation = async () => {
     if (navigator.geolocation) {
@@ -34,9 +32,12 @@ const Gmap = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Selected Location:", selectedLocationFromSearch?.lat, selectedLocationFromSearch?.lon);
+    console.log(
+      "Selected Location:",
+      selectedLocationFromSearch?.lat,
+      selectedLocationFromSearch?.lon
+    );
   }, [selectedLocationFromSearch]);
-  
 
   const handleLocationSelect = (selectedLocation) => {
     setSelectedLocationFromSearch(selectedLocation);
@@ -75,16 +76,23 @@ const Gmap = () => {
           </button>
         </div>
       </div>
-
-      <GoogleMap
-        center={{lat:selectedLocationFromSearch?.lat,lng:selectedLocationFromSearch?.lon}}
-        zoom={16}
-        mapContainerStyle={{ width: "100%", height: "100%" }}
-        options={{ zoomControl: false, fullscreenControl: false }}
-        onLoad={onLoad}
-      >
-        <Marker position={currentLocation} />
-      </GoogleMap>
+      <d style={{ border: "3px solid black", width: "100%", height: "100%" }}>
+        {" "}
+        <GoogleMap
+          style={{ border: "3px solid black" }}
+          center={{
+            lat: selectedLocationFromSearch?.lat,
+            lng: selectedLocationFromSearch?.lon,
+          }}
+          zoom={16}
+          mapContainerStyle={{ width: "100%", height: "100%" }}
+          options={{ zoomControl: false, fullscreenControl: false }}
+          onLoad={onLoad}
+        >
+          <Marker position={currentLocation} />
+        </GoogleMap>
+      </d>
+      iv
     </>
   );
 };

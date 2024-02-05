@@ -10,6 +10,7 @@ import Home from "./pages/home";
 import Chat from "./pages/chat.jsx";
 import Earth from "../src/pages/earth.jsx";
 import Air from "./components/airquality.jsx";
+import Whether from "../src/components/whether.jsx"
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/earth" element={<Earth />} />
           <Route path="/airQuality" element={<Air></Air>} />
-          <Route path="/searchlocation" element={<Air></Air>} />
+          
+          <Route path="/whether" element={<Whether></Whether>} />
           
         
         </Routes>
