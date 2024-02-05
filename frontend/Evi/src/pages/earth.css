@@ -25,7 +25,7 @@
   height: 5rem;
   width: 40%;
   overflow-y: hidden;
-  background-color: rgb(243, 234, 234);
+  background-color: rgb(218, 249, 247);
   margin: 3%;
   border-radius: 10px;
 }
@@ -34,7 +34,7 @@
   justify-content: center;
   align-items: center;
 }
-.boxE12{
+.boxE12 {
   margin-right: 3%;
 }
 .boxE2 {
@@ -47,6 +47,19 @@
   height: 50rem;
   width: 90%;
   overflow-y: hidden;
+}
+.boxE3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* border: solid 3px rgb(238, 6, 6); */
+  height: 50rem;
+  width: 90%;
+  overflow-y: hidden;
+  background-color: rgb(209, 253, 209);
+  margin: 3%;
 }
 
 .footerE {
