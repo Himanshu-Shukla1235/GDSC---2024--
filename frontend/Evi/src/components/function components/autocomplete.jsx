@@ -6,19 +6,11 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import "../function components/autocomplete.css";
 
-const LocationSearch = (props) => {
+const LocationSearch = ({ onLocationSelect }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [showResults, setShowResults] = useState(true); // New state for controlling visibility
-
-  const [Data, set] = useState("/");
-
-  const fetching = async () => {
-    var data = await axios.get("http://localhost:8000/api/auth/data");
-    set(data.data);
-    console.log(data);
-  };
 
   const handleChange = async (value) => {
     setSearchTerm(value);
@@ -65,12 +57,11 @@ const LocationSearch = (props) => {
   };
 
   const handleSelectLocation = (selectedLocation) => {
-    setSearchTerm(`${selectedLocation.name}, ${selectedLocation.country}`);
+    setSearchTerm(`${selectedLocation.name},${selectedLocation.region}, ${selectedLocation.country}`);
     setSelectedLocation(selectedLocation);
     setShowResults(false); // Hide search results
-    console.log(selectedLocation.lat,selectedLocation.lon);
-    // fetchLocationDetails(selectedLocation.id);
-    // Do something with the selected location, e.g., store it in state or use it in your application
+    console.log(selectedLocation.lat, selectedLocation.lon);
+    onLocationSelect(selectedLocation); // Callback to pass selected location to the parent component
   };
 
   useEffect(() => {
