@@ -9,20 +9,45 @@ import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
+import AutocompletePl from "../components/function components/autocomplete";
 
 const Gmap = () => {
+  const [currentLocation, setCurrentLocation] = useState(null);
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setCurrentLocation({ lat: latitude, lng: longitude });
+         console.log(currentLocation)
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+
+  useEffect(() => {
+   
+    getLocation();
+    
+  }, []);
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyA341iZktrv-k3TxPm5EF-ypykTYBa3Kes",
     libraries: ["places"],
   });
-  const center = { lat: 48.8584, lng: 2.2945 };
+  
   const [map, setmap] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
 
   const onLoad = (map) => {
     setmap(map);
   };
-  
 
   const onPlaceChanged = () => {
     if (autocomplete !== null) {
@@ -39,7 +64,9 @@ const Gmap = () => {
   return (
     <>
       <div className="boxE1">
-        <div className="boxE11">
+        <AutocompletePl userLocation={currentLocation}></AutocompletePl>
+
+        {/* <div className="boxE11">
           <Autocomplete onLoad={(auto) => setAutocomplete(auto)} onPlaceChanged={onPlaceChanged}>
             <TextField
              id="standard-basic"  variant="standard"
@@ -48,7 +75,7 @@ const Gmap = () => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton type="submit" aria-label="search"  onClick={() => map.panTo(center)}>
+                    <IconButton type="submit" aria-label="search"  onClick={() => map.panTo(currentLocation)}>
                       <SearchIcon />
                     </IconButton>
                   </InputAdornment>
@@ -57,14 +84,12 @@ const Gmap = () => {
               }}
             />
           </Autocomplete>
-        </div>
-       
-          
-       
+        </div> */}
+
         <div className="boxE12">
           <button
             type="button"
-            onClick={() => map.panTo(center)}
+            onClick={() => map.panTo(currentLocation)}
             style={{
               border: "none",
               backgroundColor: "transparent",
@@ -77,13 +102,13 @@ const Gmap = () => {
       </div>
 
       <GoogleMap
-        center={center}
+        center={currentLocation}
         zoom={16}
         mapContainerStyle={{ width: "100%", height: "100%" }}
         options={{ zoomControl: false }}
         onLoad={onLoad}
       >
-        <Marker position={center} />
+        <Marker position={currentLocation} />
       </GoogleMap>
     </>
   );
