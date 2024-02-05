@@ -6,14 +6,17 @@ const {StatusCodes}=require('http-status-codes')
 
 const createChatRoom=async(req,res,next)=>{
 
-    const {name,members}=req.body;
-    if(!name || !members){
+    const {name,members,aim,area,description}=req.body;
+    if(!name || !members || !aim || !area || !description){
         next(new BadRequestError('please provide details!!'))
     }
 
     const room=await chatRoomModel.create({
         name:name,
-        members:members
+        members:members,
+        aim:aim,
+        description:description,
+        area:area,
     })
 
     res.status(StatusCodes.CREATED).json(room);

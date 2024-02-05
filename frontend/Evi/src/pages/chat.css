@@ -117,3 +117,66 @@
     width: 80%;
     padding: 8px;
 }
+/* =======create room */
+.clickedCreateRoom{
+    height: 70vh;
+    width: 50vw;
+    position:absolute;
+    top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    
+    background-color: rgba(169, 169, 169, 0.476);
+    backdrop-filter:blur(5px);
+    display: flex;
+    justify-content: center;
+    transition: opacity 0.5s ease-in-out, transform 2s ease-in-out;
+    
+    
+    
+}
+.createRoom{
+    display: none;
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin-top: 20vh;
+    
+}
+.formContainer input{
+    padding: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+.formContainer button{
+    margin-top: 10px;
+    padding: 5px;
+    background-color: rgb(64, 125, 48);
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.backBtn{
+    position:absolute;
+    margin-left: 20px;
+    margin-top: 20px;
+    left: 0;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    transition: background-color 0.1s ease-in-out;
+}
+.backBtn:hover{
+    background-color: rgba(238, 238, 238, 0.561);
+}
+.errorHandleArea{
+    color: red;
+}
