@@ -60,6 +60,22 @@ const AuthForm = () => {
       try {
         const res=await axios.post('http://localhost:5000/api/v1/auth/login',person);
         setError('')
+
+        const token = res.data.token;
+        console.log(res)
+        
+  
+    
+        // Store the token in localStorage
+        localStorage.setItem('token', token);
+    
+        // Set the Authorization header for future requests
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        
+
+        const id=res.data.user.id;
+        axios.defaults.headers.common['userID'] = id;
+
       } catch (error) {
         setError(error.response.data.msg)
       }
@@ -74,6 +90,13 @@ const AuthForm = () => {
         try {
         const res=await axios.post('http://localhost:5000/api/v1/auth/register',person)
         setError('')
+        // Store the token in localStorage
+        localStorage.setItem('token', token);
+    
+        // Set the Authorization header for future requests
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+
       } catch (error) {
         setError(error.response.data.msg)
       }

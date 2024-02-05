@@ -80,8 +80,10 @@ useEffect(()=>{
  
      try {
       const see=await axios.post('http://localhost:5000/api/v1/messages/add',{
-    from:"65bbe4a029da132ca2527fcd",
+    from:axios.defaults.headers.common.userID,
     message:sendMessage})
+
+    console.log(axios.defaults.headers.common.userID)
 
        setMessages((prevMessage)=>[
         ...prevMessage,sendMessage

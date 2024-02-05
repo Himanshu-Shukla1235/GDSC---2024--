@@ -10,12 +10,10 @@ const register=async(req,res,next)=>{
 
     const user = await User.create({ ...req.body })
     const token = user.createJWT()
-    res.status(StatusCodes.CREATED).json({ user: { name: user.username }, token })
+    res.status(StatusCodes.CREATED).json({ user: { name: user.username,id:user._id }, token })
 }
 
 const login=async(req,res,next)=>{
-
-  console.log('reached')
 
 
   const { email, password } = req.body
@@ -33,7 +31,7 @@ const login=async(req,res,next)=>{
   }
   // compare password
   const token = user.createJWT()
-  res.status(StatusCodes.OK).json({ user: { name: user.username }, token })
+  res.status(StatusCodes.OK).json({ user: { name: user.username, id:user._id }, token })
 
 
 
