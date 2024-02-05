@@ -87,7 +87,7 @@
     border: 1px solid pink;
     background-color: rgb(227, 224, 224);
     color: rgb(25, 65, 36);
-    height: 30px;
+    height: 50px;
 }
 .messagesDisplayArea{
     border: 1px solid brown;
@@ -106,7 +106,7 @@
 
 .messagesSendOption{
     display: inline-flex;
-    height: 30px;
+    height: 50px;
     
 }
 .sendMessageBtn{
@@ -160,12 +160,14 @@
     color: white;
     font-weight: bold;
     font-size: 0.9rem;
+    border: 0.1px solid rgb(0, 0, 0)
+    
 }
 .backBtn{
     position:absolute;
-    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 20px;
-    left: 0;
+    right: 0;
     padding: 5px 10px;
     background-color: rgba(0, 0, 0, 0);
     border: none;
