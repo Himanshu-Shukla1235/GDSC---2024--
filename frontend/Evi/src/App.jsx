@@ -25,7 +25,9 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/earth" element={<Earth />} />
           <Route path="/airQuality" element={<Air></Air>} />
+          <Route path="/searchlocation" element={<Air></Air>} />
           
+        
         </Routes>
       </BrowserRouter>
     </>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import AutocompletePl from "../components/function components/autocomplete"
 
 const AirQuality = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -27,27 +28,27 @@ const AirQuality = () => {
     }
   };
 
-  const fetchAirQuality = async (latitude, longitude) => {
-    const airQualityOptions = {
-      method: "GET",
-      url: "https://air-quality.p.rapidapi.com/current/airquality",
-      params: {
-        lon: longitude.toString(),
-        lat: latitude.toString(),
-      },
-      headers: {
-        "X-RapidAPI-Key": "d8cd4583e0msh5da198a5cabe78cp17051cjsn3e8d0135eafd",
-        "X-RapidAPI-Host": "air-quality.p.rapidapi.com",
-      },
-    };
+//   const fetchAirQuality = async (latitude, longitude) => {
+//     const airQualityOptions = {
+//       method: "GET",
+//       url: "https://air-quality.p.rapidapi.com/current/airquality",
+//       params: {
+//         lon: longitude.toString(),
+//         lat: latitude.toString(),
+//       },
+//       headers: {
+//         "X-RapidAPI-Key": "d8cd4583e0msh5da198a5cabe78cp17051cjsn3e8d0135eafd",
+//         "X-RapidAPI-Host": "air-quality.p.rapidapi.com",
+//       },
+//     };
 
-    try {
-      const response = await axios.request(airQualityOptions);
-      setAirQualityData(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+//     try {
+//       const response = await axios.request(airQualityOptions);
+//       setAirQualityData(response.data);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -71,8 +72,7 @@ const AirQuality = () => {
     getLocation();
   }, []);
 
-  return (
-    <div>
+  return (<> <div>
       {currentLocation && (
         <h2>
           Current Location: {currentLocation.lat}, {currentLocation.lon}
@@ -93,6 +93,8 @@ const AirQuality = () => {
         </div>
       )}
     </div>
+    <div><AutocompletePl></AutocompletePl></div></>
+   
   );
 };
 

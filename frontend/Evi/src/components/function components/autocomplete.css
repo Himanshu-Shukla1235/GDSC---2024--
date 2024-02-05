@@ -1,0 +1,34 @@
+.navigate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  flex-direction: column;
+  /* border: solid 3px red; */
+  position: relative;
+}
+
+.boxE11 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxE12 {
+  margin-right: 3%;
+}
+
+.searchre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.231);
+  width: 30rem;
+  height: auto;
+  z-index: 2000;
+  margin-top: 1%;
+  border-radius: 5px;
+  position: absolute;
+  top: 100px; /* Adjust this value to increase the size downwards */
+}
