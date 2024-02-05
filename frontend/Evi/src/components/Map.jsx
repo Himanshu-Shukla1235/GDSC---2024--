@@ -13,6 +13,7 @@ import AutocompletePl from "../components/function components/autocomplete";
 
 const Gmap = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
+  const [aman,setAman]=useState(null);
 
   const getLocation = () => {
     if (navigator.geolocation) {
