@@ -13,12 +13,29 @@ const Chat = () => {
   const [shouldContinue, setShouldContinue] = useState(true);
   const [messages,setMessages]=useState([]);
   const [sendMessage,setSendMessage]=useState("");
+  const [searchRoom,setSearchRoom]=useState("");
 
   //for send message
 const onChangeSendMessage=(e)=>{
   console.log(sendMessage)
   setSendMessage(e.target.value)
 }
+
+const onchangeRoom=async(e)=>{
+  setSearchRoom(e.target.value)
+  console.log(searchRoom)
+
+  const res=await axios.get('http://localhost:5000/api/v1/chat/search',{
+    params:{
+      name:searchRoom,
+      location:"searchRoom"
+    }
+  });
+  console.log(res);
+ 
+}
+
+
 
 useEffect(()=>{
   const messagesURL='http://localhost:5000/api/v1/messages/allMessages'
@@ -82,10 +99,40 @@ useEffect(()=>{
       <div className="chatContainer">
         <div className='chatRoomSection'>
           <div className="chatSearchSection">
-            <input className='chatRoomSearchBtn' type="text" placeholder={placeholder} />
+            <input onChange={onchangeRoom} value={searchRoom}  className='chatRoomSearchBtn' type="text" placeholder={placeholder} />
             <button className='createNewRoomBtn'>+</button>
           </div>
           <div className="displayChatRooms">
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
             <div className='chatRoom'>
               <a href="">name1</a>
             </div>

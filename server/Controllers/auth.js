@@ -15,6 +15,8 @@ const register=async(req,res,next)=>{
 
 const login=async(req,res,next)=>{
 
+  console.log('reached')
+
 
   const { email, password } = req.body
 

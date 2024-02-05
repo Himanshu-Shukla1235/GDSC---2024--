@@ -6,7 +6,10 @@ import AutocompletePl from "../components/function components/autocomplete";
 
 const Gmap = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
+
   const [selectedLocationFromSearch, setSelectedLocationFromSearch] = useState(null);
+  
+
   
 
   const getLocation = async () => {
