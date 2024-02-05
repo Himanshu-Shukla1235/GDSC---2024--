@@ -20,6 +20,8 @@ const onChangeSendMessage=(e)=>{
   setSendMessage(e.target.value)
 }
 
+
+
 useEffect(()=>{
   const messagesURL='http://localhost:5000/api/v1/messages/allMessages'
   
@@ -86,6 +88,36 @@ useEffect(()=>{
             <button className='createNewRoomBtn'>+</button>
           </div>
           <div className="displayChatRooms">
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
+            <div className='chatRoom'>
+              <a href="">name1</a>
+            </div>
             <div className='chatRoom'>
               <a href="">name1</a>
             </div>

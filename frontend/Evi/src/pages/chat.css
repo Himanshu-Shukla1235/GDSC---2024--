@@ -24,8 +24,8 @@
 } */
 .chatContainer {
     border: 1px solid red;
-    display: grid;
-    grid-template-columns: 40% 60%;
+    display: flex;
+    flex-direction: row;
     height: 86vh;
     overflow-y: hidden;
     margin-bottom: 10px;
@@ -33,10 +33,12 @@
 
 .chatRoomSection{
     border: 1px solid red;
+    width: 40vw;
 }
 
 .chatMessagesSection{
     border: 1px solid red;
+    width: 60vw;
 }
 
 /* ====================chat room section */
@@ -63,6 +65,7 @@
 .displayChatRooms{
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
     
 }
 .chatRoom{
@@ -75,7 +78,8 @@
 /* ==================messages section */
 
 .chatMessagesSection{
-    display: grid;
+    display: flex;
+    flex-direction: column;
     
 }
 
@@ -92,15 +96,17 @@
     flex-direction: column;
     height: 90vh;
     overflow-y: scroll;
+    
 }
-.chatMessageUser{
-    border: 1px solid black;
 
+.chatMessageUser{
+    height: 300px;
+    
 }
+
 .messagesSendOption{
     display: inline-flex;
-    position: sticky;
-    bottom: 0;
+    height: 30px;
     
 }
 .sendMessageBtn{
