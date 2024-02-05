@@ -106,7 +106,7 @@ const Gmap = () => {
         center={currentLocation}
         zoom={16}
         mapContainerStyle={{ width: "100%", height: "100%" }}
-        options={{ zoomControl: false }}
+        options={{ zoomControl: false,fullscreenControl:false }}
         onLoad={onLoad}
       >
         <Marker position={currentLocation} />

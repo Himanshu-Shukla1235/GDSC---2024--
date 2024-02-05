@@ -68,7 +68,7 @@ const LocationSearch = (props) => {
     setSearchTerm(`${selectedLocation.name}, ${selectedLocation.country}`);
     setSelectedLocation(selectedLocation);
     setShowResults(false); // Hide search results
-    console.log(selectedLocation.name);
+    console.log(selectedLocation.lat,selectedLocation.lon);
     // fetchLocationDetails(selectedLocation.id);
     // Do something with the selected location, e.g., store it in state or use it in your application
   };

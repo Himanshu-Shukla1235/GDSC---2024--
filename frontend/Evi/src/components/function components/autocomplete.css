@@ -6,12 +6,14 @@
   flex-direction: column;
   /* border: solid 3px red; */
   position: relative;
+    /* border: solid 3px red; */
 }
 
 .boxE11 {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* border: solid 3px red; */
 }
 
 .boxE12 {
@@ -24,10 +26,11 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.231);
+  /* border: solid 3px red; */
   width: 30rem;
   height: auto;
   z-index: 2000;
-  margin-top: 1%;
+ 
   border-radius: 5px;
   position: absolute;
   top: 100px; /* Adjust this value to increase the size downwards */
