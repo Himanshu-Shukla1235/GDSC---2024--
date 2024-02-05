@@ -21,6 +21,7 @@ const Gmap = () => {
           const { latitude, longitude } = position.coords;
           setCurrentLocation({ lat: latitude, lng: longitude });
          console.log(currentLocation)
+         console.log("searchl")
         },
         (error) => {
           console.error("Error getting location:", error);
@@ -49,13 +50,13 @@ const Gmap = () => {
     setmap(map);
   };
 
-  const onPlaceChanged = () => {
-    if (autocomplete !== null) {
-      // Do something with the selected place, e.g., get its details
-      const place = autocomplete.getPlace();
-      console.log("Selected Place:", place);
-    }
-  };
+  // const onPlaceChanged = () => {
+  //   if (autocomplete !== null) {
+  //     // Do something with the selected place, e.g., get its details
+  //     const place = autocomplete.getPlace();
+  //     console.log("Selected Place:", place);
+  //   }
+  // };
 
   if (!isLoaded) {
     return <CircularProgress></CircularProgress>;

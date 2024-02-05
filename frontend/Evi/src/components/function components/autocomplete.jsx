@@ -10,6 +10,12 @@ const LocationSearch = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
+   const [Data,set]=useState("/")
+  const fetching = async () => {
+    var data = await axios.get("http://localhost:8000/api/auth/data");
+    set(data.data)
+    console.log(data);
+  };
 
   const handleChange = async (value) => {
     setSearchTerm(value);
