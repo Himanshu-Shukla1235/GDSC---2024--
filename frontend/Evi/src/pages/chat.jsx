@@ -23,19 +23,6 @@ const onChangeSendMessage=(e)=>{
   setSendMessage(e.target.value)
 }
 
-const onchangeRoom=async(e)=>{
-  setSearchRoom(e.target.value)
-  console.log(searchRoom)
-
-  const res=await axios.get('http://localhost:5000/api/v1/chat/search',{
-    params:{
-      name:searchRoom,
-      location:"searchRoom"
-    }
-  });
-  console.log(res);
- 
-}
 
 
 
@@ -147,6 +134,33 @@ const creatingNewRoom=async()=>{
   }
 }
 
+// ==============================working joined chat rooms
+const [joinedChatRooms,setJoinedChatRooms]=useState([]);
+
+const onchangeRoom = async (e) => {
+  setSearchRoom(e.target.value);
+  console.log(searchRoom);
+
+  try {
+    const res = await axios.get('http://localhost:5000/api/v1/chat/search', {
+      params: {
+        name: searchRoom,
+        location: "searchRoom"
+      }
+    });
+    console.log(res.data.rooms)
+
+    setJoinedChatRooms(res.data.rooms);
+    console.log(res);
+  } catch (error) {
+    console.error("Error fetching chat rooms:", error);
+    // Handle the error accordingly
+  }
+};
+
+
+
+
   return (
     <>
     <div className="chatMain">
@@ -158,12 +172,17 @@ const creatingNewRoom=async()=>{
             <button className='createNewRoomBtn' onClick={openCreateRoomForm}>+</button>
           </div>
           <div className="displayChatRooms">
-            <div className='chatRoom'>
+            {/* <div className='chatRoom'>
               <a href="">name1</a>
             </div>
             <div className='chatRoom'>
               <a href="">name1</a>
-            </div>
+            </div> */}
+            {joinedChatRooms.map((room, index) => (
+                 <div key={index} className="chatRoom">
+                   <a href="">{room.name}</a>
+                 </div>
+               ))}
             
           </div>
         </div>
