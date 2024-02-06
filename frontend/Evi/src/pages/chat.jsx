@@ -158,6 +158,21 @@ const onchangeRoom = async (e) => {
   }
 };
 
+//wroking alredy joined rooms
+
+const alredyJoinedRooms=async()=>{
+
+  try {
+    const res = await axios.get('http://localhost:5000/api/v1/chat/roomsJoined');
+    setJoinedChatRooms(res.data.rooms);
+    
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+alredyJoinedRooms();
+
 
 
 
