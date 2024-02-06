@@ -3,18 +3,18 @@ const {BadRequestError}=require('../Errors')
 const ChatRoom=require('../Models/chatRoom');
 
 const getAllRooms=async (req,res)=>{
-    const {name}=req.params;
+    const {name}=req.query;
 
     const queryObject={}
 
    
-    if(location){
-        queryObject.location={$regex:location,$options:'i'};  //i is for case insensetive
-    }
+    // if(location){
+    //     queryObject.location={$regex:location,$options:'i'};  //i is for case insensetive
+    // }
     if(name){
         queryObject.name={$regex:name,$options:'i'};
     }
-    console.log(queryObject)
+    
 
     let result= ChatRoom.find(queryObject);
 
