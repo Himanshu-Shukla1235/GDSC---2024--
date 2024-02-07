@@ -73,19 +73,50 @@
   width: 80%; /* Adjusted width for responsiveness */
   background-size: cover;
   background-position: center;
+  align-items: center;
   background-repeat: no-repeat;
   margin-top: 50px;
   margin-bottom: 50px;
   align-self: center; /* Centered the element */
+  gap: 30%;
 }
 
 .boxH21 {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 40%; /* Adjusted width for responsiveness */
+  height: 40vh;
   opacity: 1;
+  font-size: 30px;
+  border-bottom: solid #34db37;
+  border-top: solid #34db37;
+}
+.boxH22 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 300px; /* Adjust the width and height as needed */
+  height: 300px;
+  background-color: #34db37; /* Adjust the background color as needed */
+  border-radius: 50%;
+  /* Adjusted width for responsiveness */
+  opacity: 1;
+  background: url("https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/images/03e1ce49-9ac5-42ee-97c6-f8bc2b3b44c3.png?raw=true")
+    center/cover no-repeat;
+  animation: upDownMotion 2s ease-in-out infinite;
+}
+/* CSS for smooth up and down motion */
+@keyframes upDownMotion {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); /* Adjust the distance as needed */
+  }
 }
 
 .boxH3 {
@@ -120,6 +151,7 @@
   width: 95%;
   backdrop-filter: blur(8px);
 }
+
 .boxH4 {
   display: flex;
   height: 60vh;
@@ -131,7 +163,7 @@
   margin-bottom: 50px;
   align-self: center; /* Centered the element */
   overflow: hidden;
-  gap: 10%;
+  gap: 40%;
 }
 .boxH41 {
   display: flex;
@@ -140,14 +172,26 @@
   align-items: center;
   width: 40%; /* Adjusted width for responsiveness */
   opacity: 1;
+  font-size: 30px;
+  height: 40vh;
+  border-bottom: solid #34db37;
+  border-top: solid #34db37;
 }
-.boxH42{display: flex;
+.boxH42 {
+  display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  width: 40%; /* Adjusted width for responsiveness */
-  /* border: solid 3px red; */
-  opacity: 1;}
+  width: 400px; /* Adjust the width and height as needed */
+  height: 400px;
+  background-color: #34db37; /* Adjust the background color as needed */
+  border-radius: 50%;
+  /* Adjusted width for responsiveness */
+  opacity: 1;
+  background: url("https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/images/air%20polutedEarth.jpg?raw=true")
+    center/cover no-repeat;
+  animation: upDownMotion 2s ease-in-out infinite;
+}
 
 .boxH5 {
   display: flex;
@@ -163,8 +207,7 @@
 
   align-self: center; /* Centered the element */
 
-  background: 
-    url("") center/cover no-repeat;
+  background: url("") center/cover no-repeat;
 
   border-radius: 10px;
   border: solid 3px black;
@@ -174,29 +217,43 @@
 @media screen and (max-width: 768px) {
   .boxH1,
   .boxH11,
- 
   .boxH3 {
     width: 100%;
   }
-  .boxH1{
+  .boxH1 {
     height: 50vh;
   }
-  .boxH41{
-    font-size: 10;
+  .boxH41 {
     width: 100%;
+    height: 30vh;
+    margin: 25px;
+    border-bottom: solid #34db37;
+    border-top: solid #34db37;
+    font-size: 20px;
+  }
+  .boxH42 {
+    display: none;
+  }
+  .boxH21 {
+    padding: 3px;
+    width: 100%;
+    height: 30vh;
+    margin: 25px;
+    border-bottom: solid #34db37;
+    border-top: solid #34db37;
+    font-size: 20px;
+  }
 
-  }
-  .boxH21{
-padding: 3px;
-width: 100%;
-margin: 25px;
-  }
-  .boxH2{
+  .boxH2 {
     align-items: center;
     justify-content: center;
     width: 100%;
   }
-  .boxH3,.boxH5{
-    height:50vh ;
+  .boxH22 {
+    display: none;
+  }
+  .boxH3,
+  .boxH5 {
+    height: 50vh;
   }
 }

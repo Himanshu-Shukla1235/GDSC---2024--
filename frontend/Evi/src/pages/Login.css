@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   background: linear-gradient(rgba(0, 0, 0, 0.457), rgba(0, 0, 0, 0.5)),
-    url("https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/imagine-a-captivating-fusion-of-a-stylized-ai-interface-and-earths-beauty-the-ai-magnifying-glass%20(2).png?raw=true")
+    url("https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/images/earth%20day.jpg?raw=true")
       center/cover no-repeat;
 
   background-size: cover;
@@ -16,7 +16,8 @@
   width: 450px;
   height: 70vh;
   margin-bottom: 80px;
-  background-color: rgba(5, 5, 5, 0.3);
+  background-color: rgba(5, 5, 5, 0.479);
+  backdrop-filter: blur(5px);
 }
 
 .loginHeading {
@@ -38,6 +39,9 @@
 .loginInput {
   margin-bottom: 30px;
   padding: 10px 10px;
+  border-radius: 7px;
+background-color: rgb(255, 255, 255);
+border: solid 3px greenyellow;
 }
 
 .loginButton {
@@ -45,8 +49,9 @@
   background: rgb(0, 0, 0);
   border: none;
   font-weight: bold;
-  color: rgb(27, 235, 0);
+  color: rgb(108, 244, 240);
   border-radius: 5px;
+
   
   
 }
@@ -58,8 +63,8 @@
 .loginRegister {
   cursor: pointer;
   color: greenyellow;
-
-  margin-top: 20px;
+margin-left: 170px;
+  margin-top: 45px;
 }
 .loginRegister:hover {
   color: rgb(255, 255, 255);
