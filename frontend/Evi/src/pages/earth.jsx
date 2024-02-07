@@ -7,10 +7,6 @@ import { NavLink } from "react-router-dom";
 import "../pages/earth.css";
 
 const Earth = () => {
-  const [mapLocation, setMapLocation] = useState(null);
-
- 
-
   return (
     <>
       <header className="headerE">
@@ -18,15 +14,15 @@ const Earth = () => {
       </header>
       <main className="mainE">
         <div className="boxE2">
-          <Map setMapLocation={setMapLocation} />
+          <Map  />
         </div>
         <div className="boxE3">
           <div className="boxE31"></div>
           <div className="boxE31">
-            <NavLink to={'/airQuality'}>AIR QUALITY</NavLink>
+            <NavLink to={"/airQuality"}>AIR QUALITY</NavLink>
           </div>
           <div className="boxE31">
-            <NavLink to={'/airQuality'}>AIR QUALITY</NavLink>
+            <NavLink to={"/airQuality"}>AIR QUALITY</NavLink>
           </div>
         </div>
       </main>

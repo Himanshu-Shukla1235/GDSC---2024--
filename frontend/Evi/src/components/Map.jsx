@@ -4,7 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import AutocompletePl from "../components/function components/autocomplete";
 
-const Gmap = ({mapLocation}) => {
+const Gmap = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
 
   // Getting the current location
@@ -67,12 +67,9 @@ const Gmap = ({mapLocation}) => {
   }
 
   //exporting the map seted location
-  var mapLocation = mapLocation || attribute;
+  
 
-  useEffect(() => {
-    // Log or perform any action with the updated mapLocation
-    console.log("Map location changed:", mapLocation);
-  }, [mapLocation]); // Add mapLocation as a dependency
+ 
 
   return (
     <>
