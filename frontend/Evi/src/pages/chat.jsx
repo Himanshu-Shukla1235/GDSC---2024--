@@ -60,7 +60,7 @@ useEffect(()=>{
 //   return () => clearInterval(intervalId);
 // }, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
 
-
+//working with add message to the database
 
  const addMessage = async(e) => {
   e.preventDefault();
