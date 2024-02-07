@@ -4,7 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import AutocompletePl from "../components/function components/autocomplete";
 
-const Gmap = () => {
+const Gmap = ({attribute}) => {
   const [currentLocation, setCurrentLocation] = useState(null);
 
   // Getting the current location
