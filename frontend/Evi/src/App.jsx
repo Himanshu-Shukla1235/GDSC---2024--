@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -11,8 +11,18 @@ import Chat from "./pages/chat.jsx";
 import Earth from "../src/pages/earth.jsx";
 import Air from "./components/airquality.jsx";
 import Whether from "../src/components/whether.jsx"
+import axios from "axios";
 
 function App() {
+
+useEffect(() => {
+  const jwtToken = localStorage.getItem('token');
+  if (jwtToken) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+  }
+}, []);
+
+
   return (
     <>
       <BrowserRouter>

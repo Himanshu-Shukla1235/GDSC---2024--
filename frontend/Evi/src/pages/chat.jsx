@@ -52,13 +52,13 @@ useEffect(()=>{
 
 
 
-  useEffect(() => {
-  const intervalId = setInterval(() => {
-    // Your existing code
-  }, 100);
+//   useEffect(() => {
+//   const intervalId = setInterval(() => {
+//     // Your existing code
+//   }, 100);
 
-  return () => clearInterval(intervalId);
-}, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
+//   return () => clearInterval(intervalId);
+// }, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
 
 
 
@@ -171,7 +171,7 @@ const alredyJoinedRooms=async()=>{
   }
 
 }
-alredyJoinedRooms();
+
 
 
 

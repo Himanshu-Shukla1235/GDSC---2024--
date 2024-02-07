@@ -27,7 +27,9 @@ const createChatRoom=async(req,res,next)=>{
 
 
 const addMessage=async(req,res,next)=>{
-    const {from,to,message}=req.body;
+    const {to,message}=req.body;
+    const from=req.user.userId;
+    console.log(from);
     const data=await messageModel.create({
         message:{text:message},
         users:[from,to],
