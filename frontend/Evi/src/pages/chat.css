@@ -55,12 +55,14 @@
 .chatRoomSearchBtn{
     padding: 5px 5px;
     width: 85%;
+    height: 100%;
     background-color: rgb(255, 255, 255);
 }
 .createNewRoomBtn{
     width: 15%;
     padding: 5px 5px;
     font-weight: bold;
+    height: 100%;
 
 }
 .displayChatRooms{
@@ -72,6 +74,12 @@
 .chatRoom{
     border: 1px solid rgb(222, 222, 222);
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+/* .chatRoom button */
+.displayNo{
+display: none;
 }
 .chatRoom:hover{
     background-color: rgb(0, 113, 0);

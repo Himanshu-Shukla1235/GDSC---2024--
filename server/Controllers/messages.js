@@ -31,12 +31,13 @@ const createChatRoom=async(req,res,next)=>{
 
 const addMessage=async(req,res,next)=>{
     const {to,message,chatRoomID}=req.body;
-    const from=req.user.userId;
+    const {userId,username}=req.user;
+    console.log(req.user)
 
     //checking if user presnt in the room
     const foundRoom = await chatRoomModel.findOne({
   _id: chatRoomID,
-  members: { $elemMatch: { $eq: from } }
+  members: { $elemMatch: { $eq: userId } }
 });
 
   if(!foundRoom)
@@ -45,15 +46,19 @@ const addMessage=async(req,res,next)=>{
   }
 
 
-    console.log(from);
-    const data=await messageModel.create({
-        message:{text:message},
-        users:[from,to],
-        sender:from,
-        chatRoomID:chatRoomID
-    })
+    
+  
+    const data = await messageModel.create({
+        message: { text: message },
+        users: [userId, to],
+        sender: {
+            id: userId,
+            name: username
+        },
+        chatRoomID: chatRoomID
+    });
 
-    if(data) return res.json({msg:"Message is added to the database"});
+    if(data) return res.json({msg:"Message is added to the database",user:req.user.username});
     return res.json({msg:"failed to add message"});
 }
 

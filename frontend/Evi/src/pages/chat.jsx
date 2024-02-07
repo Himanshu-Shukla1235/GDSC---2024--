@@ -12,14 +12,13 @@ const Chat = () => {
   const word = ["s", "e", "a", "r", "c", "h", " ", "f", "o", "r", " ", "c", "h", "a", "t", "r", "o", "o", "m", "s"];
   const [i, setI] = useState(0);
   const [shouldContinue, setShouldContinue] = useState(true);
-  const [messages,setMessages]=useState([]);
-  const [sendMessage,setSendMessage]=useState("");
+  
   const [searchRoom,setSearchRoom]=useState("");
   const [roomFormClass,setRoomFormClass]=useState("createRoom");
+  
 
   //for send message
 const onChangeSendMessage=(e)=>{
-  console.log(sendMessage)
   setSendMessage(e.target.value)
 }
 
@@ -97,6 +96,7 @@ const onchangeRoom = async (e) => {
   const newValue=e.target.value;
   setSearchRoom(newValue);
 
+
 };
 //for searching the room and for alredy joined rooms
 useEffect(()=>{
@@ -107,8 +107,16 @@ useEffect(()=>{
       let fetchData=async()=>{
       
        const res=await axios.get('http://localhost:5000/api/v1/chat/roomsJoined')
-       console.log(res.data);
-       setJoinedChatRooms(res.data)
+      
+       const dat=res.data;
+       const newData = dat.map((item) => ({
+  ...item,
+  className: 'displayNo',
+}));
+
+      console.log(newData);
+
+       setJoinedChatRooms(newData)
      }
      fetchData();
   }else
@@ -120,9 +128,17 @@ useEffect(()=>{
                      location: "searchRoom"
                    }
              });
-    console.log(res.data.rooms)
+             const dat=res.data.rooms;
+    // console.log(res.data.rooms)
+   // Use map to create a new array with the added className property
+const newData = dat.map((item) => ({
+  ...item,
+  className: 'displayYes',
+}));
 
-    setJoinedChatRooms(res.data.rooms);
+    console.log(newData);
+
+    setJoinedChatRooms(newData);
     console.log(res);
        }
        fetchData();
@@ -133,53 +149,70 @@ useEffect(()=>{
 },[searchRoom])
 
 
-useEffect(()=>{
-  if(searchRoom=='')
-  {
-    console.log('hello')
-  }
+// useEffect(()=>{
+//   if(searchRoom=='')
+//   {
+//     console.log('hello')
+//   }
 
-},[joinedChatRooms])
+// },[joinedChatRooms])
 
-const alredyJoinedRooms=async()=>{
+// const alredyJoinedRooms=async()=>{
+
+//   try {
+//     const res = await axios.get('http://localhost:5000/api/v1/chat/roomsJoined');
+//     const dat=res.data.rooms;
+//     // dat.className='displayYes'
+//     // console.log("here",dat);
+//     setJoinedChatRooms(res.data.rooms);
+//     // console.log(res.data.rooms)
+//     // setJoinedRoomsID()
+    
+//   } catch (error) {
+//     console.log(error);
+//   }
+
+// }
+
+//working with add message to the database
+const [messages,setMessages]=useState([]);
+  const [sendMessage,setSendMessage]=useState("");
+  const [username,setUsername]=useState('')
+
+const [currentChatRoom,setCurrentChatRoom]=useState('');
+
+const addMessage = async (e) => {
+  e.preventDefault();
 
   try {
-    const res = await axios.get('http://localhost:5000/api/v1/chat/roomsJoined');
-    setJoinedChatRooms(res.data.rooms);
-    console.log(res.data.rooms)
-    
+    const see = await axios.post('http://localhost:5000/api/v1/messages/add', {
+       // Change this line to use req.user.userId directly
+      message: sendMessage,
+      chatRoomID: currentChatRoom,
+    });
+
+    setUsername(see.data.user);
+
+    const newM = {
+      message: {
+        text: sendMessage,
+      },
+      sender: {
+        name: see.data.user,
+      },
+    };
+
+    setMessages((prevMessage) => [
+      ...prevMessage,
+      newM
+    ]);
+    setSendMessage("");
   } catch (error) {
     console.log(error);
   }
 
-}
+};
 
-//working with add message to the database
-
-const [currentChatRoom,setCurrentChatRoom]=useState('');
-
- const addMessage = async(e) => {
-  e.preventDefault();
- 
-     try {
-      const see=await axios.post('http://localhost:5000/api/v1/messages/add',{
-    from:axios.defaults.headers.common.userID,
-    message:sendMessage,
-    chatRoomID:currentChatRoom,
-  })
-
-    console.log(axios.defaults.headers.common.userID)
-
-       setMessages((prevMessage)=>[
-        ...prevMessage,sendMessage
-       ])
-       setSendMessage("");
-        
-     } catch (error) {
-      console.log(error);
-     }
-     
-}
 
 //display chat of particular room
 const chatRoomClicked=(id)=>{
@@ -194,14 +227,16 @@ const chatRoomClicked=(id)=>{
         }
       });
       let Datamessages=data.data;
-      console.log(Datamessages);
+      // console.log(Datamessages);
 
       //make sure it is empty
       setMessages([]);
       
       setMessages((prevMessage)=>[
-        ...prevMessage,...Datamessages.map((item)=>item.message.text)
+        ...prevMessage,...Datamessages.map((item)=>item)
       ])
+
+      console.log(messages);
       
 
     } catch (error) {
@@ -210,9 +245,15 @@ const chatRoomClicked=(id)=>{
   }
   fetching()
 }
+//working with joining chat rooms
 
+const joinRoom=async(roomId)=>{
+  console.log('clickd')
+  const url='http://localhost:5000/api/v1/chat/roomsJoined'
+  const res=await axios.post(url,{params:{chatRoomID:roomId}});
+  console.log(res);
 
-
+}
 
 
   return (
@@ -226,15 +267,10 @@ const chatRoomClicked=(id)=>{
             <button className='createNewRoomBtn' onClick={openCreateRoomForm}>+</button>
           </div>
           <div className="displayChatRooms">
-            {/* <div className='chatRoom'>
-              <a href="">name1</a>
-            </div>
-            <div className='chatRoom'>
-              <a href="">name1</a>
-            </div> */}
             {joinedChatRooms.map((room) => (
-                 <div key={room._id} className="chatRoom" onClick={()=>chatRoomClicked(room._id)}>
-                   <a>{room.name}</a>
+                 <div key={room._id} className="chatRoom" >
+                   <a onClick={()=>chatRoomClicked(room._id)}>{room.name}</a>
+                   <button key={room._id} onClick={()=>joinRoom(room._id)} className={room.className}>join</button>
                  </div>
                ))}
             
@@ -243,12 +279,12 @@ const chatRoomClicked=(id)=>{
         <div className="chatMessagesSection">
           <div className="chatRoomName">name</div>
           <div className="messagesDisplayArea">
-               {messages.map((message, index) => (
+              {messages.map((message, index) => (
                  <div className="messageUser">
-                  <a href="" className="senderNmae">a</a>
-                <p className="messsage">{message}</p>
+                  <a href="" className="senderNmae">{message.sender.name}</a>
+                <p className="messsage">{message.message.text}</p>
                  </div>
-               ))}
+               ))} 
           </div>
 
           <div className="messagesSendOption">
