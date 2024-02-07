@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AutocompletePl from "../components/function components/autocomplete"
+import "../components/Whether.css"
 
 const AirQuality = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -73,7 +74,10 @@ const AirQuality = () => {
   }, []);
 
   return (<> <div>
-      {currentLocation && (
+      
+     
+    </div>
+    <div>{currentLocation && (
         <h2>
           Current Location: {currentLocation.lat}, {currentLocation.lon}
         </h2>
@@ -85,15 +89,7 @@ const AirQuality = () => {
           <p>Current Temperature: {weatherData.current.temp_c}°C</p>
           {/* Add more weather details as needed */}
         </div>
-      )}
-      {airQualityData && (
-        <div>
-          <h2>Air Quality Index: {airQualityData.data[0].aqi}</h2>
-          {/* Add more air quality details as needed */}
-        </div>
-      )}
-    </div>
-    <div><AutocompletePl></AutocompletePl></div></>
+      )}</div></>
    
   );
 };
