@@ -10,6 +10,9 @@
     bottom: 0;
     
 }
+.chatMain{
+    overflow-y: hidden;
+}
 
 
 /* 

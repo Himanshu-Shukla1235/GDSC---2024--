@@ -68,6 +68,7 @@ const AuthForm = () => {
     
         // Store the token in localStorage
         localStorage.setItem('token', token);
+        console.log(localStorage.getItem('token'))
     
         // Set the Authorization header for future requests
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -92,6 +93,7 @@ const AuthForm = () => {
         setError('')
         // Store the token in localStorage
         localStorage.setItem('token', token);
+        console.log(localStorage.getItem(token))
     
         // Set the Authorization header for future requests
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

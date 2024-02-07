@@ -52,13 +52,13 @@ useEffect(()=>{
 
 
 
-  useEffect(() => {
-  const intervalId = setInterval(() => {
-    // Your existing code
-  }, 100);
+//   useEffect(() => {
+//   const intervalId = setInterval(() => {
+//     // Your existing code
+//   }, 100);
 
-  return () => clearInterval(intervalId);
-}, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
+//   return () => clearInterval(intervalId);
+// }, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
 
 
 
@@ -157,6 +157,21 @@ const onchangeRoom = async (e) => {
     // Handle the error accordingly
   }
 };
+
+//wroking alredy joined rooms
+
+const alredyJoinedRooms=async()=>{
+
+  try {
+    const res = await axios.get('http://localhost:5000/api/v1/chat/roomsJoined');
+    setJoinedChatRooms(res.data.rooms);
+    
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
 
 
 
