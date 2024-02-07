@@ -64,24 +64,34 @@ const Home = () => {
           <div className="boxH21">
             {" "}
             <SlideInComponent elementId="Ht1">
-              <p id="Ht1" style={{ fontSize: 30, color: "black" }}>
+              <p id="Ht1" style={{ color: "black" }}>
                 "Guardians of a healthier tomorrow, let's nurture our planet
                 today. Each eco-friendly choice is a step towards a sustainable
                 harmony, where the rhythm of nature dances in vibrant sync."
               </p>
             </SlideInComponent>
           </div>
+          <div className="boxH22"> </div>
         </div>
-        <div id="mapclic" className="boxH3"><div  className="boxH31"><SlideInComponent2 elementId="34"><h1 id="34" style={{color:"white"}}>hello</h1></SlideInComponent2></div></div>
+        <div id="mapclic" className="boxH3">
+          <div className="boxH31">
+            <SlideInComponent2 elementId="34">
+              <h1 id="34" style={{ color: "white" }}>
+                hello
+              </h1>
+            </SlideInComponent2>
+          </div>
+        </div>
 
         <div className="boxH4">
-        <div className="boxH42"></div>
+          <div className="boxH42"></div>
           <div className="boxH41">
             <SlideInComponent2 elementId="Ht4">
-              <p id="Ht4" style={{ fontSize: 30, color: "black" }}>
-                "Guardians of a healthier tomorrow, let's nurture our planet
-                today. Each eco-friendly choice is a step towards a sustainable
-                harmony, where the rhythm of nature dances in vibrant sync."
+              <p id="Ht4" style={{ color: "black" }}>
+                "Leave only footprints, not carbon footprints. Every small act
+                to save the Earth is a giant leap towards a cleaner, greener
+                future. Be mindful, reduce your carbon footprint, and let the
+                echoes of your actions harmonize with the planet's heartbeat."
               </p>
             </SlideInComponent2>
           </div>
