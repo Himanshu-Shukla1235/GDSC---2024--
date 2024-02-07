@@ -138,27 +138,69 @@ const creatingNewRoom=async()=>{
 const [joinedChatRooms,setJoinedChatRooms]=useState([]);
 
 const onchangeRoom = async (e) => {
-  setSearchRoom(e.target.value);
+  const newValue=e.target.value;
+  setSearchRoom(newValue);
+
+};
+//for searching the room and for alredy joined rooms
+useEffect(()=>{
   console.log(searchRoom);
 
-  try {
-    const res = await axios.get('http://localhost:5000/api/v1/chat/search', {
-      params: {
-        name: searchRoom,
-        location: "searchRoom"
-      }
-    });
+  if(searchRoom=='')
+  {
+      let fetchData=async()=>{
+      
+       const res=await axios.get('http://localhost:5000/api/v1/chat/roomsJoined')
+       console.log(res.data);
+       setJoinedChatRooms(res.data)
+     }
+     fetchData();
+  }else
+  {
+       let fetchData=async()=>{
+        const res = await axios.get('http://localhost:5000/api/v1/chat/search', {
+                   params: {
+                     name: searchRoom,
+                     location: "searchRoom"
+                   }
+             });
     console.log(res.data.rooms)
 
     setJoinedChatRooms(res.data.rooms);
     console.log(res);
-  } catch (error) {
-    console.error("Error fetching chat rooms:", error);
-    // Handle the error accordingly
-  }
-};
+       }
+       fetchData();
 
-//wroking alredy joined rooms
+  }
+
+
+},[searchRoom])
+
+  //   try {
+  //   const res = await axios.get('http://localhost:5000/api/v1/chat/search', {
+  //     params: {
+  //       name: searchRoom,
+  //       location: "searchRoom"
+  //     }
+  //   });
+  //   console.log(res.data.rooms)
+
+  //   setJoinedChatRooms(res.data.rooms);
+  //   console.log(res);
+  // } catch (error) {
+  //   console.error("Error fetching chat rooms:", error);
+  //   // Handle the error accordingly
+  // }
+
+// //wroking alredy joined rooms
+
+useEffect(()=>{
+  if(searchRoom=='')
+  {
+    console.log('hello')
+  }
+
+},[joinedChatRooms])
 
 const alredyJoinedRooms=async()=>{
 
