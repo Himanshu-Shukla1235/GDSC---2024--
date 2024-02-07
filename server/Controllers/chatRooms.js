@@ -54,9 +54,10 @@ const getJoindedChatRooms=async(req,res,next)=>{
 const joinChatRoom = async (req, res, next) => {
    
         const memberIdToAdd = req.user.userId;
-        const chatRoomId = req.query.chatRoomId; // Assuming you have the chat room ID in the request params
+        const chatRoomId = req.body.params.chatRoomID; // Assuming you have the chat room ID in the request params
+
         
-        // console.log(req.query.chatRoomId)
+        console.log(req.body.params.chatRoomID)
 
         // console.log("Adding member ID", memberIdToAdd, "to chat room ID", chatRoomId);
 
