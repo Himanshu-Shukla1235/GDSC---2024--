@@ -114,7 +114,7 @@ const AuthForm = () => {
       </header>
       <div className="loginBody">
         <div className="loginContainer">
-          <h2 className='loginHeading'>{header}</h2>
+          <h2 className='loginHeading' >{header}</h2>
           <div className="inner">
             <form className='loginForm' onSubmit={submitLoginForm}>
               <input
@@ -161,8 +161,8 @@ const AuthForm = () => {
                 </>
               )}
 
-              <button className='loginButton' type="submit">
-                Submit<i id="loader" className="fa-solid fa-spinner fa-spin-pulse"></i>
+              <button className='loginButton'  type="submit">
+                <h2 style={{fontWeight: 8,cursor:'pointer'}}>Submit</h2><i id="loader" className="fa-solid fa-spinner fa-spin-pulse" ></i>
               </button>
 
               <div className='errorHandler'><p className="errorLogin">{error}</p></div>

@@ -2,7 +2,6 @@
   position: sticky;
   top: 0;
   z-index: 2000;
-
 }
 
 .footer {
@@ -16,7 +15,7 @@
   justify-content: flex-start;
   align-items: center;
   background-color: white;
-  height: 300vh; /* Adjusted height for responsiveness */
+  height: 400vh; /* Adjusted height for responsiveness */
 }
 
 .boxH1 {
@@ -29,17 +28,26 @@
   background-position: center;
   background-repeat: no-repeat;
   animation: slideshow 60s linear infinite;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+}
+.custom-typewriter {
+  font-size: 20px; /* Adjust the font size as needed */
+  /* Add any other styles you want */
+  font-style: "Inconsolata";
 }
 
 @keyframes slideshow {
-  0%, 24.2% {
-    background-image: url("https://wallpapercave.com/wp/wp2060643.jpg");
+  0%,
+  24.2% {
+    background-image: url("https://r4.wallpaperflare.com/wallpaper/33/261/282/5bd28eeaec175-wallpaper-798098fda1aa5deb0677c83f7061e6ed.jpg");
   }
-  25%, 49.2% {
+  25%,
+  49.2% {
     background-image: url("https://r4.wallpaperflare.com/wallpaper/764/431/702/river-trees-forest-clouds-wallpaper-d4ba55cd41062d25051044aa61cfaf9c.jpg");
   }
-  50%, 100% {
+  50%,
+  100% {
     background-image: url("https://r4.wallpaperflare.com/wallpaper/270/709/236/macos-mojave-macbook-pro-apple-computer-wallpaper-07ff12647fa5af1aef72f49111118755.jpg");
   }
 }
@@ -55,12 +63,8 @@
   margin: 0 auto; /* Centered the element */
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.162);
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(5px);
   color: rgb(232, 229, 229);
-}
-
-.green-cursor {
-  color: green;
 }
 
 .boxH2 {
@@ -80,20 +84,17 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 100%; /* Adjusted width for responsiveness */
+  width: 40%; /* Adjusted width for responsiveness */
   opacity: 1;
-  
-}
-
-.boxH21 .active1{
-  opacity: 1;
-  color: red;
 }
 
 .boxH3 {
   display: flex;
-  height: 60vh;
-  width: 80%; /* Adjusted width for responsiveness */
+  justify-content: center;
+  align-items: center;
+
+  height: 80vh;
+  width: 95%; /* Adjusted width for responsiveness */
   background-color: rgba(255, 255, 255, 0.342);
   background-size: cover;
   background-position: center;
@@ -101,14 +102,101 @@
   margin-top: 50px;
   margin-bottom: 50px;
   border: solid 3px center;
-  border: solid red 3px;
-  color: red;
+
   align-self: center; /* Centered the element */
+
+  background: url("https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/-Create-an-impactful-image-featuring-an-AI-driven-Earth-location-search--Picture-a-stylized-globe-with-digital-lines--symbolizing-connectivity--A-futuristic-AI-magnifying-glass-hovers--emitting-a-soft%20(1).jpg?raw=true")
+    center/cover no-repeat;
+
+  border-radius: 10px;
+  border: solid 3px black;
+}
+.boxH31 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.297);
+  height: 95%;
+  width: 95%;
+  backdrop-filter: blur(8px);
+}
+.boxH4 {
+  display: flex;
+  height: 60vh;
+  width: 80%; /* Adjusted width for responsiveness */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  align-self: center; /* Centered the element */
+  overflow: hidden;
+  gap: 10%;
+}
+.boxH41 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 40%; /* Adjusted width for responsiveness */
+  opacity: 1;
+}
+.boxH42{display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 40%; /* Adjusted width for responsiveness */
+  /* border: solid 3px red; */
+  opacity: 1;}
+
+.boxH5 {
+  display: flex;
+  height: 80vh;
+  width: 95%; /* Adjusted width for responsiveness */
+  background-color: rgba(255, 255, 255, 0.342);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: solid 3px center;
+
+  align-self: center; /* Centered the element */
+
+  background: 
+    url("https://media.istockphoto.com/id/1327919661/photo/world-earth-day-concept-green-energy-renewable-and-sustainable-resources-environmental-and.jpg?s=612x612&w=0&k=20&c=6PvLRMFPI65ATEs-XWPJ_UOtkmSKoONOD4h7Lohq850=") center/cover no-repeat;
+
+  border-radius: 10px;
+  border: solid 3px black;
 }
 
 /* Media Queries for responsiveness */
 @media screen and (max-width: 768px) {
-  .boxH1, .boxH11, .boxH2, .boxH21, .boxH3 {
+  .boxH1,
+  .boxH11,
+ 
+  .boxH3 {
     width: 100%;
+  }
+  .boxH1{
+    height: 50vh;
+  }
+  .boxH41{
+    font-size: 10;
+    width: 100%;
+
+  }
+  .boxH21{
+padding: 3px;
+width: 100%;
+margin: 25px;
+  }
+  .boxH2{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .boxH3,.boxH5{
+    height:50vh ;
   }
 }

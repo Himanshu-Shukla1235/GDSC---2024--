@@ -3,7 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right,rgba(214, 224, 200, 0.431),rgba(194, 194, 230, 0.226));
+  background: linear-gradient(rgba(0, 0, 0, 0.457), rgba(0, 0, 0, 0.5)),
+    url("https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/imagine-a-captivating-fusion-of-a-stylized-ai-interface-and-earths-beauty-the-ai-magnifying-glass%20(2).png?raw=true")
+      center/cover no-repeat;
+
   background-size: cover;
 }
 
@@ -13,14 +16,15 @@
   width: 450px;
   height: 70vh;
   margin-bottom: 80px;
-  background-color: rgba(167, 172, 169, 0.3);
-
+  background-color: rgba(5, 5, 5, 0.3);
 }
 
-.loginHeading{
-  
+.loginHeading {
   padding-left: 40%;
   margin-top: 30px;
+  color: rgb(188, 250, 126);
+  font-size: 40px;
+  font-weight: 8;
 }
 
 .loginForm {
@@ -32,41 +36,41 @@
 }
 
 .loginInput {
-
   margin-bottom: 30px;
   padding: 10px 10px;
 }
 
 .loginButton {
   padding: 10px;
-  background: rgb(70, 132, 91);
+  background: rgb(0, 0, 0);
   border: none;
   font-weight: bold;
-  color: aliceblue;
+  color: rgb(27, 235, 0);
+  border-radius: 5px;
+  
+  
 }
 
 #loader {
   display: none;
 }
 
-.loginRegister{
-  
+.loginRegister {
   cursor: pointer;
-  
+  color: greenyellow;
+
   margin-top: 20px;
 }
-.loginRegister:hover{
-  color: rgb(43, 88, 202);
-  
+.loginRegister:hover {
+  color: rgb(255, 255, 255);
 }
 
-.errorLogin{
-  color:rgb(206, 22, 22);
+.errorLogin {
+  color: rgb(206, 22, 22);
 }
-.errorHandler{
+.errorHandler {
   margin-top: 10px;
-  
+
   display: flex;
   justify-content: center;
-
 }

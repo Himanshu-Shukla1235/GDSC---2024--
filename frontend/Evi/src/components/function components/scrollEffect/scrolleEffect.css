@@ -1,0 +1,13 @@
+/* Add this style to the element you want to animate */
+.slide-in {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  /* Add this style when the element is in the viewport */
+  .slide-in.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
