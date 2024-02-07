@@ -17,7 +17,7 @@ const authorizationMiddleware=async(req,res,next)=>{
         const {userId,username}=decoded;
         req.user={userId,username};
 
-        console.log(req.user);
+        // console.log(req.user);
         
     } catch (error) {
         return next(new UnauthenciatedError('No authorized to access this route'))

@@ -176,23 +176,6 @@ useEffect(()=>{
 
 },[searchRoom])
 
-  //   try {
-  //   const res = await axios.get('http://localhost:5000/api/v1/chat/search', {
-  //     params: {
-  //       name: searchRoom,
-  //       location: "searchRoom"
-  //     }
-  //   });
-  //   console.log(res.data.rooms)
-
-  //   setJoinedChatRooms(res.data.rooms);
-  //   console.log(res);
-  // } catch (error) {
-  //   console.error("Error fetching chat rooms:", error);
-  //   // Handle the error accordingly
-  // }
-
-// //wroking alredy joined rooms
 
 useEffect(()=>{
   if(searchRoom=='')
@@ -213,6 +196,8 @@ const alredyJoinedRooms=async()=>{
   }
 
 }
+
+//display chat of particular room
 
 
 
@@ -247,9 +232,10 @@ const alredyJoinedRooms=async()=>{
           <div className="chatRoomName">name</div>
           <div className="messagesDisplayArea">
                {messages.map((message, index) => (
-                 <a key={index} className="chatMessageUser">
-                   {message}
-                 </a>
+                 <div className="messageUser">
+                  <a href="" className="senderNmae">a</a>
+                <p className="messsage">{message}</p>
+                 </div>
                ))}
           </div>
 

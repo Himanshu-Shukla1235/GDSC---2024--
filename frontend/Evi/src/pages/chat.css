@@ -10,9 +10,7 @@
     bottom: 0;
     
 }
-.chatMain{
-    overflow-y: hidden;
-}
+
 
 
 /* 
@@ -30,7 +28,7 @@
     display: flex;
     flex-direction: row;
     height: 86vh;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     margin-bottom: 10px;
 }
 
@@ -97,14 +95,24 @@
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
+    
+    
     height: 90vh;
     overflow-y: scroll;
     
 }
 
-.chatMessageUser{
-    height: 300px;
+.messageUser{
+    padding-left: 20px;
+    border: 1px solid red;
+    margin-bottom: 10px;
     
+}
+.messageUser a{
+    font-weight: bold;
+}
+.messageUser p{
+    color: blue;
 }
 
 .messagesSendOption{
