@@ -36,15 +36,16 @@ const getAllRooms=async (req,res)=>{
 ///get all joined chatrooms
 const getJoindedChatRooms=async(req,res,next)=>{
 
-    const memberIdToFind=req.headers.userid;
+    const memberIdToFind=req.user.userId;
+    // console.log(req.user)
 
     if(!memberIdToFind){
         next(new BadRequestError('login again then try!!'));
     }
-    console.log(req.headers.userid);
+    
     let result= await ChatRoom.find({ members: { $elemMatch: { $eq: memberIdToFind } } })
    
-    console.log(result);
+    // console.log('result is:',result);
 
     res.status(200).json(result);
 }
@@ -52,12 +53,12 @@ const getJoindedChatRooms=async(req,res,next)=>{
 //joining the chat room
 const joinChatRoom = async (req, res, next) => {
    
-        const memberIdToAdd = req.headers.userid;
+        const memberIdToAdd = req.user.userId;
         const chatRoomId = req.query.chatRoomId; // Assuming you have the chat room ID in the request params
         
-        console.log(req.query.chatRoomId)
+        // console.log(req.query.chatRoomId)
 
-        console.log("Adding member ID", memberIdToAdd, "to chat room ID", chatRoomId);
+        // console.log("Adding member ID", memberIdToAdd, "to chat room ID", chatRoomId);
 
         // Assuming ChatRoom is your Mongoose model
         let result = await ChatRoom.findByIdAndUpdate(
@@ -70,7 +71,7 @@ const joinChatRoom = async (req, res, next) => {
             return res.status(404).json({ error: "Chat room not found" });
         }
 
-        console.log("Updated chat room:", result);
+        // console.log("Updated chat room:", result);
 
         res.status(200).json(result);
    
