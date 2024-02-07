@@ -22,7 +22,7 @@ const earth = () => {
         </div>
         <div className="boxE3">
           <div  className="boxE31">
-          <div className="boxE311">  <NavLink to={'/airQuality'}>AIRQUAITY</NavLink></div>
+          
         
           </div>
           <div  className="boxE31">

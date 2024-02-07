@@ -7,9 +7,7 @@ import AutocompletePl from "../components/function components/autocomplete";
 const Gmap = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
 
-  const [selectedLocationFromSearch, setSelectedLocationFromSearch] =
-    useState(null);
-
+  // Getting the current location
   const getLocation = async () => {
     if (navigator.geolocation) {
       try {
@@ -31,31 +29,41 @@ const Gmap = () => {
     getLocation();
   }, []);
 
-  useEffect(() => {
-    console.log(
-      "Selected Location:",
-      selectedLocationFromSearch?.lat,
-      selectedLocationFromSearch?.lon
-    );
-  }, [selectedLocationFromSearch]);
+  // Getting location from search
+  const [selectedLocationFromSearch, setSelectedLocationFromSearch] =
+    useState(null);
 
   const handleLocationSelect = (selectedLocation) => {
     setSelectedLocationFromSearch(selectedLocation);
   };
 
+  // Setting the lon and lat on map
+  const [attribute, setAttribute] = useState({
+    lat: currentLocation?.lat,
+    lng: currentLocation?.lng,
+  });
+
+  useEffect(() => {
+    setAttribute({
+      lat: selectedLocationFromSearch?.lat || currentLocation?.lat,
+      lng: selectedLocationFromSearch?.lon || currentLocation?.lng,
+    });
+  }, [selectedLocationFromSearch, currentLocation]);
+
+  // Setting up Google Maps
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyA341iZktrv-k3TxPm5EF-ypykTYBa3Kes",
+    googleMapsApiKey:  "AIzaSyA341iZktrv-k3TxPm5EF-ypykTYBa3Kes", // Replace with your API key
     libraries: ["places"],
   });
 
-  const [map, setmap] = useState(null);
+  const [map, setMap] = useState(null);
 
   const onLoad = (map) => {
-    setmap(map);
+    setMap(map);
   };
 
   if (!isLoaded) {
-    return <CircularProgress></CircularProgress>;
+    return <CircularProgress />;
   }
 
   return (
@@ -65,7 +73,7 @@ const Gmap = () => {
         <div className="boxE12">
           <button
             type="button"
-            onClick={() => map.panTo(currentLocation)}
+            onClick={() => map.panTo(attribute)}
             style={{
               border: "none",
               backgroundColor: "transparent",
@@ -76,23 +84,18 @@ const Gmap = () => {
           </button>
         </div>
       </div>
-      <d style={{ border: "3px solid black", width: "100%", height: "100%" }}>
-        {" "}
+      <div style={{ border: "3px solid black", width: "100%", height: "100%" }}>
         <GoogleMap
           style={{ border: "3px solid black" }}
-          center={{
-            lat: selectedLocationFromSearch?.lat,
-            lng: selectedLocationFromSearch?.lon,
-          }}
+          center={attribute}
           zoom={16}
           mapContainerStyle={{ width: "100%", height: "100%" }}
           options={{ zoomControl: false, fullscreenControl: false }}
           onLoad={onLoad}
         >
-          <Marker position={currentLocation} />
+          <Marker position={attribute} />
         </GoogleMap>
-      </d>
-      iv
+      </div>
     </>
   );
 };
