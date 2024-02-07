@@ -26,29 +26,6 @@ const onChangeSendMessage=(e)=>{
 
 
 
-useEffect(()=>{
-  const messagesURL='http://localhost:5000/api/v1/messages/allMessages'
-  
-  const fetching=async()=>{
-    try {
-      const data=await axios.get(messagesURL,{timeout:5000});
-      let Datamessages=data.data;
-      console.log(Datamessages);
-
-      //make sure it is empty
-      setMessages([]);
-      
-      setMessages((prevMessage)=>[
-        ...prevMessage,...Datamessages.map((item)=>item.message.text)
-      ])
-      
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  fetching()
-},[])
 
 
 
@@ -60,28 +37,7 @@ useEffect(()=>{
 //   return () => clearInterval(intervalId);
 // }, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
 
-//working with add message to the database
 
- const addMessage = async(e) => {
-  e.preventDefault();
- 
-     try {
-      const see=await axios.post('http://localhost:5000/api/v1/messages/add',{
-    from:axios.defaults.headers.common.userID,
-    message:sendMessage})
-
-    console.log(axios.defaults.headers.common.userID)
-
-       setMessages((prevMessage)=>[
-        ...prevMessage,sendMessage
-       ])
-       setSendMessage("");
-        
-     } catch (error) {
-      console.log(error);
-     }
-     
-}
 
 // cretaeing form
 const openCreateRoomForm=()=>{
@@ -190,6 +146,7 @@ const alredyJoinedRooms=async()=>{
   try {
     const res = await axios.get('http://localhost:5000/api/v1/chat/roomsJoined');
     setJoinedChatRooms(res.data.rooms);
+    console.log(res.data.rooms)
     
   } catch (error) {
     console.log(error);
@@ -197,7 +154,62 @@ const alredyJoinedRooms=async()=>{
 
 }
 
+//working with add message to the database
+
+const [currentChatRoom,setCurrentChatRoom]=useState('');
+
+ const addMessage = async(e) => {
+  e.preventDefault();
+ 
+     try {
+      const see=await axios.post('http://localhost:5000/api/v1/messages/add',{
+    from:axios.defaults.headers.common.userID,
+    message:sendMessage,
+    chatRoomID:currentChatRoom,
+  })
+
+    console.log(axios.defaults.headers.common.userID)
+
+       setMessages((prevMessage)=>[
+        ...prevMessage,sendMessage
+       ])
+       setSendMessage("");
+        
+     } catch (error) {
+      console.log(error);
+     }
+     
+}
+
 //display chat of particular room
+const chatRoomClicked=(id)=>{
+  console.log(id);
+  setCurrentChatRoom(id);
+  const messagesURL='http://localhost:5000/api/v1/messages/allMessages'
+  const fetching=async()=>{
+    try {
+      const data=await axios.get(messagesURL,{
+        params:{
+          chatRoomID:currentChatRoom
+        }
+      });
+      let Datamessages=data.data;
+      console.log(Datamessages);
+
+      //make sure it is empty
+      setMessages([]);
+      
+      setMessages((prevMessage)=>[
+        ...prevMessage,...Datamessages.map((item)=>item.message.text)
+      ])
+      
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  fetching()
+}
 
 
 
@@ -220,9 +232,9 @@ const alredyJoinedRooms=async()=>{
             <div className='chatRoom'>
               <a href="">name1</a>
             </div> */}
-            {joinedChatRooms.map((room, index) => (
-                 <div key={index} className="chatRoom">
-                   <a href="">{room.name}</a>
+            {joinedChatRooms.map((room) => (
+                 <div key={room._id} className="chatRoom" onClick={()=>chatRoomClicked(room._id)}>
+                   <a>{room.name}</a>
                  </div>
                ))}
             
