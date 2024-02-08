@@ -16,22 +16,28 @@ const Earth = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [weatherData1, setWeatherData1] = useState(null);
   const [airData, setAirData] = useState();
-  const fetchData = async (latitude,longitude) => {
-      
+  const fetchData = async (latitude, longitude) => {
     const apiKey = "d07a3987fb6b1409e5e36912f397be05";
-
-    try {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
-      );
-
-      setWeatherData1(response.data);
-    } catch (error) {
-      console.error("Error fetching weather data 123:", error);
-      setWeatherData1(null); // Set weatherData to null in case of an error
+  
+    // Check if latitude and longitude are valid
+    if (latitude !== undefined && longitude !== undefined) {
+      try {
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`,
+          { withCredentials: false } // Set withCredentials to false
+        );
+  
+        setWeatherData1(response.data);
+      } catch (error) {
+        console.error("Error fetching weather data 123:", error);
+        setWeatherData1(null); // Set weatherData to null in case of an error
+      }
+    } else {
+      console.error("Latitude or longitude is undefined");
+      setWeatherData1(null); // Set weatherData to null if latitude or longitude is undefined
     }
   };
-
+  
   const fetchingAirQuality = async (latitude, longitude) => {
     const options = {
       method: "GET",
@@ -68,6 +74,7 @@ const Earth = () => {
 
     try {
       const response = await axios.request(weatherOptions);
+      console.log(response.data)
       setWeatherData(response.data);
     } catch (error) {
       console.error("Error fetching weather data:", error);
