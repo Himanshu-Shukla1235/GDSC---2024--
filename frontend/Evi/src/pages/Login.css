@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* background: url('https: //cutewallpaper.org/27/background-wallpaper-hd-green/3169227149.jpg'); */
   background: linear-gradient(rgba(0, 0, 0, 0.457), rgba(0, 0, 0, 0.5)),
     url("https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/images/earth%20day.jpg?raw=true")
       center/cover no-repeat;
@@ -16,14 +17,16 @@
   width: 450px;
   height: 70vh;
   margin-bottom: 80px;
-  background-color: rgba(5, 5, 5, 0.479);
+  background-color: rgba(176, 176, 176, 0.479);
   backdrop-filter: blur(5px);
 }
 
 .loginHeading {
-  padding-left: 40%;
+  
+  padding-left: 38%;
+ 
   margin-top: 30px;
-  color: rgb(188, 250, 126);
+  color: rgb(0, 0, 0);
   font-size: 40px;
   font-weight: 8;
 }
@@ -41,19 +44,23 @@
   padding: 10px 10px;
   border-radius: 7px;
 background-color: rgb(255, 255, 255);
-border: solid 3px greenyellow;
+/* border: solid 3px greenyellow; */
 }
 
 .loginButton {
   padding: 10px;
-  background: rgb(0, 0, 0);
+  background: rgb(110, 197, 144);
   border: none;
   font-weight: bold;
-  color: rgb(108, 244, 240);
+  color: rgb(0, 0, 0);
   border-radius: 5px;
 
   
   
+}
+
+.spinnerLoader{
+  display: none;
 }
 
 #loader {
