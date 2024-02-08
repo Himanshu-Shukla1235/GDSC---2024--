@@ -46,8 +46,9 @@ const getJoindedChatRooms=async(req,res,next)=>{
     let result= await ChatRoom.find({ members: { $elemMatch: { $eq: memberIdToFind } } })
    
     // console.log('result is:',result);
+    const user=req.user;
 
-    res.status(200).json(result);
+    res.status(200).json({result,user});
 }
 
 //joining the chat room
