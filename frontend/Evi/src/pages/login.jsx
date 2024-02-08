@@ -76,6 +76,7 @@ const AuthForm = () => {
 
         const id=res.data.user.id;
         axios.defaults.headers.common['userID'] = id;
+        window.location.href='/'
 
       } catch (error) {
         setError(error.response.data.msg)
@@ -97,6 +98,7 @@ const AuthForm = () => {
     
         // Set the Authorization header for future requests
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+         window.location.href='/'
 
 
       } catch (error) {
