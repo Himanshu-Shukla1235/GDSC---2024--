@@ -10,9 +10,9 @@ import Home from "./pages/home";
 import Chat from "./pages/chat.jsx";
 import Earth from "../src/pages/earth.jsx";
 import Air from "./components/airquality.jsx";
-import Whether from "../src/components/whether.jsx"
+// import Whether from "../src/components/whether.jsx"
 import axios from "axios";
-import Weather from "../src/components/whether.jsx"
+// import Weather from "../src/components/whether.jsx"
 
 function App() {
 
@@ -38,7 +38,7 @@ useEffect(() => {
           <Route path="/earth" element={<Earth />} />
           <Route path="/airQuality" element={<Air></Air>} />
           
-          <Route path="/whether" element={<Weather></Weather>} />
+          {/* <Route path="/whether" element={<Weather></Weather>} /> */}
 
           
         
