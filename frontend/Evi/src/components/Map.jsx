@@ -4,7 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import AutocompletePl from "../components/function components/autocomplete";
 
-const Gmap = () => {
+const Gmap = ({ onMapChange}) => {
   const [currentLocation, setCurrentLocation] = useState(null);
 
   // Getting the current location
@@ -35,6 +35,7 @@ const Gmap = () => {
 
   const handleLocationSelect = (selectedLocation) => {
     setSelectedLocationFromSearch(selectedLocation);
+    
   };
 
   // Setting the lon and lat on map
@@ -48,12 +49,13 @@ const Gmap = () => {
       lat: selectedLocationFromSearch?.lat || currentLocation?.lat,
       lng: selectedLocationFromSearch?.lon || currentLocation?.lng,
     });
+    onMapChange(attribute);
   }, [selectedLocationFromSearch, currentLocation]);
 
   // Setting up Google Maps
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey:  "AIzaSyA341iZktrv-k3TxPm5EF-ypykTYBa3Kes", // Replace with your API key
-    libraries: ["places"],
+   
   });
 
   const [map, setMap] = useState(null);
@@ -65,6 +67,8 @@ const Gmap = () => {
   if (!isLoaded) {
     return <CircularProgress />;
   }
+  //giving location
+
 
   return (
     <>
@@ -84,6 +88,7 @@ const Gmap = () => {
           </button>
         </div>
       </div>
+      
       <div style={{ border: "3px solid black", width: "100%", height: "100%" }}>
         <GoogleMap
           style={{ border: "3px solid black" }}
