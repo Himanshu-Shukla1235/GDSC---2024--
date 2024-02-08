@@ -307,7 +307,7 @@ const joinRoom=async(roomId)=>{
             {joinedChatRooms.map((room) => (
                  <div key={room._id} className="chatRoom" >
                    <a onClick={()=>chatRoomClicked(room._id)}>{room.name}</a>
-                   <button key={room._id} onClick={()=>joinRoom(room._id)} className={room.className}>join</button>
+                   <button key={room._id} onClick={()=>joinRoom(room._id)} className={room.className} >join</button>
                  </div>
                ))}
             
