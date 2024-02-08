@@ -5,50 +5,29 @@ import Navbar from '../components/Nav';
 import Footer from '../components/footer';
 import axios from 'axios'; 
 import CloseIcon from '@mui/icons-material/Close';
-
+import {io} from 'socket.io-client';
+const socket=io('http://localhost:5000');
 
 const Chat = () => {
   const [placeholder, setPlaceholder] = useState("");
   const word = ["s", "e", "a", "r", "c", "h", " ", "f", "o", "r", " ", "c", "h", "a", "t", "r", "o", "o", "m", "s"];
   const [i, setI] = useState(0);
   const [shouldContinue, setShouldContinue] = useState(true);
-  const [messages,setMessages]=useState([]);
-  const [sendMessage,setSendMessage]=useState("");
+  
   const [searchRoom,setSearchRoom]=useState("");
   const [roomFormClass,setRoomFormClass]=useState("createRoom");
+    const [receivedData, setReceivedData] = useState('');
+
+  
 
   //for send message
 const onChangeSendMessage=(e)=>{
-  console.log(sendMessage)
   setSendMessage(e.target.value)
 }
 
 
 
 
-useEffect(()=>{
-  const messagesURL='http://localhost:5000/api/v1/messages/allMessages'
-  
-  const fetching=async()=>{
-    try {
-      const data=await axios.get(messagesURL,{timeout:5000});
-      let Datamessages=data.data;
-      console.log(Datamessages);
-
-      //make sure it is empty
-      setMessages([]);
-      
-      setMessages((prevMessage)=>[
-        ...prevMessage,...Datamessages.map((item)=>item.message.text)
-      ])
-      
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  fetching()
-},[])
 
 
 
@@ -61,27 +40,6 @@ useEffect(()=>{
 // }, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
 
 
-
- const addMessage = async(e) => {
-  e.preventDefault();
- 
-     try {
-      const see=await axios.post('http://localhost:5000/api/v1/messages/add',{
-    from:axios.defaults.headers.common.userID,
-    message:sendMessage})
-
-    console.log(axios.defaults.headers.common.userID)
-
-       setMessages((prevMessage)=>[
-        ...prevMessage,sendMessage
-       ])
-       setSendMessage("");
-        
-     } catch (error) {
-      console.log(error);
-     }
-     
-}
 
 // cretaeing form
 const openCreateRoomForm=()=>{
@@ -141,6 +99,7 @@ const onchangeRoom = async (e) => {
   const newValue=e.target.value;
   setSearchRoom(newValue);
 
+
 };
 //for searching the room and for alredy joined rooms
 useEffect(()=>{
@@ -151,8 +110,17 @@ useEffect(()=>{
       let fetchData=async()=>{
       
        const res=await axios.get('http://localhost:5000/api/v1/chat/roomsJoined')
-       console.log(res.data);
-       setJoinedChatRooms(res.data)
+      console.log(res.data.result)
+      setUsername(res.data.user.username)
+       const dat=res.data.result;
+       const newData = dat.map((item) => ({
+  ...item,
+  className: 'displayNo',
+}));
+
+      console.log(newData);
+
+       setJoinedChatRooms(newData)
      }
      fetchData();
   }else
@@ -164,9 +132,17 @@ useEffect(()=>{
                      location: "searchRoom"
                    }
              });
-    console.log(res.data.rooms)
+             const dat=res.data.rooms;
+    // console.log(res.data.rooms)
+   // Use map to create a new array with the added className property
+const newData = dat.map((item) => ({
+  ...item,
+  className: 'displayYes',
+}));
 
-    setJoinedChatRooms(res.data.rooms);
+    console.log(newData);
+
+    setJoinedChatRooms(newData);
     console.log(res);
        }
        fetchData();
@@ -176,46 +152,145 @@ useEffect(()=>{
 
 },[searchRoom])
 
-  //   try {
-  //   const res = await axios.get('http://localhost:5000/api/v1/chat/search', {
-  //     params: {
-  //       name: searchRoom,
-  //       location: "searchRoom"
-  //     }
-  //   });
-  //   console.log(res.data.rooms)
 
-  //   setJoinedChatRooms(res.data.rooms);
-  //   console.log(res);
-  // } catch (error) {
-  //   console.error("Error fetching chat rooms:", error);
-  //   // Handle the error accordingly
-  // }
+// useEffect(()=>{
+//   if(searchRoom=='')
+//   {
+//     console.log('hello')
+//   }
 
-// //wroking alredy joined rooms
+// },[joinedChatRooms])
 
-useEffect(()=>{
-  if(searchRoom=='')
-  {
-    console.log('hello')
-  }
+// const alredyJoinedRooms=async()=>{
 
-},[joinedChatRooms])
+//   try {
+//     const res = await axios.get('http://localhost:5000/api/v1/chat/roomsJoined');
+//     const dat=res.data.rooms;
+//     // dat.className='displayYes'
+//     // console.log("here",dat);
+//     setJoinedChatRooms(res.data.rooms);
+//     // console.log(res.data.rooms)
+//     // setJoinedRoomsID()
+    
+//   } catch (error) {
+//     console.log(error);
+//   }
 
-const alredyJoinedRooms=async()=>{
+// }
+
+//working with add message to the database
+const [messages,setMessages]=useState([]);
+  const [sendMessage,setSendMessage]=useState("");
+  const [username,setUsername]=useState('')
+
+const [currentChatRoom,setCurrentChatRoom]=useState('');
+
+const addMessage = async (e) => {
+  e.preventDefault();
+
+  console.log(socket)
+  socket.emit('send-message',{message:sendMessage,sender:username});
+
+
 
   try {
-    const res = await axios.get('http://localhost:5000/api/v1/chat/roomsJoined');
-    setJoinedChatRooms(res.data.rooms);
-    
+    const see = await axios.post('http://localhost:5000/api/v1/messages/add', {
+       // Change this line to use req.user.userId directly
+      message: sendMessage,
+      chatRoomID: currentChatRoom,
+    });
+
+    setUsername(see.data.user);
+
+    const newM = {
+      message: {
+        text: sendMessage,
+      },
+      sender: {
+        name: see.data.user,
+      },
+    };
+
+    // setMessages((prevMessage) => [
+    //   ...prevMessage,
+    //   newM
+    // ]);
+    setSendMessage("");
   } catch (error) {
     console.log(error);
   }
 
+};
+
+
+//display chat of particular room
+const chatRoomClicked=(id)=>{
+  console.log(id);
+  setCurrentChatRoom(id);
+  const messagesURL='http://localhost:5000/api/v1/messages/allMessages'
+  const fetching=async()=>{
+    try {
+      const data=await axios.get(messagesURL,{
+        params:{
+          chatRoomID:currentChatRoom
+        }
+      });
+      let Datamessages=data.data;
+      console.log(Datamessages);
+
+      //make sure it is empty
+      setMessages([]);
+      
+      setMessages((prevMessage)=>[
+        ...prevMessage,...Datamessages.map((item)=>item)
+      ])
+
+      console.log(messages);
+      
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  fetching()
 }
 
+useEffect(() => {
+    // Attach the event handler to the socket
+    socket.on('broadcast-message', (data) => {
+        // Create a new message object with the received data
+        const newMessage = {
+            message: {
+                text: data.message,
+            },
+            sender: {
+                name: data.sender,
+                id: 'dfasf',
+            },
+        };
 
+        console.log(newMessage);  // Optional: log the new message for debugging
 
+        // Update the state using the previous state to avoid potential issues
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+    });
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+        // socket.disconnect();
+        socket.off('broadcast-message');
+    };
+}, []); // The empty dependency array ensures that this effect runs once when the component mounts
+
+//working with joining chat rooms
+
+const joinRoom=async(roomId)=>{
+  console.log('clickd')
+  const url='http://localhost:5000/api/v1/chat/roomsJoined'
+  const res=await axios.post(url,{params:{chatRoomID:roomId}});
+  console.log(res);
+
+}
 
 
   return (
@@ -229,15 +304,10 @@ const alredyJoinedRooms=async()=>{
             <button className='createNewRoomBtn' onClick={openCreateRoomForm}>+</button>
           </div>
           <div className="displayChatRooms">
-            {/* <div className='chatRoom'>
-              <a href="">name1</a>
-            </div>
-            <div className='chatRoom'>
-              <a href="">name1</a>
-            </div> */}
-            {joinedChatRooms.map((room, index) => (
-                 <div key={index} className="chatRoom">
-                   <a href="">{room.name}</a>
+            {joinedChatRooms.map((room) => (
+                 <div key={room._id} className="chatRoom" >
+                   <a onClick={()=>chatRoomClicked(room._id)}>{room.name}</a>
+                   <button key={room._id} onClick={()=>joinRoom(room._id)} className={room.className}>join</button>
                  </div>
                ))}
             
@@ -246,11 +316,12 @@ const alredyJoinedRooms=async()=>{
         <div className="chatMessagesSection">
           <div className="chatRoomName">name</div>
           <div className="messagesDisplayArea">
-               {messages.map((message, index) => (
-                 <a key={index} className="chatMessageUser">
-                   {message}
-                 </a>
-               ))}
+              {messages.map((message, index) => (
+                 <div className="messageUser">
+                  <a href="" className="senderNmae">{message.sender.name}</a>
+                <p className="messsage">{message.message.text}</p>
+                 </div>
+               ))} 
           </div>
 
           <div className="messagesSendOption">
