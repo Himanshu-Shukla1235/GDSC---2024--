@@ -5,7 +5,7 @@ import Navbar from "../components/Nav";
 import { NavLink } from "react-router-dom";
 import "../pages/earth.css";
 import axios from "axios";
-import Whether from "../components/whether";
+// import Whether from "../components/whether";
 
 const Earth = () => {
   const [mapLocation, setMapLocation] = useState({
