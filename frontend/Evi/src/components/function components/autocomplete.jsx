@@ -12,6 +12,7 @@ const LocationSearch = ({ onLocationSelect }) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [showResults, setShowResults] = useState(true); // New state for controlling visibility
 
+// #when the text changes in search the function call...
   const handleChange = async (value) => {
     setSearchTerm(value);
 
@@ -34,28 +35,8 @@ const LocationSearch = ({ onLocationSelect }) => {
     }
   };
 
-  const fetchLocationDetails = async (locationId) => {
-    // Use the locationId to fetch more details about the selected location
-    // Replace the following URL and headers with your actual API details
-    const detailsOptions = {
-      method: "GET",
-      url: "YOUR_DETAILS_API_URL",
-      params: { id: locationId },
-      headers: {
-        "Your-API-Key": "Your-API-Key",
-        "Your-Other-Headers": "Your-Other-Headers",
-      },
-    };
-
-    try {
-      const detailsResponse = await axios.request(detailsOptions);
-      console.log("Location Details:", detailsResponse.data);
-      // Handle the location details as needed
-    } catch (error) {
-      console.error("Error fetching location details:", error);
-    }
-  };
-
+  
+//#to handle the selected location on search
   const handleSelectLocation = (selectedLocation) => {
     setSearchTerm(
       `${selectedLocation.name},${selectedLocation.region}, ${selectedLocation.country}`

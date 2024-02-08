@@ -70,6 +70,11 @@ const Gmap = ({ onMapChange}) => {
   //giving location
 
 
+  //exporting the map seted location
+  
+
+ 
+
   return (
     <>
       <div className="boxE1">
@@ -77,7 +82,7 @@ const Gmap = ({ onMapChange}) => {
         <div className="boxE12">
           <button
             type="button"
-            onClick={() => map.panTo(attribute)}
+            onClick={() => map.panTo(currentLocation)}
             style={{
               border: "none",
               backgroundColor: "transparent",
