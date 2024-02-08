@@ -109,6 +109,6 @@ const WeatherMap = () => {
    
   );
 
-};
+};}
 
 export default WeatherMap;

@@ -1,10 +1,10 @@
+
 import React, { useState, useEffect } from "react";
 import Map from "../components/Map";
 import Footer from "../components/footer";
 import Navbar from "../components/Nav";
 import { NavLink } from "react-router-dom";
 import "../pages/earth.css";
-
 import axios from "axios";
 // import Whether from "../components/whether";
 
@@ -110,8 +110,6 @@ const Earth = () => {
    
   }, []);
 
-
-const Earth = () => {
   return (
     <>
       <header className="headerE">
@@ -119,7 +117,6 @@ const Earth = () => {
       </header>
       <main className="mainE">
         <div className="boxE2">
-
           <Map onMapChange={handleMapChange}></Map>
         </div>
         <div className="boxE3">
@@ -220,18 +217,6 @@ const Earth = () => {
           <div className="boxE31">
            
           </div>
-
-          <Map  />
-        </div>
-        <div className="boxE3">
-          <div className="boxE31"></div>
-          <div className="boxE31">
-            <NavLink to={"/airQuality"}>AIR QUALITY</NavLink>
-          </div>
-          <div className="boxE31">
-            <NavLink to={"/airQuality"}>AIR QUALITY</NavLink>
-          </div>
-
         </div>
       </main>
       <footer className="footerE">
