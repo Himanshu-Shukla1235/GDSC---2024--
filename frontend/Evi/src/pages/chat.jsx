@@ -5,7 +5,8 @@ import Navbar from '../components/Nav';
 import Footer from '../components/footer';
 import axios from 'axios'; 
 import CloseIcon from '@mui/icons-material/Close';
-
+import {io} from 'socket.io-client';
+const socket=io('http://localhost:5000');
 
 const Chat = () => {
   const [placeholder, setPlaceholder] = useState("");
@@ -15,6 +16,8 @@ const Chat = () => {
   
   const [searchRoom,setSearchRoom]=useState("");
   const [roomFormClass,setRoomFormClass]=useState("createRoom");
+    const [receivedData, setReceivedData] = useState('');
+
   
 
   //for send message
@@ -107,8 +110,9 @@ useEffect(()=>{
       let fetchData=async()=>{
       
        const res=await axios.get('http://localhost:5000/api/v1/chat/roomsJoined')
-      
-       const dat=res.data;
+      console.log(res.data.result)
+      setUsername(res.data.user.username)
+       const dat=res.data.result;
        const newData = dat.map((item) => ({
   ...item,
   className: 'displayNo',
@@ -184,6 +188,11 @@ const [currentChatRoom,setCurrentChatRoom]=useState('');
 const addMessage = async (e) => {
   e.preventDefault();
 
+  console.log(socket)
+  socket.emit('send-message',{message:sendMessage,sender:username});
+
+
+
   try {
     const see = await axios.post('http://localhost:5000/api/v1/messages/add', {
        // Change this line to use req.user.userId directly
@@ -202,10 +211,10 @@ const addMessage = async (e) => {
       },
     };
 
-    setMessages((prevMessage) => [
-      ...prevMessage,
-      newM
-    ]);
+    // setMessages((prevMessage) => [
+    //   ...prevMessage,
+    //   newM
+    // ]);
     setSendMessage("");
   } catch (error) {
     console.log(error);
@@ -227,7 +236,7 @@ const chatRoomClicked=(id)=>{
         }
       });
       let Datamessages=data.data;
-      // console.log(Datamessages);
+      console.log(Datamessages);
 
       //make sure it is empty
       setMessages([]);
@@ -245,6 +254,34 @@ const chatRoomClicked=(id)=>{
   }
   fetching()
 }
+
+useEffect(() => {
+    // Attach the event handler to the socket
+    socket.on('broadcast-message', (data) => {
+        // Create a new message object with the received data
+        const newMessage = {
+            message: {
+                text: data.message,
+            },
+            sender: {
+                name: data.sender,
+                id: 'dfasf',
+            },
+        };
+
+        console.log(newMessage);  // Optional: log the new message for debugging
+
+        // Update the state using the previous state to avoid potential issues
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+    });
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+        // socket.disconnect();
+        socket.off('broadcast-message');
+    };
+}, []); // The empty dependency array ensures that this effect runs once when the component mounts
+
 //working with joining chat rooms
 
 const joinRoom=async(roomId)=>{

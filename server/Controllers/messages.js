@@ -34,6 +34,8 @@ const addMessage=async(req,res,next)=>{
     const {userId,username}=req.user;
     console.log(req.user)
 
+     
+
     //checking if user presnt in the room
     const foundRoom = await chatRoomModel.findOne({
   _id: chatRoomID,
