@@ -96,6 +96,7 @@ const AuthForm = () => {
         const res=await axios.post('http://localhost:5000/api/v1/auth/register',person)
         setError('')
         // Store the token in localStorage
+          const token = res.data.token;
         localStorage.setItem('token', token);
         console.log(localStorage.getItem(token))
     

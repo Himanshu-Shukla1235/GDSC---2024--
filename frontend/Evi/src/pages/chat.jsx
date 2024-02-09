@@ -78,6 +78,8 @@ const creatingNewRoom=async()=>{
     setAimC('');
     setAreaC('');
     setDisC(''); setNameC('')
+
+    window.location.reload();
     
   } catch (error) {
     setCreateRoomError(error.response.data.msg)
@@ -179,20 +181,30 @@ const [messages,setMessages]=useState([]);
 const [currentChatRoom,setCurrentChatRoom]=useState('');
 
 const addMessage = async (e) => {
-  e.preventDefault();
+  // e.preventDefault();
+
 
   if(currentChatRoom=='')return;
 
   console.log(socket)
-  socket.emit('send-message',{message:sendMessage,sender:username,chatRoomID:currentChatRoom});
+  const time={
+      day:new Date().getDate(),
+      month:new Date().getMonth(),
+      hours:new Date().getHours(),
+      minutes:new Date().getMinutes(),
+    }
+    console.log(time);
+  socket.emit('send-message',{message:sendMessage,sender:username,chatRoomID:currentChatRoom,time:time});
 
 
+    
 
   try {
     const see = await axios.post('http://localhost:5000/api/v1/messages/add', {
        // Change this line to use req.user.userId directly
       message: sendMessage,
       chatRoomID: currentChatRoom,
+      time:time,
     });
 
     setUsername(see.data.user);
@@ -262,6 +274,12 @@ useEffect(() => {
                 name: data.sender,
                 id: 'dfasf',
             },
+            time:{
+              day:data.time.day,
+              month:data.time.month,
+              hours:data.time.hours,
+              minutes:data.time.minutes,
+            }
         };
 
         console.log(newMessage);  // Optional: log the new message for debugging
@@ -292,6 +310,16 @@ const joinRoom=async(roomId)=>{
   console.log(res);
 
 }
+   const handleKeyDown = (e) => {
+    
+    // Check if the Enter key is pressed and the input is focused
+    if (e.key === 'Enter' && e.target === document.activeElement) {
+      // Trigger the addMessage function when Enter is pressed and the input is focused
+  
+      addMessage();
+    }
+  };
+
 
 
   return (
@@ -301,7 +329,7 @@ const joinRoom=async(roomId)=>{
       <div className="chatContainer">
         <div className='chatRoomSection'>
           <div className="chatSearchSection">
-            <input onChange={onchangeRoom} value={searchRoom}  className='chatRoomSearchBtn' type="text" placeholder={placeholder} />
+            <input onChange={onchangeRoom} value={searchRoom}  className='chatRoomSearchBtn' type="text" placeholder='search' />
             <button className='createNewRoomBtn' onClick={openCreateRoomForm}>+</button>
           </div>
           <div className="displayChatRooms">
@@ -321,12 +349,13 @@ const joinRoom=async(roomId)=>{
                  <div className="messageUser">
                   <a href="" className="senderNmae">{message.sender.name}</a>
                 <p className="messsage">{message.message.text}</p>
+                <p className="timeContainer">{message.time.day},{message.time.month}/{message.time.hours}:{message.time.minutes}</p>
                  </div>
                ))} 
           </div>
 
           <div className="messagesSendOption">
-            <input className="sendMessageInput"type="text" value={sendMessage} onChange={onChangeSendMessage}/>
+            <input  onKeyDown={handleKeyDown}  placeholder='message' className="sendMessageInput"type="text" value={sendMessage} onChange={onChangeSendMessage}/>
             <button className="sendMessageBtn" onClick={addMessage}>Send</button>
           </div>
         </div>
