@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Map from "../components/Map";
 import Footer from "../components/footer";
@@ -6,6 +5,7 @@ import Navbar from "../components/Nav";
 import { NavLink } from "react-router-dom";
 import "../pages/earth.css";
 import axios from "axios";
+import { DiscFull } from "@mui/icons-material";
 // import Whether from "../components/whether";
 
 const Earth = () => {
@@ -18,7 +18,7 @@ const Earth = () => {
   const [airData, setAirData] = useState();
   const fetchData = async (latitude, longitude) => {
     const apiKey = "d07a3987fb6b1409e5e36912f397be05";
-  
+
     // Check if latitude and longitude are valid
     if (latitude !== undefined && longitude !== undefined) {
       try {
@@ -26,7 +26,7 @@ const Earth = () => {
           `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`,
           { withCredentials: false } // Set withCredentials to false
         );
-  
+
         setWeatherData1(response.data);
       } catch (error) {
         console.error("Error fetching weather data 123:", error);
@@ -37,7 +37,7 @@ const Earth = () => {
       setWeatherData1(null); // Set weatherData to null if latitude or longitude is undefined
     }
   };
-  
+
   const fetchingAirQuality = async (latitude, longitude) => {
     const options = {
       method: "GET",
@@ -74,7 +74,7 @@ const Earth = () => {
 
     try {
       const response = await axios.request(weatherOptions);
-      console.log(response.data)
+      console.log(response.data);
       setWeatherData(response.data);
     } catch (error) {
       console.error("Error fetching weather data:", error);
@@ -86,7 +86,7 @@ const Earth = () => {
     console.log("New Location:", newLocation);
     fetchWeatherData(newLocation.lat, newLocation.lng);
     fetchingAirQuality(newLocation.lat, newLocation.lng);
-    fetchData(newLocation.lat, newLocation.lng)
+    fetchData(newLocation.lat, newLocation.lng);
     setMapLocation(newLocation);
   };
 
@@ -98,7 +98,7 @@ const Earth = () => {
           setMapLocation({ lat: latitude, lng: longitude });
           fetchWeatherData(latitude, longitude);
           fetchingAirQuality(latitude, longitude);
-          fetchData(latitude, longitude)
+          fetchData(latitude, longitude);
           console.log("User current location:", latitude, longitude);
         },
         (error) => {
@@ -114,7 +114,6 @@ const Earth = () => {
 
   useEffect(() => {
     getDefaultLocation();
-   
   }, []);
 
   return (
@@ -155,10 +154,11 @@ const Earth = () => {
                       color: "yellow",
                       fontFamily: "sans-serif",
                       fontSize: 40,
-                      fontWeight:8
+                      fontWeight: 8,
                     }}
                   >
-                    {weatherData.location.name}
+                    {weatherData.location.name}, {weatherData.location.region},{" "}
+                    {weatherData.location.country}
                   </h1>
                 </h2>
                 <p
@@ -186,7 +186,7 @@ const Earth = () => {
                       color: "yellow",
                       fontFamily: "sans-serif",
                       fontSize: 40,
-                      fontWeight:10
+                      fontWeight: 10,
                     }}
                   >
                     {weatherData.current.temp_c}°C
@@ -198,19 +198,214 @@ const Earth = () => {
           <div className="boxE32">
             <div className="boxE321">
               {airData && (
-                <div>
-                  <h2 style={{ color: "white", fontFamily: "sans-serif" }}>
-                    Air Quality Index:{" "}
-                  </h2>
-                  <ul style={{ color: "white", fontFamily: "sans-serif" }}>
-                    {Object.entries(airData).map(([pollutant, info]) => (
-                      <li key={pollutant}>
-                        <strong>{pollutant}:</strong> {info.aqi} (
-                        {info.concentration})
+                <>
+                  <div className="boxE3211">
+                    <h1
+                      style={{
+                        color: "white",
+                        fontFamily: "sans-serif",
+                        fontWeight: 5,
+                        fontSize: 15,
+                      }}
+                    >
+                      {weatherData.location.name}, {weatherData.location.region}
+                      , {weatherData.location.country}
+                    </h1>
+                    
+                    <h1
+                      style={{
+                    
+                        
+                        color: "greenyellow",
+                        fontFamily: "sans-serif",
+                        fontWeight: 8,
+                      }}
+                    >
+                      Over All AQI :  {airData.CO.aqi} 
+                    </h1>
+                  
+                    <h1
+                      style={{
+                        color: "white",
+                        fontFamily: "sans-serif",
+                        fontWeight: 3,
+                        fontSize: 15,
+                      }}
+                    >
+                      {weatherData.current.last_updated}
+                    </h1>
+                  </div>
+                  <div className="boxE3212">
+                    <ul style={{ color: "white", fontFamily: "sans-serif" }}>
+                      {" "}
+                      <li style={{ color: "green" }}>
+                        <strong
+                          style={{
+                            color: "yellow",
+                            fontSize: 50,
+                            borderBottom: "3px solid yellow",
+                          }}
+                        >
+                          CO
+                        </strong>{" "}
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          {" "}
+                          ~ A Q I : {airData.CO.aqi}{" "}
+                        </strong>
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          ~ Concentration : {airData.CO.concentration}
+                        </strong>
                       </li>
-                    ))}
-                  </ul>
-                </div>
+                      <li style={{ color: "green" }}>
+                        <strong
+                          style={{
+                            color: "violet",
+                            fontSize: 50,
+                            borderBottom: "3px solid violet",
+                          }}
+                        >
+                          NO2
+                        </strong>{" "}
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          {" "}
+                          A Q I : {airData.NO2.aqi}{" "}
+                        </strong>
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          Concentration : ({airData.NO2.concentration})
+                        </strong>
+                      </li>
+                      <li style={{ color: "green" }}>
+                        <strong
+                          style={{
+                            color: "aqua",
+                            fontSize: 50,
+                            borderBottom: "3px solid aqua",
+                          }}
+                        >
+                          O3
+                        </strong>{" "}
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          {" "}
+                          A Q I :{airData.O3.aqi}{" "}
+                        </strong>
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          {" "}
+                          Concentration ({airData.O3.concentration})
+                        </strong>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="boxE3212">
+                    <ul style={{ color: "white", fontFamily: "sans-serif" }}>
+                      {" "}
+                      <li>
+                        <strong
+                          style={{
+                            color: "orange",
+                            fontSize: 50,
+                            borderBottom: "3px solid orange",
+                          }}
+                        >
+                          PM10:
+                        </strong>{" "}
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          {" "}
+                          A Q I : {airData.PM10.aqi}{" "}
+                        </strong>
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          {" "}
+                          Concentration : ({airData.PM10.concentration})
+                        </strong>
+                      </li>
+                      {/* <li >
+                        <strong style={{ color: "violet" ,fontSize:50 }}>:</strong>{" "}
+                        <strong style={{ color: "white", }}>  {airData..aqi} </strong>
+                        <strong style={{ color: "white", }}> ({airData..concentration})</strong>
+                      
+                      </li> */}
+                      <li>
+                        <strong
+                          style={{
+                            color: "pink",
+                            fontSize: 50,
+                            borderBottom: "3px solid pink",
+                          }}
+                        >
+                          SO2:
+                        </strong>{" "}
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          {" "}
+                          A Q I :{airData.SO2.aqi}{" "}
+                        </strong>
+                        <strong
+                          style={{
+                            color: "white",
+                            fontSize: 19,
+                            fontWeight: 30,
+                          }}
+                        >
+                          {" "}
+                          Concentration : {airData.SO2.concentration}{" "}
+                        </strong>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="boxE3213"></div>
+                </>
               )}
               {!airData && (
                 <div>
@@ -221,9 +416,7 @@ const Earth = () => {
               )}
             </div>
           </div>
-          <div className="boxE31">
-           
-          </div>
+          <div className="boxE31"></div>
         </div>
       </main>
       <footer className="footerE">

@@ -58,10 +58,11 @@
   height: 200vh;
   width: 90%;
   overflow-y: hidden;
-  background-color: rgba(152, 151, 151, 0.142);
+
+  background: linear-gradient(rgb(81, 81, 81), rgb(255, 255, 255));
   margin: 3%;
   backdrop-filter: blur(10px);
-  gap: 5px;
+  gap: 20px;
   padding: 70px;
 }
 .boxE31 {
@@ -71,9 +72,10 @@
   align-items: center;
   width: 90%;
   height: 50%;
-  background-color: rgb(0, 0, 0);
+  background: linear-gradient(rgba(27, 27, 27, 0.647), rgba(57, 56, 56, 0.405));
+  border: solid 3px black;
   backdrop-filter: blur(10px);
-  
+  border-radius: 10px;
 }
 .boxE311 {
   display: flex;
@@ -82,25 +84,87 @@
   align-items: center;
   width: 50%;
   height: 70%;
-  background-color: rgba(148, 148, 148, 0);
-  backdrop-filter: blur(10px);
-  border-right: solid 3px rgb(118, 255, 118);
+  background-color: none;
+
+  border-right: solid 3px rgb(0, 0, 0);
   gap: 20px;
 }
 .boxE32 {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   width: 90%;
-  height: 50%;
-  background-color: rgb(0, 0, 0);
+  height: 70%;
+  background: linear-gradient(rgba(27, 27, 27, 0.647), rgba(57, 56, 56, 0.405));
+  border: solid 3px black;
   backdrop-filter: blur(10px);
+  border-radius: 10px;
 }
 .boxE321 {
-  border: solid 3px red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: solid 3px rgb(0, 0, 0);
   height: 30px;
+  width: 60%;
+  height: 90%;
+  gap: 20px;
+}
+.boxE3211 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  height: 10%;
+  gap: 10px;
+  padding: 20px;
+
+  background-color: rgba(46, 44, 44, 0.578);
+  border-radius: 10px;
+  animation: upDownMotion 2s ease-in-out infinite;
+}
+.boxE3212 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+.boxE3212 ul {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: 10px;
+}
+.boxE3212 li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  flex-direction: column;
+  gap: 10px;
+
+  background-color: rgba(46, 44, 44, 0.578);
+  border-radius: 7px;
+  animation: upDownMotion 2s ease-in-out infinite;
 }
 
 .footerE {
   position: sticky;
   bottom: 0;
+}
+
+@keyframes upDownMotion {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px); /* Adjust the distance as needed */
+  }
 }
