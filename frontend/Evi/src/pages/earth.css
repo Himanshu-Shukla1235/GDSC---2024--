@@ -59,7 +59,7 @@
   width: 90%;
   overflow-y: hidden;
 
-  background: linear-gradient(rgb(81, 81, 81), rgb(255, 255, 255));
+  background: linear-gradient(rgba(201, 201, 201, 0.208), rgb(255, 255, 255));
   margin: 3%;
   backdrop-filter: blur(10px);
   gap: 20px;
@@ -72,10 +72,11 @@
   align-items: center;
   width: 90%;
   height: 50%;
-  background: linear-gradient(rgba(27, 27, 27, 0.647), rgba(57, 56, 56, 0.405));
-  border: solid 3px black;
+  background: linear-gradient(rgba(105, 239, 114, 0), rgba(56, 57, 56, 0));
+
   backdrop-filter: blur(10px);
   border-radius: 10px;
+  border: solid 3px black;
 }
 .boxE311 {
   display: flex;
@@ -91,12 +92,15 @@
 }
 .boxE32 {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 90%;
-  height: 70%;
-  background: linear-gradient(rgba(27, 27, 27, 0.647), rgba(57, 56, 56, 0.405));
+  height: 35%;
+  background: linear-gradient(
+    rgba(244, 244, 244, 0.153),
+    rgba(255, 255, 255, 0.038)
+  );
   border: solid 3px black;
   backdrop-filter: blur(10px);
   border-radius: 10px;
@@ -122,7 +126,7 @@
   gap: 10px;
   padding: 20px;
 
-  background-color: rgba(46, 44, 44, 0.578);
+  background-color: rgba(0, 0, 0, 0.723);
   border-radius: 10px;
   animation: upDownMotion 2s ease-in-out infinite;
 }
@@ -149,7 +153,7 @@
   flex-direction: column;
   gap: 10px;
 
-  background-color: rgba(46, 44, 44, 0.578);
+  background-color: rgba(8, 8, 8, 0.697);
   border-radius: 7px;
   animation: upDownMotion 2s ease-in-out infinite;
 }

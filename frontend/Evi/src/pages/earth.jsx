@@ -6,7 +6,13 @@ import { NavLink } from "react-router-dom";
 import "../pages/earth.css";
 import axios from "axios";
 import { DiscFull } from "@mui/icons-material";
+import { PieChart } from "@mui/x-charts/PieChart";
 // import Whether from "../components/whether";
+import AirIcon from "@mui/icons-material/Air";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCloudSun } from "@fortawesome/free-solid-svg-icons";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import TodayIcon from "@mui/icons-material/Today";
 
 const Earth = () => {
   const [mapLocation, setMapLocation] = useState({
@@ -126,7 +132,8 @@ const Earth = () => {
           <Map onMapChange={handleMapChange}></Map>
         </div>
         <div className="boxE3">
-          <div className="boxE31">
+          <FontAwesomeIcon icon="faCloudSun" style={{ color: "#FFD43B" }} />
+          {/* <div className="boxE31">
             {weatherData && (
               <div className="boxE311">
                 <h2
@@ -194,46 +201,69 @@ const Earth = () => {
                 </p>
               </div>
             )}
-          </div>
+          </div> */}
           <div className="boxE32">
             <div className="boxE321">
               {airData && (
                 <>
                   <div className="boxE3211">
+                    {weatherData && weatherData.location && (
+                      <>
+                        <h1
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            color: "white",
+                            fontFamily: "sans-serif",
+                            fontWeight: 1,
+                            fontSize: 15,
+                          }}
+                        >
+                          <LocationOnIcon></LocationOnIcon>
+                          {weatherData.location.name},{" "}
+                          {weatherData.location.region},{" "}
+                          {weatherData.location.country}
+                        </h1>
+
+                        {/* Rest of the code */}
+                      </>
+                    )}
+                    {!weatherData && (
+                      <div>
+                        <p>
+                          Unable to fetch weather data. Please try again later.
+                        </p>
+                      </div>
+                    )}
+
                     <h1
                       style={{
-                        color: "white",
-                        fontFamily: "sans-serif",
-                        fontWeight: 5,
-                        fontSize: 15,
-                      }}
-                    >
-                      {weatherData.location.name}, {weatherData.location.region}
-                      , {weatherData.location.country}
-                    </h1>
-                    
-                    <h1
-                      style={{
-                    
-                        
                         color: "greenyellow",
                         fontFamily: "sans-serif",
                         fontWeight: 8,
                       }}
                     >
-                      Over All AQI :  {airData.CO.aqi} 
+                      <AirIcon></AirIcon> Over All AQI : {airData.overall_aqi}
                     </h1>
-                  
-                    <h1
-                      style={{
-                        color: "white",
-                        fontFamily: "sans-serif",
-                        fontWeight: 3,
-                        fontSize: 15,
-                      }}
-                    >
-                      {weatherData.current.last_updated}
-                    </h1>
+
+                    {weatherData && weatherData.current && (
+                      <h1
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          color: "white",
+                          fontFamily: "sans-serif",
+                          fontWeight: 3,
+                          fontSize: 15,
+                          gap:8
+                        }}
+                      >
+                        <TodayIcon></TodayIcon> 
+                        {weatherData.current.last_updated}
+                      </h1>
+                    )}
                   </div>
                   <div className="boxE3212">
                     <ul style={{ color: "white", fontFamily: "sans-serif" }}>
@@ -414,6 +444,66 @@ const Earth = () => {
                   </p>
                 </div>
               )}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 30,
+              }}
+            >
+              <h1 style={{ color: "black", fontFamily: "sans-serif" }}>
+                Concentration
+              </h1>
+              <PieChart
+                series={[
+                  {
+                    data: [
+                      {
+                        id: 0,
+                        value: airData?.CO?.concentration || 0,
+                        label: "CO",
+                        color: "yellow",
+                      },
+                      {
+                        id: 1,
+                        value: airData?.NO2?.concentration || 0,
+                        label: " NO2",
+                        color: "violet",
+                      },
+                      {
+                        id: 2,
+                        value: airData?.O3?.concentration,
+                        label: "O3",
+                        color: "aqua",
+                      },
+                      {
+                        id: 3,
+                        value: airData?.SO2?.concentration,
+                        label: "SO2",
+                        color: "pink",
+                      },
+                      {
+                        id: 4,
+                        value: airData?.PM10?.concentration,
+                        label: "PM10",
+                        color: "orange",
+                      },
+                    ],
+
+                    highlightScope: { faded: "global", highlighted: "item" },
+                    faded: {
+                      innerRadius: 30,
+                      additionalRadius: -30,
+                      color: "gray",
+                    },
+                  },
+                ]}
+                width={400}
+                height={200}
+              />
             </div>
           </div>
           <div className="boxE31"></div>
