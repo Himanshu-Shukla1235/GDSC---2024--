@@ -13,7 +13,7 @@ const Chat = () => {
   const word = ["s", "e", "a", "r", "c", "h", " ", "f", "o", "r", " ", "c", "h", "a", "t", "r", "o", "o", "m", "s"];
   const [i, setI] = useState(0);
   const [shouldContinue, setShouldContinue] = useState(true);
-  
+  const [index,setIndex]=useState(0);
   const [searchRoom,setSearchRoom]=useState("");
   const [roomFormClass,setRoomFormClass]=useState("createRoom");
     const [receivedData, setReceivedData] = useState('');
@@ -31,14 +31,7 @@ const onChangeSendMessage=(e)=>{
 
 
 
-//   useEffect(() => {
-//   const intervalId = setInterval(() => {
-//     // Your existing code
-//   }, 100);
-
-//   return () => clearInterval(intervalId);
-// }, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
-
+ 
 
 
 // cretaeing form
@@ -188,8 +181,10 @@ const [currentChatRoom,setCurrentChatRoom]=useState('');
 const addMessage = async (e) => {
   e.preventDefault();
 
+  if(currentChatRoom=='')return;
+
   console.log(socket)
-  socket.emit('send-message',{message:sendMessage,sender:username});
+  socket.emit('send-message',{message:sendMessage,sender:username,chatRoomID:currentChatRoom});
 
 
 
@@ -270,9 +265,15 @@ useEffect(() => {
         };
 
         console.log(newMessage);  // Optional: log the new message for debugging
+        console.log('working',currentChatRoom,data.chatRoomID);
 
         // Update the state using the previous state to avoid potential issues
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        if(currentChatRoom==data.chatRoomID)
+        {
+          setMessages((prevMessages) => [...prevMessages, newMessage]);
+
+        }
+        
     });
 
     // Clean up the event listener when the component unmounts
@@ -280,7 +281,7 @@ useEffect(() => {
         // socket.disconnect();
         socket.off('broadcast-message');
     };
-}, []); // The empty dependency array ensures that this effect runs once when the component mounts
+}, [currentChatRoom]); // The empty dependency array ensures that this effect runs once when the component mounts
 
 //working with joining chat rooms
 
