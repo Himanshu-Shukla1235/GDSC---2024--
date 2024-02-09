@@ -24,6 +24,12 @@ const messageSchema = new mongoose.Schema({
     },
     chatRoomID: {
         type: String
+    },
+    time:{
+        day:{type:String},
+      month:{type:String},
+      hours:{type:String},
+      minutes:{type:String},
     }
 });
 

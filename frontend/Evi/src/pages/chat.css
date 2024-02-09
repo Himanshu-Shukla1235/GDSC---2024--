@@ -169,12 +169,12 @@ display: none;
         left: 50%;
         transform: translate(-50%, -50%);
     
-    background-color: rgba(255, 255, 255, 0.476);
+   background: linear-gradient(rgba(98, 191, 98, 0.617),rgba(182, 208, 120, 0.84));
     backdrop-filter:blur(5px);
     display: flex;
     justify-content: center;
     transition: opacity 0.5s ease-in-out, transform 2s ease-in-out;
-    
+    border: 1px solid black;
     
     
 }
@@ -188,6 +188,7 @@ display: none;
     align-items: center;
     width: 300px;
     margin-top: 20vh;
+    
     
 }
 .formContainer input{

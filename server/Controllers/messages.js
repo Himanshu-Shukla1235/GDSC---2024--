@@ -30,7 +30,7 @@ const createChatRoom=async(req,res,next)=>{
 
 
 const addMessage=async(req,res,next)=>{
-    const {to,message,chatRoomID}=req.body;
+    const {to,message,chatRoomID,time}=req.body;
     const {userId,username}=req.user;
     console.log(req.user)
 
@@ -57,7 +57,13 @@ const addMessage=async(req,res,next)=>{
             id: userId,
             name: username
         },
-        chatRoomID: chatRoomID
+        chatRoomID: chatRoomID,
+        time:{
+          day:time.day,
+          month:time.month,
+          hours:time.hours,
+          minutes:time.minutes,
+        }
     });
 
     if(data) return res.json({msg:"Message is added to the database",user:req.user.username});
