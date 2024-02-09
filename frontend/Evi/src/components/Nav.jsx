@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../components/nav.css";
 import { NavLink } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
@@ -16,6 +16,43 @@ function Navbar() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
+
+  //setting if useris alredy loged in 
+  const [loginOption,setLoginOption]=useState('Sign-in/Sign-up');
+  const [logoutRoute,setlogoutRoute]=useState('/login');
+
+
+  useEffect(()=>{
+	
+
+	const token=localStorage.getItem('token')
+	console.log(token)
+	if(token){
+		setLoginOption('Logout')
+		setlogoutRoute('');
+	}
+	
+
+  },[])
+
+  const logout=()=>{
+	if(logoutRoute=='/login')return;
+	var confirmLogout = confirm("Are you sure you want to logout?");
+
+        // Check the user's choice
+        if (confirmLogout) {
+            // User clicked 'Yes', perform logout action
+            alert("Logging out...");
+			 localStorage.removeItem('token');
+			 setLoginOption('Sign-in/Sign-up');
+			 setlogoutRoute('/login')
+            // Add your logout logic here
+        } else {
+            // User clicked 'No', do nothing or handle accordingly
+            alert("Logout canceled.");
+		}
+  }
+
 	return (
 		<div className="header">
 		<h3>LOGO</h3>
@@ -26,7 +63,7 @@ function Navbar() {
 			    <a onClick={showNavbar}><NavLink to={'/'}>Home</NavLink></a>
 				<a onClick={showNavbar}><NavLink to={'/contact'}>contact</NavLink></a>
 				<a onClick={showNavbar}><NavLink to={'/about'}>about</NavLink></a>
-				<a onClick={showNavbar}><NavLink to={'/login'}>SignIn / SignUp</NavLink></a>
+				<a onClick={showNavbar}><NavLink onClick={logout} to={logoutRoute}>{loginOption}</NavLink></a>
 				
 				<button
 					className="nav-btn nav-close-btn"

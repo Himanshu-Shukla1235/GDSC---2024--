@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './Login.css'; // Import your CSS file
 import Navbar from '../components/Nav';
 import axios from 'axios';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner, faBars } from '@fortawesome/free-solid-svg-icons';
 // const errorMessages=(
 //   emptyInputFields:'Please provide credentials',
 //   confirmPassword:'your password does not matches',
@@ -55,6 +56,7 @@ const AuthForm = () => {
 
   const submitLoginForm =async (e) => {
     e.preventDefault();
+    setLoaderClass('')
     if (login === true) {
       const person = { email: formData.email, password: formData.password };
       try {
@@ -76,9 +78,11 @@ const AuthForm = () => {
 
         const id=res.data.user.id;
         axios.defaults.headers.common['userID'] = id;
+        window.location.href='/'
 
       } catch (error) {
         setError(error.response.data.msg)
+        setLoaderClass('spinnerLoader')
       }
 
       console.log(person);
@@ -97,10 +101,12 @@ const AuthForm = () => {
     
         // Set the Authorization header for future requests
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+         window.location.href='/'
 
 
       } catch (error) {
         setError(error.response.data.msg)
+        setLoaderClass('spinnerLoader')
       }
       }else{
         setError(errorMessages.confirmPassword)
@@ -108,6 +114,8 @@ const AuthForm = () => {
       
     }
   }
+
+  const [loaderClass,setLoaderClass]=useState('spinnerLoader')
 
   return (
     <>
@@ -165,7 +173,9 @@ const AuthForm = () => {
 
               <button className='loginButton'  type="submit">
                 <h2 style={{fontWeight: 8,cursor:'pointer'}}>Submit</h2><i id="loader" className="fa-solid fa-spinner fa-spin-pulse" ></i>
+                  <FontAwesomeIcon className={loaderClass} icon={faSpinner} rotation={270} spin style={{ color: "#4f33a3" }} />
               </button>
+            
 
               <div className='errorHandler'><p className="errorLogin">{error}</p></div>
 
