@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../scrollEffect/Slide2.css"
+import "../scrollEffect/updown.css"
 
 const SlideInComponent2 = ({ children, elementId}) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,7 +33,7 @@ const SlideInComponent2 = ({ children, elementId}) => {
   }, [])
 
   return (
-    <div id={elementId} className={`slide-in3 ${isVisible ? 'active3' : ''}`}>
+    <div id={elementId} className={`slide-in3 `}>
       {children}
     </div>
   );

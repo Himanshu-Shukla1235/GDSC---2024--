@@ -1,0 +1,22 @@
+/* CSS styles for slide-in effect */
+.slide-in2 {
+    opacity: 0;
+    transform: translateY(-100%);
+    animation: slideInAnimation 2s ease infinite; /* Adjust the duration as needed */
+  }
+  
+  @keyframes slideInAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+  
