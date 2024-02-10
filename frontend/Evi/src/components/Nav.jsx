@@ -46,6 +46,7 @@ function Navbar() {
 			 localStorage.removeItem('token');
 			 setLoginOption('Sign-in/Sign-up');
 			 setlogoutRoute('/login')
+			 window.location.reload();
             // Add your logout logic here
         } else {
             // User clicked 'No', do nothing or handle accordingly

@@ -346,7 +346,7 @@ const joinRoom=async(roomId)=>{
           <div className="displayChatRooms">
             {joinedChatRooms.map((room) => (
                  <div onClick={()=>chatRoomClicked(room._id,room.name)} key={room._id} className="chatRoom" >
-                   <span className='photoNameSet'><Avatar alt="room" src="/static/images/avatar/1.jpg" />
+                   <span className='photoNameSet'><Avatar alt={room.name} src="/static/images/avatar/1.jpg" />
                    <a >{room.name}</a></span>
                    <button key={room._id} onClick={()=>joinRoom(room._id)} className={room.className} >join</button>
                  </div>
@@ -361,7 +361,7 @@ const joinRoom=async(roomId)=>{
                  <div className="messageUser">
                   <a href="" className="senderNmae">{message.sender.name}</a>
                 <p className="messsage">{message.message.text}</p>
-                <p className="timeContainer">{message.time.day},{message.time.month}/{message.time.hours}:{message.time.minutes}</p>
+                <p className="timeContainer">Date:{message.time.day},{message.time.month}    /    Time:{message.time.hours}:{message.time.minutes}</p>
                  </div>
                ))} 
           </div>

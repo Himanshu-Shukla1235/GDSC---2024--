@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
+
+
+
 .header1 {
     position: sticky;
     top: 0;
@@ -106,16 +110,21 @@ display: none;
     display: flex;
     flex-direction: column;
     
+    
 }
 
 .chatRoomName{
     /* border: 1px solid pink; */
+    display: flex;
+    align-items: center;
     padding-left: 10px;
+    font-family: 'Protest Guerrilla', sans-serif;
+    opacity: 0.7;
     font-size: 1.2em;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     height: 50px;
-    background: linear-gradient(rgba(112, 217, 126, 0.563),rgb(217, 233, 149));
+    background: linear-gradient(rgba(112, 217, 126, 0.563),rgba(167, 199, 88,0.5));
     text-shadow: 2px;
     font-weight: 300;
 }
@@ -147,6 +156,10 @@ display: none;
 .messageUser p{
     color: rgb(0, 0, 0);
     font-style: oblique;
+}
+.timeContainer{
+    font-size: 0.8em;
+    opacity: 0.8;
 }
 
 .messagesSendOption{
