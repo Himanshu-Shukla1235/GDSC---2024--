@@ -76,6 +76,14 @@
     background-color: rgba(255, 255, 255, 0.893);
     
 }
+.photoNameSet{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.photoNameSet a{
+    margin-left: 15px;
+}
 .chatRoom{
     border-bottom: 0.5px solid rgba(177, 177, 177, 0.89);
     padding: 10px;
@@ -169,7 +177,7 @@ display: none;
         left: 50%;
         transform: translate(-50%, -50%);
     
-   background: linear-gradient(rgba(98, 191, 98, 0.617),rgba(182, 208, 120, 0.84));
+   background-color:rgba(216, 216, 216,0.3);
     backdrop-filter:blur(5px);
     display: flex;
     justify-content: center;
