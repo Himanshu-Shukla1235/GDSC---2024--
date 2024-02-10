@@ -16,72 +16,73 @@ function Navbar() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
+  //setting if useris alredy loged in
+  const [loginOption, setLoginOption] = useState("Sign-in/Sign-up");
+  const [logoutRoute, setlogoutRoute] = useState("/login");
 
-  //setting if useris alredy loged in 
-  const [loginOption,setLoginOption]=useState('Sign-in/Sign-up');
-  const [logoutRoute,setlogoutRoute]=useState('/login');
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (token) {
+      setLoginOption("Logout");
+      setlogoutRoute("");
+    }
+  }, []);
 
+  const logout = () => {
+    if (logoutRoute == "/login") return;
+    var confirmLogout = confirm("Are you sure you want to logout?");
 
-  useEffect(()=>{
-	
+    // Check the user's choice
+    if (confirmLogout) {
+      // User clicked 'Yes', perform logout action
+      alert("Logging out...");
+      localStorage.removeItem("token");
+      setLoginOption("Sign-in/Sign-up");
+      setlogoutRoute("/login");
+      // Add your logout logic here
+    } else {
+      // User clicked 'No', do nothing or handle accordingly
+      alert("Logout canceled.");
+    }
+  };
 
-	const token=localStorage.getItem('token')
-	console.log(token)
-	if(token){
-		setLoginOption('Logout')
-		setlogoutRoute('');
-	}
-	
+  return (
+    <div className="header">
+      <h3>
+        <span style={{ color: "blue" }}>Our</span><span style={{ color: "green" }}>Earth</span>
+      </h3>
+      <div className="mainComponent">
+        <nav ref={navRef}>
+          <a onClick={showNavbar}>
+            <NavLink to={"/"}>Home</NavLink>
+          </a>
+          <a onClick={showNavbar}>
+            <NavLink to={"/contact"}>contact</NavLink>
+          </a>
+          <a onClick={showNavbar}>
+            <NavLink to={"/about"}>about</NavLink>
+          </a>
+          <a onClick={showNavbar}>
+            <NavLink onClick={logout} to={logoutRoute}>
+              {loginOption}
+            </NavLink>
+          </a>
 
-  },[])
-
-  const logout=()=>{
-	if(logoutRoute=='/login')return;
-	var confirmLogout = confirm("Are you sure you want to logout?");
-
-        // Check the user's choice
-        if (confirmLogout) {
-            // User clicked 'Yes', perform logout action
-            alert("Logging out...");
-			 localStorage.removeItem('token');
-			 setLoginOption('Sign-in/Sign-up');
-			 setlogoutRoute('/login')
-            // Add your logout logic here
-        } else {
-            // User clicked 'No', do nothing or handle accordingly
-            alert("Logout canceled.");
-		}
-  }
-
-	return (
-		<div className="header">
-		<h3>LOGO</h3>
-			<div className="mainComponent">
-        
-			<nav ref={navRef}>
-				
-			    <a onClick={showNavbar}><NavLink to={'/'}>Home</NavLink></a>
-				<a onClick={showNavbar}><NavLink to={'/contact'}>contact</NavLink></a>
-				<a onClick={showNavbar}><NavLink to={'/about'}>about</NavLink></a>
-				<a onClick={showNavbar}><NavLink onClick={logout} to={logoutRoute}>{loginOption}</NavLink></a>
-				
-				<button
-					className="nav-btn nav-close-btn"
-					onClick={showNavbar}>
-					<FaTimes />
-				</button>
-			</nav>
-			<button
-				className="nav-btn"
-				onClick={showNavbar}>
-				<FaBars />
-			</button>
+          <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+            <FaTimes />
+          </button>
+        </nav>
+        <button className="nav-btn" onClick={showNavbar}>
+          <FaBars />
+        </button>
       </div>
-	  <div className="avatar" > <Avatar alt="himanshu" src=""></Avatar></div>
-	 
-		</div>
-   
-	);
+      <div className="avatar">
+        {" "}
+        <Avatar alt="himanshu" src=""></Avatar>
+      </div>
+    </div>
+  );
 }
 
 export default Navbar;
