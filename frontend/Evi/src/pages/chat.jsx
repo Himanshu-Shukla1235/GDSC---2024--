@@ -7,6 +7,9 @@ import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 import {io} from 'socket.io-client';
 const socket=io('http://localhost:5000');
+import Avatar from '@mui/material/Avatar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Chat = () => {
   const [placeholder, setPlaceholder] = useState("");
@@ -179,6 +182,7 @@ const [messages,setMessages]=useState([]);
   const [username,setUsername]=useState('')
 
 const [currentChatRoom,setCurrentChatRoom]=useState('');
+const [currentChatRoomName,setCurrentChatRoomName]=useState('select chatRoom to chat.')
 
 const addMessage = async (e) => {
   // e.preventDefault();
@@ -231,9 +235,14 @@ const addMessage = async (e) => {
 
 
 //display chat of particular room
-const chatRoomClicked=(id)=>{
-  console.log(id);
+
+const chatRoomClicked = (id, name) => {
   setCurrentChatRoom(id);
+  setCurrentChatRoomName(name);
+};
+
+useEffect(()=>{
+  console.log(currentChatRoom,currentChatRoomName)
   const messagesURL='http://localhost:5000/api/v1/messages/allMessages'
   const fetching=async()=>{
     try {
@@ -260,7 +269,8 @@ const chatRoomClicked=(id)=>{
     }
   }
   fetching()
-}
+
+},[currentChatRoom])
 
 useEffect(() => {
     // Attach the event handler to the socket
@@ -291,6 +301,7 @@ useEffect(() => {
           setMessages((prevMessages) => [...prevMessages, newMessage]);
 
         }
+        
         
     });
 
@@ -330,12 +341,13 @@ const joinRoom=async(roomId)=>{
         <div className='chatRoomSection'>
           <div className="chatSearchSection">
             <input onChange={onchangeRoom} value={searchRoom}  className='chatRoomSearchBtn' type="text" placeholder='search' />
-            <button className='createNewRoomBtn' onClick={openCreateRoomForm}>+</button>
+            <button className='createNewRoomBtn' onClick={openCreateRoomForm}>create</button>
           </div>
           <div className="displayChatRooms">
             {joinedChatRooms.map((room) => (
-                 <div key={room._id} className="chatRoom" >
-                   <a onClick={()=>chatRoomClicked(room._id)}>{room.name}</a>
+                 <div onClick={()=>chatRoomClicked(room._id,room.name)} key={room._id} className="chatRoom" >
+                   <span className='photoNameSet'><Avatar alt="room" src="/static/images/avatar/1.jpg" />
+                   <a >{room.name}</a></span>
                    <button key={room._id} onClick={()=>joinRoom(room._id)} className={room.className} >join</button>
                  </div>
                ))}
@@ -343,7 +355,7 @@ const joinRoom=async(roomId)=>{
           </div>
         </div>
         <div className="chatMessagesSection">
-          <div className="chatRoomName">name</div>
+          <div className="chatRoomName">{currentChatRoomName}</div>
           <div className="messagesDisplayArea">
               {messages.map((message, index) => (
                  <div className="messageUser">
