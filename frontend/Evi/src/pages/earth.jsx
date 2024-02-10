@@ -10,10 +10,11 @@ import { PieChart } from "@mui/x-charts/PieChart";
 // import Whether from "../components/whether";
 import AirIcon from "@mui/icons-material/Air";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloudSun } from "@fortawesome/free-solid-svg-icons";
+// import { faCloudSun } from "@fortawesome/free-solid-svg-icons";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import TodayIcon from "@mui/icons-material/Today";
 
+//* ------------------------------------------------------------------------------------------- MAIN FUNCTION -------------------------------------------------------------------
 const Earth = () => {
   const [mapLocation, setMapLocation] = useState({
     lat: 0,
@@ -23,27 +24,37 @@ const Earth = () => {
   const [weatherData1, setWeatherData1] = useState(null);
   const [airData, setAirData] = useState();
   const fetchData = async (latitude, longitude) => {
-    const apiKey = "d07a3987fb6b1409e5e36912f397be05";
-
-    // Check if latitude and longitude are valid
-    if (latitude !== undefined && longitude !== undefined) {
-      try {
-        const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`,
-          { withCredentials: false } // Set withCredentials to false
-        );
-
-        setWeatherData1(response.data);
-      } catch (error) {
-        console.error("Error fetching weather data 123:", error);
-        setWeatherData1(null); // Set weatherData to null in case of an error
+    try {
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=d07a3987fb6b1409e5e36912f397be05`;
+      
+      // Fetch data and handle response
+      const response = await fetch(url);
+      
+      // Check if the request was successful (status code 200)
+      if (response.ok) {
+        // Log the entire response to inspect its structure
+        console.log("Full Response:", response);
+  
+        // Extract JSON data from the response
+        const data = await response.json();
+        
+        // Log the data to the console
+        console.log("Weather Data:", data);
+  
+        // Set the weather data state
+        setWeatherData1(data);
+      } else {
+        // If the request was not successful, log the error
+        console.error("Error fetching weather data. Status:", response.status);
+        setWeatherData1(null);
       }
-    } else {
-      console.error("Latitude or longitude is undefined");
-      setWeatherData1(null); // Set weatherData to null if latitude or longitude is undefined
+    } catch (error) {
+      // Handle any other errors that may occur
+      console.error("Error fetching weather data:", error);
+      setWeatherData1(null);
     }
   };
-
+  
   const fetchingAirQuality = async (latitude, longitude) => {
     const options = {
       method: "GET",
@@ -57,7 +68,7 @@ const Earth = () => {
 
     try {
       const response = await axios.request(options);
-      console.log(response.data);
+      console.log("f456", response.data);
       setAirData(response.data);
     } catch (error) {
       console.error("Error fetching air quality data:", error);
@@ -120,7 +131,10 @@ const Earth = () => {
 
   useEffect(() => {
     getDefaultLocation();
+    
   }, []);
+
+  // END ---------------------------------------------------------------------------------------------------------------------------------------------------
 
   return (
     <>
@@ -132,76 +146,6 @@ const Earth = () => {
           <Map onMapChange={handleMapChange}></Map>
         </div>
         <div className="boxE3">
-          <FontAwesomeIcon icon="faCloudSun" style={{ color: "#FFD43B" }} />
-          {/* <div className="boxE31">
-            {weatherData && (
-              <div className="boxE311">
-                <h2
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    color: "white",
-                    fontFamily: "sans-serif",
-                    gap: 10,
-                  }}
-                >
-                  <h1
-                    style={{
-                      color: "aqua",
-                      fontFamily: "sans-serif",
-                      fontSize: 40,
-                      fontWeight: 10,
-                    }}
-                  >
-                    Location:{" "}
-                  </h1>
-                  <h1
-                    style={{
-                      color: "yellow",
-                      fontFamily: "sans-serif",
-                      fontSize: 40,
-                      fontWeight: 8,
-                    }}
-                  >
-                    {weatherData.location.name}, {weatherData.location.region},{" "}
-                    {weatherData.location.country}
-                  </h1>
-                </h2>
-                <p
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    color: "white",
-                    fontFamily: "sans-serif",
-                    gap: 10,
-                  }}
-                >
-                  <h1
-                    style={{
-                      color: "aqua",
-                      fontFamily: "sans-serif",
-                      fontSize: 40,
-                      fontWeight: 10,
-                    }}
-                  >
-                    CurrentTemp :
-                  </h1>{" "}
-                  <h1
-                    style={{
-                      color: "yellow",
-                      fontFamily: "sans-serif",
-                      fontSize: 40,
-                      fontWeight: 10,
-                    }}
-                  >
-                    {weatherData.current.temp_c}°C
-                  </h1>
-                </p>
-              </div>
-            )}
-          </div> */}
           <div className="boxE32">
             <div className="boxE321">
               {airData && (
@@ -257,10 +201,10 @@ const Earth = () => {
                           fontFamily: "sans-serif",
                           fontWeight: 3,
                           fontSize: 15,
-                          gap:8
+                          gap: 8,
                         }}
                       >
-                        <TodayIcon></TodayIcon> 
+                        <TodayIcon></TodayIcon>
                         {weatherData.current.last_updated}
                       </h1>
                     )}
@@ -395,12 +339,37 @@ const Earth = () => {
                           Concentration : ({airData.PM10.concentration})
                         </strong>
                       </li>
-                      {/* <li >
-                        <strong style={{ color: "violet" ,fontSize:50 }}>:</strong>{" "}
-                        <strong style={{ color: "white", }}>  {airData..aqi} </strong>
-                        <strong style={{ color: "white", }}> ({airData..concentration})</strong>
-                      
-                      </li> */}
+                      {airData && airData["PM2.5"] && (
+                        <li>
+                          <strong
+                            style={{
+                              color: "greenyellow",
+                              fontSize: 50,
+                              borderBottom: "3px solid greenyellow",
+                            }}
+                          >
+                            PM2.5:
+                          </strong>{" "}
+                          <strong
+                            style={{
+                              color: "white",
+                              fontSize: 19,
+                              fontWeight: 30,
+                            }}
+                          >
+                            A Q I : {airData["PM2.5"]?.aqi}{" "}
+                          </strong>
+                          <strong
+                            style={{
+                              color: "white",
+                              fontSize: 19,
+                              fontWeight: 30,
+                            }}
+                          >
+                            Concentration : ({airData["PM2.5"]?.concentration})
+                          </strong>
+                        </li>
+                      )}
                       <li>
                         <strong
                           style={{
@@ -491,6 +460,12 @@ const Earth = () => {
                         label: "PM10",
                         color: "orange",
                       },
+                      {
+                        id: 5,
+                        value: airData?.["PM2.5"]?.concentration || 0,
+                        label: "PM2.5",
+                        color: "green",
+                      },
                     ],
 
                     highlightScope: { faded: "global", highlighted: "item" },
@@ -506,6 +481,8 @@ const Earth = () => {
               />
             </div>
           </div>
+
+          {/* //FOOT PRINTS ------------------------------------------------------------------------------*/}
           <div className="boxE31"></div>
         </div>
       </main>
