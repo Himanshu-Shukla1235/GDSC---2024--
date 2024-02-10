@@ -4,15 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "proxy": {
-    "/api": {
+    "/api/local": {
       "target": "http://localhost:5000",
       "changeOrigin": true
     },
-    "/openweathermap-api": {
-      "target": "https://api.openweathermap.org/",
+    "/api/openweathermap": {
+      "target": "http://api.openweathermap.org",
       "changeOrigin": true
+   
     }
-  },
+  }
+  ,
   "scripts": {
     "dev": "vite",
     "build": "vite build",

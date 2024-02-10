@@ -16,8 +16,10 @@ const authRouter = require('./Routes/auth');
 const messagesRouter = require('./Routes/messages');
 const roomsRouter = require('./Routes/chatRooms');
 const cors = require('cors');
+//----------------------------------------------------cors-------------------------------------->>>
 
 //---------------------------------------------------middlewares--------------------------------->>>
+
 app.use(express.json());
 app.use(cors());
 
@@ -64,6 +66,8 @@ io.on('connection', (socket) => {
         console.log('User disconnected');
     });
 });
+
+
 
 const start = async () => {
     try {
