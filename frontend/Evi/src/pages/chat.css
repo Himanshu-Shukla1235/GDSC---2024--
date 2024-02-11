@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
+
+
+
 .header1 {
     position: sticky;
     top: 0;
@@ -30,6 +34,7 @@
     height: 86vh;
     /* overflow-y: hidden; */
     margin-bottom: 10px;
+    border: 3px solid black;
 }
 
 .chatRoomSection{
@@ -56,22 +61,32 @@
     padding: 5px 5px;
     width: 85%;
     height: 100%;
-    background-color:rgb(14, 51, 78);
-    color: white;
+    background-color:rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 .createNewRoomBtn{
     width: 15%;
     padding: 5px 5px;
     font-weight: bold;
     height: 100%;
+    
+    background-color: white;
 
 }
 .displayChatRooms{
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    background-color: rgba(14, 51, 78, 0.893);
+    background-color: rgba(255, 255, 255, 0.893);
     
+}
+.photoNameSet{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.photoNameSet a{
+    margin-left: 15px;
 }
 .chatRoom{
     border-bottom: 0.5px solid rgba(177, 177, 177, 0.89);
@@ -79,14 +94,14 @@
     display: flex;
     justify-content: space-between;
     background-color: rrgba(14, 51, 78, 0.893);
-    color: aliceblue;
+    color: rgb(0, 0, 0);
 }
 /* .chatRoom button */
 .displayNo{
 display: none;
 }
 .chatRoom:hover{
-    background-color:rgba(38, 87, 122, 0.773);
+    background-color:rgba(234, 234, 234, 0.818);
     transition-delay: 0.1s;
 }
 /* ==================messages section */
@@ -95,19 +110,27 @@ display: none;
     display: flex;
     flex-direction: column;
     
+    
 }
 
 .chatRoomName{
     /* border: 1px solid pink; */
+    display: flex;
+    align-items: center;
     padding-left: 10px;
+    font-family: 'Protest Guerrilla', sans-serif;
+    opacity: 0.7;
     font-size: 1.2em;
-    background-color: rgb(15, 54, 75);
-    color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     height: 50px;
+    background: linear-gradient(rgba(112, 217, 126, 0.563),rgba(167, 199, 88,0.5));
+    text-shadow: 2px;
+    font-weight: 300;
 }
 .messagesDisplayArea{
     /* border: 1px solid brown; */
-    background-color: rgba(14, 51, 78, 0.893);
+    background-color: rgba(255, 255, 255, 0.893);
     display: flex;
     flex-direction: column;
     
@@ -121,18 +144,22 @@ display: none;
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(177, 177, 177, 0.601);
-    /* margin-bottom: 10px; */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.601);
+    border-bottom: 1px solid rgb(179, 179, 179);
     
 }
 .messageUser a{
     font-weight: bold;
     text-decoration: none;
-    color: rgb(148, 220, 137);
+    color: rgb(59, 157, 44);
 }
 .messageUser p{
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-style: oblique;
+}
+.timeContainer{
+    font-size: 0.8em;
+    opacity: 0.8;
 }
 
 .messagesSendOption{
@@ -142,11 +169,17 @@ display: none;
 }
 .sendMessageBtn{
     width: 20%;
-    background-color: rgb(173, 173, 173);
+    background-color: rgb(61, 158, 132);
+    border-top-right-radius: 10px;
+    color: white;
+    
 }
 .sendMessageInput{
+    border-top-left-radius: 10px;
     width: 80%;
     padding: 8px;
+    /* background-color: red; */
+    border-top: 3px solid rgb(15, 133, 15);
 }
 /* =======create room */
 .clickedCreateRoom{
@@ -157,12 +190,12 @@ display: none;
         left: 50%;
         transform: translate(-50%, -50%);
     
-    background-color: rgba(169, 169, 169, 0.476);
+   background-color:rgba(216, 216, 216,0.3);
     backdrop-filter:blur(5px);
     display: flex;
     justify-content: center;
     transition: opacity 0.5s ease-in-out, transform 2s ease-in-out;
-    
+    border: 1px solid black;
     
     
 }
@@ -176,6 +209,7 @@ display: none;
     align-items: center;
     width: 300px;
     margin-top: 20vh;
+    
     
 }
 .formContainer input{

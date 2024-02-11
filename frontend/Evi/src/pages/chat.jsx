@@ -7,13 +7,16 @@ import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 import {io} from 'socket.io-client';
 const socket=io('http://localhost:5000');
+import Avatar from '@mui/material/Avatar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Chat = () => {
   const [placeholder, setPlaceholder] = useState("");
   const word = ["s", "e", "a", "r", "c", "h", " ", "f", "o", "r", " ", "c", "h", "a", "t", "r", "o", "o", "m", "s"];
   const [i, setI] = useState(0);
   const [shouldContinue, setShouldContinue] = useState(true);
-  
+  const [index,setIndex]=useState(0);
   const [searchRoom,setSearchRoom]=useState("");
   const [roomFormClass,setRoomFormClass]=useState("createRoom");
     const [receivedData, setReceivedData] = useState('');
@@ -31,14 +34,7 @@ const onChangeSendMessage=(e)=>{
 
 
 
-//   useEffect(() => {
-//   const intervalId = setInterval(() => {
-//     // Your existing code
-//   }, 100);
-
-//   return () => clearInterval(intervalId);
-// }, [i, word, shouldContinue]); // Remove setI and setPlaceholder from the dependency array
-
+ 
 
 
 // cretaeing form
@@ -85,6 +81,8 @@ const creatingNewRoom=async()=>{
     setAimC('');
     setAreaC('');
     setDisC(''); setNameC('')
+
+    window.location.reload();
     
   } catch (error) {
     setCreateRoomError(error.response.data.msg)
@@ -184,20 +182,33 @@ const [messages,setMessages]=useState([]);
   const [username,setUsername]=useState('')
 
 const [currentChatRoom,setCurrentChatRoom]=useState('');
+const [currentChatRoomName,setCurrentChatRoomName]=useState('select chatRoom to chat.')
 
 const addMessage = async (e) => {
-  e.preventDefault();
+  // e.preventDefault();
+
+
+  if(currentChatRoom=='')return;
 
   console.log(socket)
-  socket.emit('send-message',{message:sendMessage,sender:username});
+  const time={
+      day:new Date().getDate(),
+      month:new Date().getMonth(),
+      hours:new Date().getHours(),
+      minutes:new Date().getMinutes(),
+    }
+    console.log(time);
+  socket.emit('send-message',{message:sendMessage,sender:username,chatRoomID:currentChatRoom,time:time});
 
 
+    
 
   try {
     const see = await axios.post('http://localhost:5000/api/v1/messages/add', {
        // Change this line to use req.user.userId directly
       message: sendMessage,
       chatRoomID: currentChatRoom,
+      time:time,
     });
 
     setUsername(see.data.user);
@@ -224,9 +235,14 @@ const addMessage = async (e) => {
 
 
 //display chat of particular room
-const chatRoomClicked=(id)=>{
-  console.log(id);
+
+const chatRoomClicked = (id, name) => {
   setCurrentChatRoom(id);
+  setCurrentChatRoomName(name);
+};
+
+useEffect(()=>{
+  console.log(currentChatRoom,currentChatRoomName)
   const messagesURL='http://localhost:5000/api/v1/messages/allMessages'
   const fetching=async()=>{
     try {
@@ -253,7 +269,8 @@ const chatRoomClicked=(id)=>{
     }
   }
   fetching()
-}
+
+},[currentChatRoom])
 
 useEffect(() => {
     // Attach the event handler to the socket
@@ -267,12 +284,25 @@ useEffect(() => {
                 name: data.sender,
                 id: 'dfasf',
             },
+            time:{
+              day:data.time.day,
+              month:data.time.month,
+              hours:data.time.hours,
+              minutes:data.time.minutes,
+            }
         };
 
         console.log(newMessage);  // Optional: log the new message for debugging
+        console.log('working',currentChatRoom,data.chatRoomID);
 
         // Update the state using the previous state to avoid potential issues
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        if(currentChatRoom==data.chatRoomID)
+        {
+          setMessages((prevMessages) => [...prevMessages, newMessage]);
+
+        }
+        
+        
     });
 
     // Clean up the event listener when the component unmounts
@@ -280,7 +310,7 @@ useEffect(() => {
         // socket.disconnect();
         socket.off('broadcast-message');
     };
-}, []); // The empty dependency array ensures that this effect runs once when the component mounts
+}, [currentChatRoom]); // The empty dependency array ensures that this effect runs once when the component mounts
 
 //working with joining chat rooms
 
@@ -291,6 +321,16 @@ const joinRoom=async(roomId)=>{
   console.log(res);
 
 }
+   const handleKeyDown = (e) => {
+    
+    // Check if the Enter key is pressed and the input is focused
+    if (e.key === 'Enter' && e.target === document.activeElement) {
+      // Trigger the addMessage function when Enter is pressed and the input is focused
+  
+      addMessage();
+    }
+  };
+
 
 
   return (
@@ -300,13 +340,14 @@ const joinRoom=async(roomId)=>{
       <div className="chatContainer">
         <div className='chatRoomSection'>
           <div className="chatSearchSection">
-            <input onChange={onchangeRoom} value={searchRoom}  className='chatRoomSearchBtn' type="text" placeholder={placeholder} />
-            <button className='createNewRoomBtn' onClick={openCreateRoomForm}>+</button>
+            <input onChange={onchangeRoom} value={searchRoom}  className='chatRoomSearchBtn' type="text" placeholder='search' />
+            <button className='createNewRoomBtn' onClick={openCreateRoomForm}>create</button>
           </div>
           <div className="displayChatRooms">
             {joinedChatRooms.map((room) => (
-                 <div key={room._id} className="chatRoom" >
-                   <a onClick={()=>chatRoomClicked(room._id)}>{room.name}</a>
+                 <div onClick={()=>chatRoomClicked(room._id,room.name)} key={room._id} className="chatRoom" >
+                   <span className='photoNameSet'><Avatar alt={room.name} src="/static/images/avatar/1.jpg" />
+                   <a >{room.name}</a></span>
                    <button key={room._id} onClick={()=>joinRoom(room._id)} className={room.className} >join</button>
                  </div>
                ))}
@@ -314,18 +355,19 @@ const joinRoom=async(roomId)=>{
           </div>
         </div>
         <div className="chatMessagesSection">
-          <div className="chatRoomName">name</div>
+          <div className="chatRoomName">{currentChatRoomName}</div>
           <div className="messagesDisplayArea">
               {messages.map((message, index) => (
                  <div className="messageUser">
                   <a href="" className="senderNmae">{message.sender.name}</a>
                 <p className="messsage">{message.message.text}</p>
+                <p className="timeContainer">Date:{message.time.day},{message.time.month}    /    Time:{message.time.hours}:{message.time.minutes}</p>
                  </div>
                ))} 
           </div>
 
           <div className="messagesSendOption">
-            <input className="sendMessageInput"type="text" value={sendMessage} onChange={onChangeSendMessage}/>
+            <input  onKeyDown={handleKeyDown}  placeholder='message' className="sendMessageInput"type="text" value={sendMessage} onChange={onChangeSendMessage}/>
             <button className="sendMessageBtn" onClick={addMessage}>Send</button>
           </div>
         </div>
