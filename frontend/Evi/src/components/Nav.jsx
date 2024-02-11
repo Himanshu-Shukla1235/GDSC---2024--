@@ -79,7 +79,7 @@ function Navbar() {
       </div>
       <div className="avatar">
         {" "}
-        <Avatar alt="himanshu" src=""></Avatar>
+       <span style={{color:"blue",marginRight:5,fontWeight:40}}>User </span> <Avatar alt="him" src="" sx={{ bgcolor:"green" }} ></Avatar>
       </div>
     </div>
   );
