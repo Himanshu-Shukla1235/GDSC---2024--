@@ -10,6 +10,7 @@ import Home from "./pages/home";
 import Chat from "./pages/chat.jsx";
 import Earth from "../src/pages/earth.jsx";
 import Air from "./components/airquality.jsx";
+import Education from "./pages/education.jsx";
 // import Whether from "../src/components/whether.jsx"
 import axios from "axios";
 // import Weather from "../src/components/whether.jsx"
@@ -38,6 +39,8 @@ useEffect(() => {
           <Route path="/chat" element={<Chat />} />
           <Route path="/earth" element={<Earth />} />
           <Route path="/airQuality" element={<Air></Air>} />
+          
+          <Route path="/education" element={<Education />}/>
           <Route path="/corbon" element={<Corboncal></Corboncal>} />
           
          

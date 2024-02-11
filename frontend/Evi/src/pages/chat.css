@@ -124,7 +124,9 @@ display: none;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     height: 50px;
-    background: linear-gradient(rgba(112, 217, 126, 0.563),rgba(167, 199, 88,0.5));
+
+    /* background: linear-gradient(rgba(112, 217, 126, 0.563),rgba(163, 193, 94, 0.492),rgba(23, 28, 10, 0.5)); */
+    background-color: rgb(61, 158, 132);
     text-shadow: 2px;
     font-weight: 300;
 }
