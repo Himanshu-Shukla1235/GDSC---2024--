@@ -1,0 +1,53 @@
+const mongoose=require('mongoose')
+
+const feed=new mongoose.Schema({
+
+    sender:{
+        name:{
+            type:String,
+        },
+        id:{
+            type:String,
+        }
+    },
+    description:{
+        type:String,
+        required:true,
+    },
+    image:{
+        type:Buffer,
+    },
+    time:{
+        date:{
+            type:String
+        },
+        day:{
+            type:String
+
+        },
+        hours:{
+            type:String
+        },
+        minutes:{
+            type:String
+        }
+    },
+    location:{
+        type:String
+    },
+    Comments:{
+        type:Array
+    },
+    likes:{
+        type:Number,
+        default:0
+    }
+
+
+
+
+});
+
+
+
+module.exports=mongoose.model('Feed',feed);
