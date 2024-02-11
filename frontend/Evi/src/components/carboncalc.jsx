@@ -51,7 +51,7 @@ const CarbonFootprintCalculator = () => {
           <TextField
             required
             id="filled-required"
-            label="Required"
+            label=""
             defaultValue="Hello World"
             size="small"
             value={countryName}
@@ -71,7 +71,7 @@ const CarbonFootprintCalculator = () => {
           <TextField
             required
             id="filled-required"
-            label="Required"
+            label=""
            type="number"
             size="small"
             value={electricityValue}
@@ -108,7 +108,7 @@ const CarbonFootprintCalculator = () => {
       {carbonFootprint && (
         <div>
           <h2>Carbon Footprint Result:</h2>
-          <p>{`Estimated Carbon Footprint: ${carbonFootprint.data.co2e_lb}`}</p>
+          <p>{`Estimated Carbon Footprint: ${carbonFootprint.data.co2e_mt} tons`}</p>
         </div>
       )}
     </div>

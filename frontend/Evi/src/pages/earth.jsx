@@ -489,8 +489,9 @@ const Earth = () => {
 
           {/* //FOOT PRINTS ------------------------------------------------------------------------------*/}
           <div className="boxE31">
+      
             <div className="boxE331">
-              {" "}
+              {" "}    <h1 style={{marginBottom:200 ,fontSize:40,color:"greenyellow",fontWeight:30} } className="HeadingE1">Caculate your carbon Footprints</h1>
               <div className="boxE3311">
                 {" "}
                 <h2 style={{ color: "black", fontWeight: 10 }}>
