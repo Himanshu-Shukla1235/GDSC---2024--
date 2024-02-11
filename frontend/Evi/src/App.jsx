@@ -15,6 +15,9 @@ import Education from "./pages/education.jsx";
 import axios from "axios";
 // import Weather from "../src/components/whether.jsx"
 import Corboncal from "../src/components/carboncalc.jsx"
+import ScrapingPage from "../src/components/webscrap.jsx"
+import PopupPage from "../src/components/function components/popupPage.jsx"
+import Carbcal2 from "../src/components/carboncal2.jsx"
 
 function App() {
 
@@ -42,6 +45,9 @@ useEffect(() => {
           
           <Route path="/education" element={<Education />}/>
           <Route path="/corbon" element={<Corboncal></Corboncal>} />
+          <Route path="/web" element={<ScrapingPage></ScrapingPage>} />
+          <Route path="/popup" element={<PopupPage></PopupPage>} />
+          <Route path="/corbon2" element={<Carbcal2></Carbcal2>} />
           
          
 

@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import "../components/carbonc.css";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import CancelIcon from '@mui/icons-material/Cancel';
 const CarbonFootprintCalculator = () => {
   const [countryName, setCountryName] = useState("");
   const [electricityValue, setElectricityValue] = useState("");
@@ -36,44 +43,67 @@ const CarbonFootprintCalculator = () => {
   };
 
   return (
-    <div>
-      <h1>Carbon Footprint Calculator</h1>
+    <div className="corbmainE">
+      <h1 className="carbheadE"> Carbon Footprint From Electricy</h1>
       <div>
-        <label>
-          Country Name:
-          <input
-            type="text"
+        <label style={{ display:"flex",gap:5}}>
+          Country Name: 
+          <TextField
+            required
+            id="filled-required"
+            label="Required"
+            defaultValue="Hello World"
+            size="small"
             value={countryName}
             onChange={(e) => setCountryName(e.target.value)}
           />
+          {/* <input
+            type="text"
+            value={countryName}
+            onChange={(e) => setCountryName(e.target.value)}
+          /> */}
         </label>
       </div>
       <div>
-        <label>
+        <label style={{ display:"flex",gap:5}}>
           Electricity Value:
-          <input
-            type="text"
+         
+          <TextField
+            required
+            id="filled-required"
+            label="Required"
+           type="number"
+            size="small"
             value={electricityValue}
             onChange={(e) => setElectricityValue(e.target.value)}
           />
         </label>
       </div>
       <div>
-        <label>
+        <label style={{ display:"flex",gap:8}}>
           Electricity Unit:
-          <select
-            value={electricityUnit}
-            onChange={(e) => setElectricityUnit(e.target.value)}
-          >
-            <option value="kWh">kWh</option>
-            <option value="MWh">MWh</option>
-          </select>
+
+          <FormControl fullWidth>
+  <InputLabel id="demo-simple-select-label">Age</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={electricityUnit}
+    label="Age"
+    onChange={(e) => setElectricityUnit(e.target.value)}
+  >
+    <MenuItem value={"kWh"}>kWh</MenuItem>
+    <MenuItem value={"MWh"}>MWh</MenuItem>
+    
+  </Select>
+</FormControl>
+         
         </label>
       </div>
       <div>
-        <button onClick={calculateCarbonFootprint}>
-          Calculate Carbon Footprint
-        </button>
+        <Button variant="outlined" onClick={calculateCarbonFootprint}>
+          Submit
+        </Button>
       </div>
       {carbonFootprint && (
         <div>

@@ -1,0 +1,14 @@
+.carbheadF {
+    color: rgba(0, 0, 255, 0.416);
+    font-family: sans-serif;
+    font-size: 30px;
+  
+    
+  }
+  .corbmainF{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+  }

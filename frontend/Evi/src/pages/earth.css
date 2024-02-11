@@ -158,6 +158,78 @@
   animation: upDownMotion 2s ease-in-out infinite;
 }
 
+.boxE331 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: solid 3px rgb(0, 0, 0);
+  height: 30px;
+  width: 60%;
+  height: 90%;
+  gap: 20px;
+}
+.boxE332 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 40%;
+  height: 90%;
+  gap: 40px;
+  background-color: rgba(255, 0, 0, 0);
+
+}
+.boxE3311 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(219, 216, 216, 0.418);
+  width: 70%;
+  height: 8%;
+  border-radius: 10px;
+  padding-right: 10%;
+  padding-left: 10%;
+  box-shadow: 0 0 5px rgba(227, 225, 225, 0.064);
+  animation: upDownMotion 2s ease-in-out infinite;
+}
+
+/*-- css of .modal-overlay--- */
+.modal-overlay {
+  position: fixed;
+  top: 1.5rem; /* Added "rem" unit */
+  left: 59rem; /* Added "rem" unit */
+  width: 35%;
+  height: 60%;
+  background: rgba(216, 215, 215, 0.247);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 600;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+  border-top: solid 3px rgb(156, 236, 161);
+  animation: upDownMotion2 2s ease-in-out infinite;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0);
+  padding: 20px;
+  width: 90%;
+  height: 90%;
+  border-radius: 5px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0); */
+}
+
+.modal-close {
+  cursor: pointer;
+  z-index: 300;
+  position: absolute;
+  top: 10px; /* Adjust the top distance */
+  right: 10px; /* Adjust the right distance */
+}
+
 .footerE {
   position: sticky;
   bottom: 0;
@@ -170,5 +242,14 @@
   }
   50% {
     transform: translateY(-7px); /* Adjust the distance as needed */
+  }
+}
+@keyframes upDownMotion2 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px); /* Adjust the distance as needed */
   }
 }

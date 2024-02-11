@@ -13,34 +13,40 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCloudSun } from "@fortawesome/free-solid-svg-icons";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import TodayIcon from "@mui/icons-material/Today";
-
+import Corboncal from "../components/carboncalc";
+import Popup from "../components/function components/popupPage";
+import PopupModal from "../components/function components/modalpop";
+import TouchAppIcon from "@mui/icons-material/TouchApp";
+import Carbcal2 from "../components/carboncal2";
 //* ------------------------------------------------------------------------------------------- MAIN FUNCTION -------------------------------------------------------------------
 const Earth = () => {
   const [mapLocation, setMapLocation] = useState({
     lat: 0,
     lng: 0,
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
   const [weatherData1, setWeatherData1] = useState(null);
   const [airData, setAirData] = useState();
   const fetchData = async (latitude, longitude) => {
     try {
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=d07a3987fb6b1409e5e36912f397be05`;
-      
+
       // Fetch data and handle response
       const response = await fetch(url);
-      
+
       // Check if the request was successful (status code 200)
       if (response.ok) {
         // Log the entire response to inspect its structure
         console.log("Full Response:", response);
-  
+
         // Extract JSON data from the response
         const data = await response.json();
-        
+
         // Log the data to the console
         console.log("Weather Data:", data);
-  
+
         // Set the weather data state
         setWeatherData1(data);
       } else {
@@ -54,7 +60,7 @@ const Earth = () => {
       setWeatherData1(null);
     }
   };
-  
+
   const fetchingAirQuality = async (latitude, longitude) => {
     const options = {
       method: "GET",
@@ -131,7 +137,6 @@ const Earth = () => {
 
   useEffect(() => {
     getDefaultLocation();
-    
   }, []);
 
   // END ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -483,7 +488,77 @@ const Earth = () => {
           </div>
 
           {/* //FOOT PRINTS ------------------------------------------------------------------------------*/}
-          <div className="boxE31"></div>
+          <div className="boxE31">
+            <div className="boxE331">
+              {" "}
+              <div className="boxE3311">
+                {" "}
+                <h2 style={{ color: "black", fontWeight: 10 }}>
+                  {" "}
+                  Calculate Electricity Foot print
+                </h2>{" "}
+                <button
+                 onClick={() => {setIsModalOpen2(false)
+                  setIsModalOpen(true)}}
+                  style={{ border: "none" }}
+                >
+                  <TouchAppIcon
+                    style={{ fontSize: 40, color: "blue", cursor: "pointer" }}
+                  ></TouchAppIcon>
+                </button>
+              </div>
+              <div className="boxE3311">
+                {" "}
+                <h2 style={{ color: "black", fontWeight: 10 }}>
+                  {" "}
+                  Calculate Fuel Foot print
+                </h2>{" "}
+                <button
+                  onClick={() => {setIsModalOpen2(true)
+                  setIsModalOpen(false)}}
+                  style={{ border: "none" }}
+                >
+                  <TouchAppIcon
+                    style={{ fontSize: 40, color: "green", cursor: "pointer" }}
+                  ></TouchAppIcon>
+                </button>
+              </div>
+              <div className="boxE3311">
+                {" "}
+                <h2 style={{ color: "black", fontWeight: 10 }}>
+                  {" "}
+                  Calculate Electricity Foot print
+                </h2>{" "}
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  style={{ border: "none" }}
+                >
+                  <TouchAppIcon
+                    style={{
+                      fontSize: 40,
+                      color: "skyblue",
+                      cursor: "pointer",
+                      
+                    }}
+                  ></TouchAppIcon>
+                </button>
+              </div>
+            </div>
+
+            <div className="boxE332">
+              {" "}
+              {isModalOpen  && (
+                <PopupModal onClose={() => setIsModalOpen(false)}>
+                  <Corboncal></Corboncal>
+                </PopupModal>
+              )}
+              {isModalOpen2 && !isModalOpen && (
+                <PopupModal onClose={() => setIsModalOpen2(false)}>
+                  <Carbcal2></Carbcal2>
+                </PopupModal>
+              )}
+            </div>
+          </div>
         </div>
       </main>
       <footer className="footerE">
