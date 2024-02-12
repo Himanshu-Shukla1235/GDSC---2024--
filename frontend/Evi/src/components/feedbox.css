@@ -1,5 +1,51 @@
-.Fb1{
-display: flex;
-flex-direction: column;
-
+.Fb1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 3px red;
+  width: 30%;
+  height: 600px;
+  margin-top: 50px;
+  gap: 5px;
 }
+.Fb11 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 3px rgb(60, 255, 0);
+  width: 94%;
+  height: 60px;
+}
+.Fb12 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px rgb(60, 255, 0);
+    width: 94%;
+    height: 500px;
+  }
+  .Fb13 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px rgb(60, 255, 0);
+    width: 94%;
+    height: 60px;
+  }
+  .Fb12 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+  }
+
+
+  @media (max-width: 768px) {
+    .Fb1 {
+      width: 100%;
+    }
+  }

@@ -19,6 +19,8 @@ import ScrapingPage from "../src/components/webscrap.jsx";
 import PopupPage from "../src/components/function components/popupPage.jsx";
 import Carbcal2 from "../src/components/carboncal2.jsx";
 import Feed from "./pages/feed.jsx";
+import Feedbox from "../src/components/feedBox.jsx"
+import Addfeed from "../src/components/addFeed.jsx"
 
 function App() {
   useEffect(() => {
@@ -48,6 +50,8 @@ function App() {
           <Route path="/web" element={<ScrapingPage></ScrapingPage>} />
           <Route path="/popup" element={<PopupPage></PopupPage>} />
           <Route path="/corbon2" element={<Carbcal2></Carbcal2>} />
+          <Route path="/fb" element={<Feedbox></Feedbox>} />
+          <Route path="/afb" element={<Addfeed></Addfeed>} />
         </Routes>
       </BrowserRouter>
     </>
