@@ -1,0 +1,23 @@
+.mainFeed {
+  margin-top: 20px;
+  width: 100%;
+  height: 1000px;
+}
+.feedContainer {
+  border: 1px solid red;
+  height: 90vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 50% 30% ;
+
+}
+
+.feedSection1 {
+  border: 1px solid red;
+}
+.feedSection2 {
+  border: 1px solid red;
+}
+.feedSection1 {
+  border: 1px solid red;
+}
