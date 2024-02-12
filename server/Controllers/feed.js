@@ -5,6 +5,9 @@ const {StatusCodes}=require('http-status-codes');
 
 const createFeed=async(req,res,next)=>{
 
+  console.log('feed route reached')
+
+
 
 
     const feed=await Feed.create({
@@ -24,6 +27,8 @@ const createFeed=async(req,res,next)=>{
 }
 
 const getFeedAreaWise=async(req,res,next)=>{
+    console.log('feed route reached')
+
 
     const feed=await Feed.find({location:req.location});
     res.status(200).json(feed);
@@ -31,6 +36,8 @@ const getFeedAreaWise=async(req,res,next)=>{
 
 
 const addComment = async (req, res, next) => {
+    console.log('feed route reached')
+
 
     const feedId = req.body.id; // Assuming the id is in req.body.id
     const commentText = req.body.comment; // Assuming req.body.comment contains the comment text
@@ -61,6 +68,8 @@ const addComment = async (req, res, next) => {
 
 
 const addLike = async (req, res, next) => {
+    console.log('feed route reached')
+
   
     const feedId = req.body.id; // Assuming the id is in req.body.id
 
