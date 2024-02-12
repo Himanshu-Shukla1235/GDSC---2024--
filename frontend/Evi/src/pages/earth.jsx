@@ -547,6 +547,28 @@ const Earth = () => {
             </div>
 
             <div className="boxE332">
+            <PieChart
+                series={[
+                  {
+                    data: [
+                      {
+                        id: 0,
+                        value: 2000 ,
+                        label: "CO",
+                        color: "Green",
+                      },
+                      {
+                        id: 1,
+                        value:   100,
+                        label: " ",
+                        color: "red",
+                      },
+                    ]
+                  },
+                ]}
+                width={400}
+                height={200}
+              />
               {" "}
               {isModalOpen  && (
                 <PopupModal onClose={() => setIsModalOpen(false)}>
