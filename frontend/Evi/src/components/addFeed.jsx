@@ -6,10 +6,9 @@ import "../components/addfeed.css";
 const AddFeed = () => {
   const [file, setFile] = useState(null);
   const inputRef = useRef(null);
-  const [feedData,setFeedData]
-=useState({
+  const [feedData, setFeedData] = useState({
     
-})
+  });
   const handleUpload = async (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
