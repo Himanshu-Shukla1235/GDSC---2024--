@@ -21,14 +21,7 @@ const feed=new mongoose.Schema({
         date:{
             type:String
         },
-        day:{
-            type:String
-
-        },
-        hours:{
-            type:String
-        },
-        minutes:{
+        clock:{
             type:String
         }
     },
