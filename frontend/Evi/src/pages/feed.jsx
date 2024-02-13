@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./feed.css";
 import Navbar from "../components/Nav";
-import Footer from "../components/footer";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import FeedBox from  "../components/feedBox"
+i;
+import FeedBox from "../components/feedBox";
 const feed = () => {
   // responsive part===========================================
   const [navFeed_suggestion, setnavFeed_suggestion] = useState("feed");
@@ -47,10 +42,9 @@ const feed = () => {
   // =========================================================
 
   //write your code from here do not touch responsive part
- const feedGet=async()=>{
-
-  const feeds=await axios.get()
- }
+  const feedGet = async () => {
+    const feeds = await axios.get();
+  };
   return (
     <>
       <div className="feedBody">
@@ -68,8 +62,7 @@ const feed = () => {
             <div className="feedSection1">hi</div>
             <div className="feedSection2">
               {" "}
-
-            <FeedBox></FeedBox>
+              <FeedBox></FeedBox>
             </div>
             <div className="feedSection3">sugg</div>
           </div>
