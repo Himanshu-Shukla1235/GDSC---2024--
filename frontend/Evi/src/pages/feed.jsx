@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./feed.css";
 import Navbar from "../components/Nav";
-i;
+
 import FeedBox from "../components/feedBox";
 const feed = () => {
   // responsive part===========================================
