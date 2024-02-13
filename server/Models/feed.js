@@ -15,7 +15,7 @@ const feed=new mongoose.Schema({
         required:true,
     },
     image:{
-        type:Buffer,
+        type:String,
     },
     time:{
         date:{
