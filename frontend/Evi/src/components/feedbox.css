@@ -4,10 +4,11 @@
   justify-content: center;
   align-items: center;
   border: solid 3px red;
-  width: 30%;
-  height: 600px;
+  width: 95%;
+  height: 700px;
   margin-top: 50px;
   gap: 5px;
+
 }
 .Fb11 {
   display: flex;
@@ -41,6 +42,15 @@
     height: 100%;
     object-fit: cover;
     
+  }
+  .bottomnavigatef{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px rgb(60, 255, 0);
+    width: 94%;
+    height: 60px;
   }
 
 

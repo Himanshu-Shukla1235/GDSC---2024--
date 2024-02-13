@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./feed.css";
 import Navbar from "../components/Nav";
+import Footer from "../components/footer";
 
 import FeedBox from "../components/feedBox";
+import Feedbox from "../components/feedBox";
 const feed = () => {
   // responsive part===========================================
   const [navFeed_suggestion, setnavFeed_suggestion] = useState("feed");
@@ -40,7 +42,12 @@ const feed = () => {
   }, []);
 
   // =========================================================
-
+  // const getFeeds = async () => {
+  //   try {
+  //   } catch (err) {
+  //     console.log("err in getting data from backend", err);
+  //   }
+  // };
   //write your code from here do not touch responsive part
   const feedGet = async () => {
     const feeds = await axios.get();
@@ -61,8 +68,16 @@ const feed = () => {
             </nav>
             <div className="feedSection1">hi</div>
             <div className="feedSection2">
-              {" "}
-              <FeedBox></FeedBox>
+              <div className="feedSection21"></div>
+              <div className="feedSection22">
+                {" "}
+                <Feedbox ></Feedbox>
+                <Feedbox ></Feedbox>
+                <Feedbox ></Feedbox>
+                {/* {feedDatabase.map((feedget, index) => (
+                  <Feedbox key={index}></Feedbox>
+                ))}{" "} */}
+              </div>{" "}
             </div>
             <div className="feedSection3">sugg</div>
           </div>
