@@ -60,7 +60,7 @@ const AddFeed = () => {
         ...feedData,
         image: base64file,
       });
-      await axios.post("http://localhost:5000/feed/createFeed", feedData);
+      await axios.post("http://localhost:5000/api/v1/feed/createFeed", feedData);
 
       console.log("Feed added successfully:", feedData.data);
     } catch (err) {
