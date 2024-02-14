@@ -70,11 +70,19 @@ const AddFeed = () => {
   };
 
   // Handle add
-  const handleAdd = async () => {
+  const handleAdd = async (e) => {
+    e.preventDefault();
+
+    //====aman=================imgUrl has the url of image
+     const img = await uploadFile(file);
+     setImgUrl(img);
+    console.log(imgUrl);
+    //===========================
+
     try {
       // Set the current time before making the API call
       const currentTime = getCurrentTime();
-      console.log(currentTime ,new Date().toLocaleDateString())
+      console.log(currentTime, new Date().toLocaleDateString());
       setFeedData((prevFeedData) => ({
         ...prevFeedData,
         time: {
@@ -84,7 +92,10 @@ const AddFeed = () => {
       }));
 
       // Perform the API call with feedData
-      await axios.post("http://localhost:5000/api/v1/feed/createFeed", feedData);
+      await axios.post(
+        "http://localhost:5000/api/v1/feed/createFeed",
+        feedData
+      );
 
       console.log("Feed added successfully:", feedData);
     } catch (err) {
@@ -92,22 +103,61 @@ const AddFeed = () => {
     }
   };
 
+  // upload url generation function
+  const [imgUrl, setImgUrl] = useState();
+
+  const uploadFile = async () => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "images_preset");
+
+    try {
+      let cloudName = "dydbv12n6";
+      let resourceType = "image";
+      let api = `http://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`;
+
+      const transformations = [{ width: 300, height: 300, crop: "fill" }];
+      axios.defaults.headers.common["Authorization"] = undefined;
+      const res = await axios.post(api, data);
+
+      //re
+      const jwtToken = localStorage.getItem("token");
+      if (jwtToken) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
+      }
+
+      const { secure_url } = res.data;
+      console.log(secure_url);
+      setImgUrl(secure_url);
+
+      return secure_url;
+    } catch (error) {
+      console.log(error.response.data.error.message);
+    }
+  };
+
+
+
   return (
     <div className="mainupload">
-      <button type="submit" onClick={handleAdd}>
-        Upload Feed
-      </button>
-      <input type="file" ref={inputRef} onChange={handleUpload} />
-      <div className="setImage">{file && <img src={URL.createObjectURL(file)} alt="" />}</div>
+      <form>
+        <button type="submit" onClick={(e) => handleAdd(e)}>
+          Upload Feed
+        </button>
+        <input type="file" ref={inputRef} onChange={handleUpload} required />
+        <div className="setImage">
+          {file && <img src={URL.createObjectURL(file)} alt="" />}
+        </div>
 
-      {/* description */}
-      <div className="discriptionf">
-        <textarea
-          placeholder="Enter your description..."
-          value={feedData.description}
-          onChange={handleDescriptionChange}
-        />
-      </div>
+        {/* description */}
+        <div className="discriptionf">
+          <textarea
+            placeholder="Enter your description..."
+            value={feedData.description}
+            onChange={handleDescriptionChange}
+          />
+        </div>
+      </form>
     </div>
   );
 };
