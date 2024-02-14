@@ -3,11 +3,13 @@ import axios from "axios";
 import "../components/carbonc.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import CancelIcon from '@mui/icons-material/Cancel';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import CancelIcon from "@mui/icons-material/Cancel";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 const CarbonFootprintCalculator = () => {
   const [countryName, setCountryName] = useState("");
   const [electricityValue, setElectricityValue] = useState("");
@@ -46,8 +48,8 @@ const CarbonFootprintCalculator = () => {
     <div className="corbmainE">
       <h1 className="carbheadE"> Carbon Footprint From Electricy</h1>
       <div>
-        <label style={{ display:"flex",gap:5}}>
-          Country Name: 
+        <label style={{ display: "flex", gap: 5, fontSize: 27 }}>
+          Country Name:
           <TextField
             required
             id="filled-required"
@@ -65,14 +67,13 @@ const CarbonFootprintCalculator = () => {
         </label>
       </div>
       <div>
-        <label style={{ display:"flex",gap:5}}>
+        <label style={{ display: "flex", gap: 5, fontSize: 27 }}>
           Electricity Value:
-         
           <TextField
             required
             id="filled-required"
             label=""
-           type="number"
+            type="number"
             size="small"
             value={electricityValue}
             onChange={(e) => setElectricityValue(e.target.value)}
@@ -80,35 +81,40 @@ const CarbonFootprintCalculator = () => {
         </label>
       </div>
       <div>
-        <label style={{ display:"flex",gap:8}}>
+        <label style={{ display: "flex", gap: 8, fontSize: 27 }}>
           Electricity Unit:
-
           <FormControl fullWidth>
-  <InputLabel id="demo-simple-select-label">Age</InputLabel>
-  <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={electricityUnit}
-    label="Age"
-    onChange={(e) => setElectricityUnit(e.target.value)}
-  >
-    <MenuItem value={"kWh"}>kWh</MenuItem>
-    <MenuItem value={"MWh"}>MWh</MenuItem>
-    
-  </Select>
-</FormControl>
-         
+            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={electricityUnit}
+              label="Age"
+              onChange={(e) => setElectricityUnit(e.target.value)}
+            >
+              <MenuItem value={"kWh"}>kWh</MenuItem>
+              <MenuItem value={"MWh"}>MWh</MenuItem>
+            </Select>
+          </FormControl>
         </label>
       </div>
-      <div>
-        <Button variant="outlined" onClick={calculateCarbonFootprint}>
+      <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"row",gap:20}}>
+        <Button  variant="outlined" onClick={calculateCarbonFootprint}>
           Submit
-        </Button>
+        </Button> {carbonFootprint&&<h4>|</h4>}{carbonFootprint&&<Fab
+            color="primary"
+            aria-label="add"
+            size="small"
+            sx={{  }}
+          >
+            <AddIcon />
+          </Fab>}
       </div>
       {carbonFootprint && (
         <div>
           <h2>Carbon Footprint Result:</h2>
-          <p>{`Estimated Carbon Footprint: ${carbonFootprint.data.co2e_mt} tons`}</p>
+         
+          <p>{`Estimated Carbon Footprint: ${carbonFootprint.data.co2e_kg} kg`}</p>
         </div>
       )}
     </div>

@@ -170,7 +170,8 @@
   gap: 20px;
 }
 .HeadingE1 {
-  background-color: rgba(0, 0, 0, 0.742);
+  background-color: rgba(227, 227, 227, 0);
+  border-bottom: solid 3px rgb(0, 0, 0);
   width: 80%;
   padding: 3%;
   height: 10%;
@@ -179,7 +180,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(227, 225, 225, 0.064);
+  box-shadow: 0 0 10px rgba(225, 227, 225, 0.064);
 }
 .boxE332 {
   display: flex;
@@ -192,18 +193,24 @@
   gap: 40px;
   background-color: rgba(255, 0, 0, 0);
 }
+.boxE3321 {
+  width: 80%;
+  height: 35%;
+  border: solid rebeccapurple 3px;
+}
+
 .boxE3311 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(219, 216, 216, 0.418);
+  background-color: rgba(219, 216, 216, 0);
   width: 70%;
   height: 8%;
   border-radius: 10px;
   padding-right: 10%;
   padding-left: 10%;
-  box-shadow: 0 0 5px rgba(227, 225, 225, 0.064);
-  animation: upDownMotion 2s ease-in-out infinite;
+
+  animation: upDownMotion2 2s ease-in-out infinite;
 }
 
 /*-- css of .modal-overlay--- */
@@ -213,14 +220,18 @@
   left: 59rem; /* Added "rem" unit */
   width: 35%;
   height: 60%;
-  background: rgba(216, 215, 215, 0.247);
+  background: rgba(253, 253, 253, 0.811);
+  backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 600;
   margin-bottom: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-  border-top: solid 3px rgb(156, 236, 161);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  border-top: solid 5px rgb(4, 241, 19);
+  border-bottom: solid 2px rgb(0, 0, 0);
+  border-left: solid 2px rgb(0, 0, 0);
+  border-right: solid 2px rgb(0, 0, 0);
   animation: upDownMotion2 2s ease-in-out infinite;
 }
 
@@ -261,6 +272,32 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-3px); /* Adjust the distance as needed */
+    transform: translateY(-2px); /* Adjust the distance as needed */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .boxE2 {
+    height: 500px;
+    width: 98%;
+  }
+  .boxE3 {
+    width: 98%;
+  }
+  .boxE32 {
+    width: 300px;
+    flex-direction: column;
+    gap: 10;
+    height: 1200px;
+  }
+  .boxE321 {
+    width: 260px;
+    border-right: none;
+    border-bottom: solid 2px black;
+  }
+  .boxE322 {
+    margin-top: 20px;
+    /* border:solid 3px red; */
+    display: none;
   }
 }

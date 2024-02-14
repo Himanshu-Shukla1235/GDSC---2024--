@@ -21,6 +21,7 @@ import Carbcal2 from "../src/components/carboncal2.jsx";
 import Feed from "./pages/feed.jsx";
 import Feedbox from "../src/components/feedBox.jsx"
 import Addfeed from "../src/components/addFeed.jsx"
+import CarbonCalculator3 from "../src/components/carbocal3.jsx"
 
 function App() {
   useEffect(() => {
@@ -50,6 +51,7 @@ function App() {
           <Route path="/web" element={<ScrapingPage></ScrapingPage>} />
           <Route path="/popup" element={<PopupPage></PopupPage>} />
           <Route path="/corbon2" element={<Carbcal2></Carbcal2>} />
+          <Route path="/corbon3" element={<CarbonCalculator3></CarbonCalculator3>} />
           <Route path="/fb" element={<Feedbox></Feedbox>} />
           <Route path="/afb" element={<Addfeed></Addfeed>} />
         </Routes>

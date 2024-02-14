@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Button from "@mui/material/Button";
 import "../components/carbonc2.css";
-
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 const CarbonFootprintCalculator = () => {
   const [fuelUsage, setFuelUsage] = useState("");
   const [fuelName, setFuelName] = useState("");
@@ -55,7 +57,8 @@ const CarbonFootprintCalculator = () => {
   return (
     <div className="corbmainF">
       <h1 className="carbheadF ">Carbon Footprint Calculator</h1>
-      <label style={{ display:"flex",gap:5}}>
+
+      <label style={{ display: "flex", gap: 5, fontSize: 27 }}>
         Fuel Usage:
         <select
           value={fuelUsage}
@@ -67,7 +70,8 @@ const CarbonFootprintCalculator = () => {
           <option value="residential">Residential</option>
         </select>
       </label>
-      <label style={{ display:"flex",gap:5}}>
+
+      <label style={{ display: "flex", gap: 5,fontSize:27 }}>
         Fuel Category:
         <select value={fuelName} onChange={(e) => setFuelName(e.target.value)}>
           <option value="">Select Fuel Category</option>
@@ -75,14 +79,15 @@ const CarbonFootprintCalculator = () => {
             <option
               key={category}
               value={category}
-              style={{ fontWeight: "bold" }}
+              style={{ borderColor:"blue"}}
             >
               {category}
             </option>
           ))}
         </select>
       </label>
-      <label style={{ display:"flex",gap:5}}>
+
+      <label style={{ display: "flex", gap: 5,fontSize:27 }}>
         Fuel Value:
         <input
           type="text"
@@ -90,14 +95,24 @@ const CarbonFootprintCalculator = () => {
           onChange={(e) => setFuelValue(e.target.value)}
         />
       </label>
-      <button onClick={handleCalculate}>Calculate Carbon Footprint</button>
+      <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"row",gap:20}}>
+        <Button variant="outlined" onClick={handleCalculate}>
+          Submit
+        </Button>
+        {carbonFootprint&&<h4>|</h4>}{carbonFootprint&&<Fab
+            color="primary"
+            aria-label="add"
+            size="small"
+            sx={{  }}
+          >
+            <AddIcon />
+          </Fab>}
+      </div>
 
       {carbonFootprint && (
         <div>
           <h2>Carbon Footprint Result:</h2>
-          <pre>
-            {JSON.stringify(carbonFootprint.data.co2e_mt, null, 2)} Tons
-          </pre>
+          <pre>{JSON.stringify(carbonFootprint.data.co2e_kg, null, 2)} kg</pre>
         </div>
       )}
     </div>

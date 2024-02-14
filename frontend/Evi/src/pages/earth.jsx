@@ -18,6 +18,7 @@ import Popup from "../components/function components/popupPage";
 import PopupModal from "../components/function components/modalpop";
 import TouchAppIcon from "@mui/icons-material/TouchApp";
 import Carbcal2 from "../components/carboncal2";
+import Carbcal3 from "../components/carbocal3";
 //* ------------------------------------------------------------------------------------------- MAIN FUNCTION -------------------------------------------------------------------
 const Earth = () => {
   const [mapLocation, setMapLocation] = useState({
@@ -26,6 +27,7 @@ const Earth = () => {
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const [isModalOpen3, setIsModalOpen3] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
   const [weatherData1, setWeatherData1] = useState(null);
   const [airData, setAirData] = useState();
@@ -143,15 +145,22 @@ const Earth = () => {
 
   return (
     <>
+      {/* --- -------------------------------------------------/ header /------------------------------------------------------------------------>>>*/}
       <header className="headerE">
         <Navbar />
       </header>
+      {/* -----------------------------------------------------/ main /------------------------------------------------------------------------->>> */}
       <main className="mainE">
+        {/* -------------------------box2--------- --------------*/}
         <div className="boxE2">
           <Map onMapChange={handleMapChange}></Map>
         </div>
+
+        {/* -------------------------box3------------------------ */}
         <div className="boxE3">
+          {/* ------------------------------------------- */}
           <div className="boxE32">
+            {/* ------------------------ */}
             <div className="boxE321">
               {airData && (
                 <>
@@ -420,6 +429,7 @@ const Earth = () => {
               )}
             </div>
             <div
+              className="boxE322"
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -432,6 +442,7 @@ const Earth = () => {
                 Concentration
               </h1>
               <PieChart
+                className="piechart1"
                 series={[
                   {
                     data: [
@@ -489,9 +500,19 @@ const Earth = () => {
 
           {/* //FOOT PRINTS ------------------------------------------------------------------------------*/}
           <div className="boxE31">
-      
             <div className="boxE331">
-              {" "}    <h1 style={{marginBottom:200 ,fontSize:40,color:"greenyellow",fontWeight:30} } className="HeadingE1">Caculate your carbon Footprints</h1>
+              {" "}
+              <h1
+                style={{
+                  marginBottom: 200,
+                  fontSize: 40,
+                  color: "green",
+                  fontWeight: 30,
+                }}
+                className="HeadingE1"
+              >
+                Caculate your carbon Footprints
+              </h1>
               <div className="boxE3311">
                 {" "}
                 <h2 style={{ color: "black", fontWeight: 10 }}>
@@ -499,8 +520,11 @@ const Earth = () => {
                   Calculate Electricity Foot print
                 </h2>{" "}
                 <button
-                 onClick={() => {setIsModalOpen2(false)
-                  setIsModalOpen(true)}}
+                  onClick={() => {
+                    setIsModalOpen2(false);
+                    setIsModalOpen(true);
+                    setIsModalOpen3(false);
+                  }}
                   style={{ border: "none" }}
                 >
                   <TouchAppIcon
@@ -515,8 +539,11 @@ const Earth = () => {
                   Calculate Fuel Foot print
                 </h2>{" "}
                 <button
-                  onClick={() => {setIsModalOpen2(true)
-                  setIsModalOpen(false)}}
+                  onClick={() => {
+                    setIsModalOpen2(true);
+                    setIsModalOpen(false);
+                    setIsModalOpen3(false);
+                  }}
                   style={{ border: "none" }}
                 >
                   <TouchAppIcon
@@ -528,10 +555,13 @@ const Earth = () => {
                 {" "}
                 <h2 style={{ color: "black", fontWeight: 10 }}>
                   {" "}
-                  Calculate Electricity Foot print
+                  Calculate vehicle Foot print
                 </h2>{" "}
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => {
+                    setIsModalOpen3(true), setIsModalOpen2(false);
+                    setIsModalOpen(false);
+                  }}
                   style={{ border: "none" }}
                 >
                   <TouchAppIcon
@@ -539,7 +569,6 @@ const Earth = () => {
                       fontSize: 40,
                       color: "skyblue",
                       cursor: "pointer",
-                      
                     }}
                   ></TouchAppIcon>
                 </button>
@@ -547,30 +576,37 @@ const Earth = () => {
             </div>
 
             <div className="boxE332">
-            <PieChart
+              <PieChart
+                sx={{ height: 90 }}
                 series={[
                   {
                     data: [
                       {
                         id: 0,
-                        value: 2000 ,
-                        label: "CO",
+                        value: 2000,
+                        label: "Limit",
                         color: "Green",
                       },
                       {
                         id: 1,
-                        value:   100,
-                        label: " ",
+                        value: 100,
+                        label: " Total  Usage",
                         color: "red",
                       },
-                    ]
+                    ],
+                    highlightScope: { faded: "global", highlighted: "item" },
+                    faded: {
+                      innerRadius: 30,
+                      additionalRadius: -30,
+                      color: "gray",
+                    },
                   },
                 ]}
                 width={400}
                 height={200}
-              />
-              {" "}
-              {isModalOpen  && (
+              />{" "}
+              <div className="boxE3321"></div>{" "}
+              {isModalOpen && (
                 <PopupModal onClose={() => setIsModalOpen(false)}>
                   <Corboncal></Corboncal>
                 </PopupModal>
@@ -578,6 +614,11 @@ const Earth = () => {
               {isModalOpen2 && !isModalOpen && (
                 <PopupModal onClose={() => setIsModalOpen2(false)}>
                   <Carbcal2></Carbcal2>
+                </PopupModal>
+              )}
+              {isModalOpen3 && (
+                <PopupModal onClose={() => setIsModalOpen3(false)}>
+                  <Carbcal3></Carbcal3>
                 </PopupModal>
               )}
             </div>

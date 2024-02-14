@@ -17,6 +17,7 @@ const messagesRouter = require('./Routes/messages');
 const roomsRouter = require('./Routes/chatRooms');
 const cors = require('cors');
 const feedRouter=require('./Routes/feed')
+const cfpRouter=require('./Routes/carboFootprint')
 //----------------------------------------------------cors-------------------------------------->>>
 
 //---------------------------------------------------middlewares--------------------------------->>>
@@ -36,6 +37,8 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/messages', messagesRouter);
 app.use('/api/v1/chat', roomsRouter);
 app.use('/api/v1/feed',feedRouter);
+app.use('/api/v1/carbonFootPrint',cfpRouter);
+
 //errors
 app.use(notFound);
 app.use(errorHandlerMiddleware);

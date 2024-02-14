@@ -17,7 +17,7 @@ const Modal = ({ onClose, children }) => {
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           {children}
          
-          <CancelIcon className="modal-close" onClick={onClose}>  Close Modal</CancelIcon> 
+          <CancelIcon className="modal-close" sx={{fontSize:35,color:'grey'}} onClick={onClose}> </CancelIcon> 
         </div>
       </div>
     );
