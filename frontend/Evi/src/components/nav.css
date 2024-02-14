@@ -25,7 +25,6 @@
   /* backdrop-filter: blur(10px); */
   /* border: solid 3px rgb(6, 217, 241); */
   z-index: 1000;
-
 }
 
 nav a {
@@ -109,7 +108,6 @@ nav {
   nav a {
     font-size: 1.5rem;
   }
-
 }
 @media only screen and (max-width: 600px) {
   /* ... Other existing styles ... */
@@ -117,4 +115,43 @@ nav {
   .avatar {
     display: none !important; /* Add this rule to hide the avatar */
   }
+}
+
+.avatarUpload {
+  /* border: 1px solid red; */
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 235px;
+  color: white;
+  padding: 30px;
+  background-color: rgba(67, 66, 66, 0.281);
+  backdrop-filter: blur(5px);
+}
+.avatarUpload label {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+.avatarUpload div input {
+  color: white;
+}
+.avatarUpload div button {
+  background-color: rgba(196, 223, 196, 0.478);
+  border: 1px solid rgb(255, 255, 255);
+  padding: 2px 4px;
+  margin-top: 20px;
+  font-style: normal;
+  font-weight: bold;
+  color: rgb(225, 249, 241);
+}
+.avatarUpload div {
+  display: flex;
+  flex-direction: column;
+}
+.avatarUploadOFF {
+  display: none;
+}
+.navLoaderOFF {
+  display: none;
 }

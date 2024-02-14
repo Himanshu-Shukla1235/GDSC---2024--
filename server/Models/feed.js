@@ -11,7 +11,7 @@ const feed = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: false,
+    required: true,
   },
   image: {
     type: String,
@@ -19,11 +19,9 @@ const feed = new mongoose.Schema({
   time: {
     date: {
       type: String,
-      required: true,
     },
     clock: {
       type: String,
-      required: true,
     },
   },
   location: {
