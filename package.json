@@ -14,7 +14,12 @@
         "^/openweathermap-api": ""
       },
       "changeOrigin": true
+    },
+    "/cloudinary":{
+      "target":"https://api.cloudinary.com",
+      "changeOrigin":true
     }
+
   },
   "scripts": {
     "start": "node server/app.js",

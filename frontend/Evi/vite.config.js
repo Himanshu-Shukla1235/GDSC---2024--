@@ -5,10 +5,15 @@ export default {
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'https://api.openweathermap.org',
+      "/api": {
+        target: "https://api.openweathermap.org",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+      "/cloudinary": {
+        target: "https://api.cloudinary.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./feed.css";
 import Navbar from "../components/Nav";
 import Footer from "../components/footer";
-
 import FeedBox from "../components/feedBox";
 import Feedbox from "../components/feedBox";
 const feed = () => {
