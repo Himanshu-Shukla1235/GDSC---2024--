@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { green, red } from "@mui/material/colors";
 import axios from "axios";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner, faBars } from "@fortawesome/free-solid-svg-icons";
 const username = "Username";
 
 import { useRef } from "react";
@@ -29,7 +30,18 @@ function Navbar() {
       setLoginOption("Logout");
       setlogoutRoute("");
     }
+    getUser();
+
+    //gettting avatar from user data
   }, []);
+
+  //function to add avatar from data base
+  const getUser = async () => {
+    const res = await axios.get("http://localhost:5000/api/v1/auth/getUser");
+
+    console.log(res.data[0].avatar);
+    setImgUrl(res.data[0].avatar);
+  };
 
   const logout = () => {
     if (logoutRoute == "/login") return;
@@ -52,36 +64,90 @@ function Navbar() {
 
   //======================================
 
-  const [file, setFile] = useState(null);
+  const [loaderClass, setLoaderClass] = useState("navLoaderOFF");
+  const [avatar, setAvatar] = useState(null);
+  const [imgUrl, setImgUrl] = useState(null);
+  const [uploadError, setUploadError] = useState();
+  const [inputValue,setInputValue]=useState()
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    setAvatar(e.target.files[0]);
+  };
+
+  const uploadFile = async () => {
+    const data = new FormData();
+    data.append("file", avatar);
+    data.append("upload_preset", "images_preset");
+
+    try {
+      let cloudName = "dydbv12n6";
+      let resourceType = "image";
+      let api = `http://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`;
+
+      const transformations = [{ width: 300, height: 300, crop: "fill" }];
+      axios.defaults.headers.common["Authorization"] = undefined;
+      const res = await axios.post(api, data);
+
+      //re
+      const jwtToken = localStorage.getItem("token");
+      if (jwtToken) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
+      }
+
+      const { secure_url } = res.data;
+      console.log(secure_url);
+      setImgUrl(secure_url);
+
+      return secure_url;
+    } catch (error) {
+      console.log(error.response.data.error.message);
+      setUploadError(error.response.data.error.message);
+      console.log(error);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("image", file);
+    setLoaderClass("navLoaderON");
 
     try {
-      const response = await axios.post(
+      const imgUrl = await uploadFile(image);
+      const res = await axios.patch(
         "http://localhost:5000/api/v1/auth/upload",
-        formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          avatar: imgUrl,
         }
       );
-
-      // Handle success
-      console.log("Image uploaded successfully:", response.data);
+      setLoaderClass("navLoaderOFF");
+      setAvatarUpload("avatarUploadOFF");
     } catch (error) {
-      // Handle error
-      console.error("Failed to upload image:", error);
+      // console.log(error.response);
+      setLoaderClass("navLoaderOFF");
     }
   };
+
+  //=====================================
+  const [avatarUpload, setAvatarUpload] = useState("avatarUploadOFF ");
+
+  // const navRef = useRef(); // Change here
+  const formRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setAvatarUpload("avatarUploadOFF");
+        setUploadError("");
+        setInputValue(null)
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [navRef]);
+
   return (
     <div className="header">
       <h3>LOGO</h3>
@@ -112,8 +178,16 @@ function Navbar() {
       </div>
       <div className="avatar">
         {" "}
-        <Avatar alt="himanshu" src=""></Avatar>
-        <form onSubmit={handleSubmit}>
+        <Avatar
+          onClick={(e) => {
+            e.stopPropagation(); // Stop the click event from reaching the document
+            if (avatarUpload === "avatarUpload")
+              setAvatarUpload("avatarUploadOFF");
+            else setAvatarUpload("avatarUpload");
+          }}
+          alt="himanshu"
+          src={imgUrl}></Avatar>
+        <form ref={navRef} onSubmit={handleSubmit} className={avatarUpload}>
           <div>
             <label htmlFor="image">Upload Image</label>
             <input
@@ -122,12 +196,23 @@ function Navbar() {
               accept="image/*"
               name="image"
               onChange={handleFileChange}
+              value={inputValue}
               required
             />
           </div>
           <div>
-            <button type="submit">Submit</button>
+            <button type="submit">
+              <p>upload</p>
+              <FontAwesomeIcon
+                className={loaderClass}
+                icon={faSpinner}
+                rotation={270}
+                spin
+                style={{ color: "#4f33a3" }}
+              />
+            </button>
           </div>
+          <a style={{ color: "red" }}>{uploadError}</a>
         </form>
       </div>
     </div>

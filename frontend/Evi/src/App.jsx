@@ -19,8 +19,8 @@ import ScrapingPage from "../src/components/webscrap.jsx";
 import PopupPage from "../src/components/function components/popupPage.jsx";
 import Carbcal2 from "../src/components/carboncal2.jsx";
 import Feed from "./pages/feed.jsx";
-import Feedbox from "../src/components/feedBox.jsx"
-import Addfeed from "../src/components/addFeed.jsx"
+import Feedbox from "../src/components/feedBox.jsx";
+import Addfeed from "../src/components/addFeed.jsx";
 
 function App() {
   useEffect(() => {

@@ -36,76 +36,23 @@ const login = async (req, res, next) => {
     .json({ user: { name: user.username, id: user._id }, token });
 };
 
-// const addAvatar = async (req, res, next) => {
-//   try {
-//     const userId = req.user.userId;
-
-//     // Check if req.file is present and contains the path to the uploaded file
-//     console.log(req.file);
-//     if (!req.file || !req.file.path) {
-//       return res.status(400).json({ error: "No file uploaded" });
-//     }
-
-//     // Read the image file
-//     const p = path.join(__dirname, "..");
-//     const pathh = path.join(p, req.file.path);
-//     console.log("path is:", pathh);
-
-//     const imgData = await fs.readFile(pathh);
-
-//     // Create an object to store in the database
-//     // const img = {
-//     //   data: imgData,
-//     //   contentType: req.file.mimetype,
-//     // };
-
-//     // Update the user with the new avatar
-//     console.log(req.user.userId);
-//     const updatedUser = await User.findByIdAndUpdate(
-//       userId,
-//       {
-//         username: "aman2",
-//       },
-//       { new: true }
-//     );
-
-//     res.json(updatedUser);
-//   } catch (error) {
-//     console.error("Error updating user avatar:", error);
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
-// };
 const addAvatar = async (req, res, next) => {
-  try {
-    const userId = req.user.id;
+  const userId = req.user.id;
+  const imgData = req.body.avatar;
 
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
-    }
+  const updatedUser = await User.findByIdAndUpdate(
+    { _id: req.user.userId },
+    { avatar: imgData },
+    { new: true }
+  );
 
-    const p = path.join(__dirname, "..");
-    const pathh = path.join(p, req.file.path);
+  // ... rest of the logic to update the user and respond ...
 
-    const imgData = await fs.promises.readFile(pathh);
-
-    // Update the user with the new avatar
-    console.log(req.user.userId);
-    const updatedUser = await User.findByIdAndUpdate(
-      { _id: req.user.userId },
-      { avatar: imgData },
-      { new: true }
-    );
-
-
-    // ... rest of the logic to update the user and respond ...
-
-    res.json(updatedUser);
-  } catch (error) {
-    console.error("Error updating user avatar:", error);
-    res
-      .status(500)
-      .json({ error: "Internal Server Error", message: error.message });
-  }
+  res.status(200).json(updatedUser);
 };
+const getUser=async(req,res,next)=>{
+   const user = await User.find({ _id: req.user.userId });
+   res.status(200).json(user);
+}
 
-module.exports = { login, register, addAvatar };
+module.exports = { login, register, addAvatar ,getUser};

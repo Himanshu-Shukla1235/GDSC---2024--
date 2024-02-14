@@ -1,46 +1,39 @@
-const mongoose=require('mongoose')
+const mongoose = require("mongoose");
 
-const feed=new mongoose.Schema({
-
-    sender:{
-        name:{
-            type:String,
-        },
-        id:{
-            type:String,
-        }
+const feed = new mongoose.Schema({
+  sender: {
+    name: {
+      type: String,
     },
-    description:{
-        type:String,
-       
+    id: {
+      type: String,
     },
-    image:{
-        type:String,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+  },
+  time: {
+    date: {
+      type: String,
     },
-    time:{
-        date:{
-            type:String
-        },
-        clock:{
-            type:String
-        }
+    clock: {
+      type: String,
     },
-    location:{
-        type:String
-    },
-    Comments:{
-        type:Array
-    },
-    likes:{
-        type:Number,
-        default:0
-    }
-
-
-
-
+  },
+  location: {
+    type: String,
+  },
+  Comments: {
+    type: Array,
+  },
+  likes: {
+    type: Number,
+    default: 0,
+  },
 });
 
-
-
-module.exports=mongoose.model('Feed',feed);
+module.exports = mongoose.model("Feed", feed);

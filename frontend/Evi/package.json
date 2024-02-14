@@ -11,6 +11,10 @@
     "/api/openweathermap": {
       "target": "http://api.openweathermap.org",
       "changeOrigin": true
+    },
+    "/cloudinary":{
+      "target":"https://api.cloudinary.com",
+      "changeOrigin":true
     }
   },
   "scripts": {
@@ -30,6 +34,8 @@
     "@mui/x-charts": "^6.19.3",
     "@react-google-maps/api": "^2.19.2",
     "axios": "^1.6.7",
+    "cloudinary": "^2.0.1",
+    "express-fileupload": "^1.4.3",
     "google-map-react": "^2.2.1",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
