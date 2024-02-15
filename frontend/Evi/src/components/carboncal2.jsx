@@ -9,7 +9,46 @@ const CarbonFootprintCalculator = () => {
   const [fuelName, setFuelName] = useState("");
   const [fuelValue, setFuelValue] = useState("");
   const [carbonFootprint, setCarbonFootprint] = useState(null);
+  const dayOnly = new Date().getDate();
+  const monthOnly = new Date().getMonth() + 1;
+  const yearOnly = new Date().getFullYear();
 
+  // Get the current time
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    const seconds = now.getSeconds().toString().padStart(2, "0");
+
+    return `${hours}:${minutes}:${seconds}`;
+  };
+  const currentTime = getCurrentTime();
+
+  //-------------------------------------adding the  CFP in database
+  const addCFP = async () => {
+    const CFPdata = {
+      date: {
+        day: dayOnly,
+        month: monthOnly,
+        year: yearOnly,
+      },
+      time: currentTime,
+      carbonFootprint: carbonFootprint.data.co2e_kg,
+    };
+
+    try {
+      await axios.post(
+        "http://localhost:5000/api/v1/carbonFootPrint/addcarbonFootPrint",
+        CFPdata
+      );
+      console.log("CFP data is posted");
+      console.log(dayOnly, currentTime);
+    } catch (err) {
+      console.log("err in posting CFP data", err);
+    }
+  };
+
+  //---------------------------------------------calculate Carbon Footprint
   const handleCalculate = async () => {
     try {
       const encodedParams = new URLSearchParams();
@@ -58,7 +97,7 @@ const CarbonFootprintCalculator = () => {
     <div className="corbmainF">
       <h1 className="carbheadF ">Carbon Footprint Calculator</h1>
 
-      <label style={{ display: "flex", gap: 5, fontSize: 27 }}>
+      <label style={{ display: "flex", gap: 5, fontSize: "1em" }}>
         Fuel Usage:
         <select
           value={fuelUsage}
@@ -71,7 +110,7 @@ const CarbonFootprintCalculator = () => {
         </select>
       </label>
 
-      <label style={{ display: "flex", gap: 5,fontSize:27 }}>
+      <label style={{ display: "flex", gap: 5, fontSize: "1em" }}>
         Fuel Category:
         <select value={fuelName} onChange={(e) => setFuelName(e.target.value)}>
           <option value="">Select Fuel Category</option>
@@ -79,7 +118,7 @@ const CarbonFootprintCalculator = () => {
             <option
               key={category}
               value={category}
-              style={{ borderColor:"blue"}}
+              style={{ borderColor: "blue" }}
             >
               {category}
             </option>
@@ -87,7 +126,7 @@ const CarbonFootprintCalculator = () => {
         </select>
       </label>
 
-      <label style={{ display: "flex", gap: 5,fontSize:27 }}>
+      <label style={{ display: "flex", gap: 5, fontSize: "1em" }}>
         Fuel Value:
         <input
           type="text"
@@ -95,18 +134,24 @@ const CarbonFootprintCalculator = () => {
           onChange={(e) => setFuelValue(e.target.value)}
         />
       </label>
-      <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"row",gap:20}}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "row",
+          gap: 20,
+        }}
+      >
         <Button variant="outlined" onClick={handleCalculate}>
           Submit
         </Button>
-        {carbonFootprint&&<h4>|</h4>}{carbonFootprint&&<Fab
-            color="primary"
-            aria-label="add"
-            size="small"
-            sx={{  }}
-          >
+        {carbonFootprint && <h4>|</h4>}
+        {carbonFootprint && (
+          <Fab color="primary" aria-label="add" size="small" sx={{}} onClick={addCFP}>
             <AddIcon />
-          </Fab>}
+          </Fab>
+        )}
       </div>
 
       {carbonFootprint && (

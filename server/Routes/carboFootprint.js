@@ -7,7 +7,6 @@ const { addFootPrints, findCFPbyDay } = require("../Controllers/carboFootPri");
 router
   .route("/addcarbonFootPrint")
   .post(authorizationMiddleware, addFootPrints);
+router.route("/getCFPbyday").get(authorizationMiddleware, findCFPbyDay);
 
-
-
-  module.exports = router;
+module.exports = router;

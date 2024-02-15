@@ -1,0 +1,14 @@
+.form23 form{
+    display: flex;
+    flex-direction: column;
+    gap: 3pxpx;
+    width: 100%;
+
+}
+.form23 form label select{
+    margin-left: 5px;
+    border-radius: 3px;
+}
+.form23 form button{
+    
+}
