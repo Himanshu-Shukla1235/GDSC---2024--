@@ -22,6 +22,7 @@ import Feed from "./pages/feed.jsx";
 import Feedbox from "../src/components/feedBox.jsx"
 import Addfeed from "../src/components/addFeed.jsx"
 import CarbonCalculator3 from "../src/components/carbocal3.jsx"
+import Testing2 from "../src/components/testing2.jsx"
 
 function App() {
   useEffect(() => {
@@ -54,6 +55,7 @@ function App() {
           <Route path="/corbon3" element={<CarbonCalculator3></CarbonCalculator3>} />
           <Route path="/fb" element={<Feedbox></Feedbox>} />
           <Route path="/afb" element={<Addfeed></Addfeed>} />
+          <Route path="/test2" element={<Testing2></Testing2>} />
         </Routes>
       </BrowserRouter>
     </>
