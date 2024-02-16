@@ -5,7 +5,7 @@ const {StatusCodes}=require('http-status-codes');
 
 const createFeed=async(req,res,next)=>{
 
-  console.log('feed route reached')
+  console.log('feed route reached',req)
 
 
 

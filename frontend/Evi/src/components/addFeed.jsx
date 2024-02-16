@@ -74,8 +74,8 @@ const AddFeed = () => {
     e.preventDefault();
 
     //====aman=================imgUrl has the url of image
-     const img = await uploadFile(file);
-     setImgUrl(img);
+    const img = await uploadFile(file);
+    setImgUrl(img);
     console.log(imgUrl);
     //===========================
 
@@ -90,6 +90,7 @@ const AddFeed = () => {
           clock: currentTime,
         },
       }));
+      
 
       // Perform the API call with feedData
       await axios.post(
@@ -127,7 +128,7 @@ const AddFeed = () => {
       }
 
       const { secure_url } = res.data;
-      console.log(secure_url);
+      // console.log(secure_url);
       setImgUrl(secure_url);
 
       return secure_url;
@@ -135,8 +136,6 @@ const AddFeed = () => {
       console.log(error.response.data.error.message);
     }
   };
-
-
 
   return (
     <div className="mainupload">
