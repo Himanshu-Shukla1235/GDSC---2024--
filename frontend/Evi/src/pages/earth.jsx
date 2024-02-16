@@ -564,6 +564,7 @@ const Earth = () => {
                   ></TouchAppIcon>
                 </button>
               </div>
+              {/* ----------------------------------------------- */}
               <div className="boxE3311">
                 {" "}
                 <h2 style={{ color: "black", fontWeight: 10 }}>
@@ -591,6 +592,7 @@ const Earth = () => {
                   ></TouchAppIcon>
                 </button>
               </div>
+              {/* ----------------------------------------------- */}
               <div className="boxE3311">
                 {" "}
                 <h2 style={{ color: "black", fontWeight: 10 }}>
@@ -647,7 +649,7 @@ const Earth = () => {
                       data: [
                         {
                           id: 0,
-                          value: 2000,
+                          value: 2000-todayCFP,
                           label: "Limit",
                           color: "Green",
                         },
@@ -670,6 +672,7 @@ const Earth = () => {
                   height={200}
                 />
               </div>{" "}
+              {/* --------------------------------------------boxE3321----*/}
               <div className="boxE3321">
                 <div
                   style={{
@@ -679,14 +682,17 @@ const Earth = () => {
                     position: "sticky",
                     top: "0", // Stick to the top of the viewport
                     zIndex: "100",
-                    justifyContent: "center",
+                    justifyContent: "space-between",
                     alignItems: "center",
                     borderBottom: "solid 1px blue",
                     backgroundColor: "white", // Optional: Add background color
                     borderRadius: "1px",
                   }}
                 >
-                  Your Todays C.F.P | {todayCFP}
+                  <span style={{color:"gray",marginRight:"1px"}}>
+                    {dayOnly}/{monthOnly}/{yearOnly}
+                  </span>{" "}
+                   <span style={{color:"green"}}>| Your Todays C.F.P |</span> <span><span>Total:</span> {todayCFP} kg</span>
                 </div>
 
                 {CFPdatabyday.map((item) => (
@@ -727,17 +733,17 @@ const Earth = () => {
               </div>{" "}
               {isModalOpen && (
                 <PopupModal onClose={() => setIsModalOpen(false)}>
-                  <Corboncal></Corboncal>
+                  <Corboncal addlist={fetchCFPdata()}></Corboncal>
                 </PopupModal>
               )}
               {isModalOpen2 && !isModalOpen && (
                 <PopupModal onClose={() => setIsModalOpen2(false)}>
-                  <Carbcal2></Carbcal2>
+                  <Carbcal2 addlist={fetchCFPdata()}></Carbcal2>
                 </PopupModal>
               )}
               {isModalOpen3 && (
                 <PopupModal onClose={() => setIsModalOpen3(false)}>
-                  <Carbcal3></Carbcal3>
+                  <Carbcal3 addlist={fetchCFPdata()}></Carbcal3>
                 </PopupModal>
               )}
             </div>

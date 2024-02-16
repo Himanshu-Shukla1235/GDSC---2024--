@@ -10,7 +10,7 @@ import Select from "@mui/material/Select";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-const CarbonFootprintCalculator = () => {
+const CarbonFootprintCalculator = (props) => {
   const [countryName, setCountryName] = useState("");
   const [electricityValue, setElectricityValue] = useState("");
   const [electricityUnit, setElectricityUnit] = useState("kWh"); // Default value kWh
@@ -47,6 +47,7 @@ const CarbonFootprintCalculator = () => {
       await axios.post("http://localhost:5000/api/v1/carbonFootPrint/addcarbonFootPrint",CFPdata)
       console.log("CFP data is posted")
       console.log(dayOnly,currentTime);
+      props.addlist();
     }catch(err){
       console.log("err in posting CFP data",err)
     }

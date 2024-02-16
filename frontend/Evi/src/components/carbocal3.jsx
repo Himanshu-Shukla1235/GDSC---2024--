@@ -33,7 +33,7 @@ const vehicleTypes = [
 
 const distanceUnits = ["km", "mi"];
 
-const CarbonCalculator = () => {
+const CarbonCalculator = (props) => {
   const [vehicleType, setVehicleType] = useState("");
   const [distanceValue, setDistanceValue] = useState("");
   const [distanceUnit, setDistanceUnit] = useState("mi"); // Default to 'mi'
@@ -73,6 +73,7 @@ const CarbonCalculator = () => {
       );
       console.log("CFP data is posted");
       console.log(dayOnly, currentTime);
+      props.addlist();
     } catch (err) {
       console.log("err in posting CFP data", err);
     }

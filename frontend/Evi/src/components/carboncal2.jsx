@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import "../components/carbonc2.css";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-const CarbonFootprintCalculator = () => {
+const CarbonFootprintCalculator = (props) => {
   const [fuelUsage, setFuelUsage] = useState("");
   const [fuelName, setFuelName] = useState("");
   const [fuelValue, setFuelValue] = useState("");
@@ -43,6 +43,7 @@ const CarbonFootprintCalculator = () => {
       );
       console.log("CFP data is posted");
       console.log(dayOnly, currentTime);
+      props.addlist();
     } catch (err) {
       console.log("err in posting CFP data", err);
     }
