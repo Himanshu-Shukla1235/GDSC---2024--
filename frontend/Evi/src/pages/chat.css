@@ -19,55 +19,78 @@
     grid-template-columns: 2fr;
 } */
 
-/* .chatMain{
-    overflow-y: hidden;
-} */
 .chatContainer {
-  /* border: 1px solid red; */
+  border: 1px solid rgb(0, 0, 0);
+
   display: flex;
   flex-direction: row;
   height: 86vh;
   /* overflow-y: hidden; */
   margin-bottom: 10px;
-  border: 3px solid black;
 }
 
 .chatRoomSection {
   /* border: 1px solid red; */
   width: 40vw;
+  border: none;
 }
 
 .chatMessagesSection {
   /* border: 1px solid red; */
   width: 60vw;
+  border: none;
 }
 
 /* ====================chat room section */
 
+.createIcon {
+  border-radius: 10px;
+
+  color: rgb(103, 103, 103);
+  transform: scale(1.2);
+  /* transition: transform 0.3s ease-in-out; */
+}
+
+.createIcon:hover {
+  transform: scale(1.2);
+  background-color: rgb(204, 204, 204);
+}
+
 .chatRoomSection {
   /* border: 1px solid green; */
+
   display: grid;
-  grid-template-rows: 5% 90%;
+  grid-template-rows: 6% 90%;
 }
 .chatSearchSection {
-  /* border: 1px solid blue; */
 }
 .chatRoomSearchBtn {
+  margin-bottom: 10px;
   padding: 5px 5px;
+  border: none;
   width: 85%;
   height: 100%;
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
+  outline: none;
+}
+
+.chatRoomSearchBtn:focus {
+  border: none; /* Remove the border on focus */
+  /* Add any other styles you want when the input is focused */
 }
 .createNewRoomBtn {
   width: 15%;
   padding: 5px 5px;
   font-weight: bold;
   height: 100%;
+  border: none;
+  cursor: pointer;
 
   background-color: white;
 }
 .displayChatRooms {
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -86,7 +109,7 @@
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  background-color: rrgba(14, 51, 78, 0.893);
+
   color: rgb(0, 0, 0);
 }
 /* .chatRoom button */
@@ -108,7 +131,7 @@
   display: inline-flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid rgb(79, 159, 79);
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 .chatRoomName {
   margin-left: 20px;
@@ -121,6 +144,11 @@
 
   height: 90vh;
   overflow-y: scroll;
+}
+.plus {
+  /* margin-right: 10px; */
+  height: 100%;
+  width: 100%;
 }
 
 .messageUser {
@@ -188,11 +216,11 @@
   width: 300px;
   margin-top: 20%;
 }
-.avatar {
+.aavatar {
   margin-bottom: 40px;
   transition: transform 0.3s ease-in-out;
 }
-.avatar:hover {
+.aavatar:hover {
   transform: scale(1.2);
 }
 
@@ -235,4 +263,17 @@
 }
 .createLoaderON {
   display: block;
+}
+/* ?added a */
+.addedandPlus {
+  display: inline-flex;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  align-items: center;
+  color: green;
+}
+.joinedText {
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 1.2em;
 }
