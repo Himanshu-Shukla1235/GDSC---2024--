@@ -1,0 +1,21 @@
+.animated-border {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+  }
+  
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #3498db; /* Change color as needed */
+    transition: width 0.3s ease;
+  }
+  
+  .animated-border:hover::before {
+    width: 100%;
+  }
+  

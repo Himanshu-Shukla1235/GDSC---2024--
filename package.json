@@ -10,9 +10,16 @@
     },
     "/openweathermap-api": {
       "target": "https://api.openweathermap.org",
-      "pathRewrite": { "^/openweathermap-api": "" },
+      "pathRewrite": {
+        "^/openweathermap-api": ""
+      },
       "changeOrigin": true
+    },
+    "/cloudinary":{
+      "target":"https://api.cloudinary.com",
+      "changeOrigin":true
     }
+
   },
   "scripts": {
     "start": "node server/app.js",
@@ -22,6 +29,10 @@
   "author": "him",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/lab": "^5.0.0-alpha.165",
+    "@mui/material": "^5.15.10",
     "@react-google-maps/api": "^2.19.2",
     "react-scroll": "^1.9.0"
   }

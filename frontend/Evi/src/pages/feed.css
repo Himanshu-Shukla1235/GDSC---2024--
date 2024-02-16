@@ -1,0 +1,70 @@
+.mainFeed {
+  margin-top: 20px;
+  width: 100%;
+  height: 1000px;
+ 
+}
+
+.feedContainer {
+  border: 1px solid red;
+  height: 90vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 50% 30%;
+}
+
+.feedSection1 {
+  border: 1px solid red;
+}
+.feedSection2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+  
+
+}
+.feedSection22{
+  display: flex;
+  flex-direction: column;
+  max-height: 870px; /* Set a maximum height for the container */
+  overflow-y: scroll;
+  border: 1px solid rgb(17, 0, 255);
+  margin-top: 10px;
+}
+.feedSection2 .feedSection3 {
+  border: 1px solid red;
+}
+.feed-suggestion {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .feedContainer {
+    border: 1px solid red;
+    height: 90vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    .feedSection3 {
+      display: none;
+    }
+  }
+
+  .feedContainerSuggestion {
+    border: 1px solid red;
+    height: 90vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    .feedSection2 {
+      display: none;
+    }
+  }
+  .feed-suggestion {
+    display: block;
+    position: absolute;
+    right: 0;
+  }
+}

@@ -16,12 +16,15 @@ const authRouter = require('./Routes/auth');
 const messagesRouter = require('./Routes/messages');
 const roomsRouter = require('./Routes/chatRooms');
 const cors = require('cors');
+const feedRouter=require('./Routes/feed')
+const cfpRouter=require('./Routes/carboFootprint')
 //----------------------------------------------------cors-------------------------------------->>>
 
 //---------------------------------------------------middlewares--------------------------------->>>
 
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({extended:false}));
 
 app.use((req, res, next) => {
     req.io = io;
@@ -34,6 +37,8 @@ app.use('/api/v1/test', testRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/messages', messagesRouter);
 app.use('/api/v1/chat', roomsRouter);
+app.use('/api/v1/feed',feedRouter);
+app.use('/api/v1/carbonFootPrint',cfpRouter);
 
 //errors
 app.use(notFound);

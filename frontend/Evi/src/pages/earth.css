@@ -71,7 +71,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 90%;
-  height: 50%;
+  height: 60%;
   background: linear-gradient(rgba(105, 239, 114, 0), rgba(56, 57, 56, 0));
 
   backdrop-filter: blur(10px);
@@ -158,6 +158,151 @@
   animation: upDownMotion 2s ease-in-out infinite;
 }
 
+.boxE331 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: solid 3px rgb(0, 0, 0);
+  height: 30px;
+  width: 60%;
+  height: 90%;
+  gap: 20px;
+}
+.HeadingE1 {
+  background-color: rgba(227, 227, 227, 0);
+  /* border-bottom: solid 3px rgb(0, 0, 0); */
+  width: 90%;
+  padding: 3%;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(225, 227, 225, 0.064);
+  font-size: 2rem;
+  margin-bottom: 10%;
+  font-weight: 2;
+  border-bottom: solid 3px rgba(0, 0, 0, 0.205);
+
+  color: rgba(10, 81, 245, 0.473);
+  font-family: sans-serif;
+}
+.boxE332 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 40%;
+  height: 90%;
+  gap: 40px;
+  background-color: rgba(255, 0, 0, 0);
+}
+.boxE3321 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.2rem;
+  width: 90%;
+  height: 35%;
+  border: solid rgb(0, 0, 0) 1px;
+  background: whitesmoke;
+  overflow-y: scroll;
+  border-radius: 10px;
+  padding-top: 4pxpx;
+}
+
+/* Scrollbar */
+.boxE3321::-webkit-scrollbar {
+  width: 14px; /* Width of the scrollbar */
+  margin: 0.4em;
+}
+
+/* Track */
+.boxE3321::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.966); /* Light grey with opacity */
+  border: solid 1px rgba(0, 0, 0, 0.717);
+  border-radius: 10px;
+  margin: 0.4em;
+}
+
+/* Handle */
+.boxE3321::-webkit-scrollbar-thumb {
+  background: rgb(174, 189, 242); /* Grey with opacity */
+  border-radius: 10px;
+  height: 50px; /* Set the height of the scrollbar thumb */
+  padding: 5px; /* Add padding around the scrollbar thumb */
+}
+
+/* Handle on hover */
+.boxE3321::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.5); /* Dark grey with opacity */
+}
+
+.boxE3311 {
+  display: flex;
+  flex-direction: row;
+ 
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(219, 216, 216, 0);
+  width: 100%;
+  height: 8%;
+  border-radius: 10px;
+  padding-right: 20%;
+  padding-left: 20%;
+  gap:0%;
+  /* border: solid 3px red; */
+
+  animation: upDownMotion2 2s ease-in-out infinite;
+}
+
+/*-- css of .modal-overlay--- */
+.modal-overlay {
+  position: fixed;
+  top: 1.5%; /* Added "rem" unit */
+  left: 62%; /* Added "rem" unit */
+  width: 35%;
+  height: 61%;
+  background: rgba(253, 253, 253, 0.811);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 600;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  border-top: solid 5px rgb(4, 241, 19);
+  border-bottom: solid 2px rgb(0, 0, 0);
+  border-left: solid 2px rgb(0, 0, 0);
+  border-right: solid 2px rgb(0, 0, 0);
+  animation: upDownMotion2 2s ease-in-out infinite;
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0);
+  padding: 20px;
+  width: 90%;
+  height: 50%;
+  border-radius: 5px;
+
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0); */
+}
+
+.modal-close {
+  cursor: pointer;
+  z-index: 300;
+  position: absolute;
+  top: 10px; /* Adjust the top distance */
+  right: 10px; /* Adjust the right distance */
+}
+
 .footerE {
   position: sticky;
   bottom: 0;
@@ -170,5 +315,40 @@
   }
   50% {
     transform: translateY(-7px); /* Adjust the distance as needed */
+  }
+}
+@keyframes upDownMotion2 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px); /* Adjust the distance as needed */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .boxE2 {
+    height: 500px;
+    width: 98%;
+  }
+  .boxE3 {
+    width: 98%;
+  }
+  .boxE32 {
+    width: 300px;
+    flex-direction: column;
+    gap: 10;
+    height: 1200px;
+  }
+  .boxE321 {
+    width: 260px;
+    border-right: none;
+    border-bottom: solid 2px black;
+  }
+  .boxE322 {
+    margin-top: 20px;
+    /* border:solid 3px red; */
+    display: none;
   }
 }

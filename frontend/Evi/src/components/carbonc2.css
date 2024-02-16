@@ -1,0 +1,59 @@
+.carbheadF {
+  color: rgba(0, 0, 255, 0.416);
+  font-family: sans-serif;
+  font-size: 1.5rem;
+}
+.corbmainF {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.corbmainF select {
+  /* border: none; */
+  outline: none;
+  box-shadow: none;
+  width: 9rem;
+  height: 1.5rem;
+  border-radius: 4px;
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  border: 1px grey solid;
+  background-color: transparent;
+}
+.corbmainF select option {
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  width: 50rem;
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  background-color: #000000b6;
+  color: rgb(167, 250, 167);
+}
+.corbmainF select:focus {
+  border-color: #0655ff; /* Change the border color when focused */
+  outline: none;
+
+  border: solid 1px rgb(0, 26, 255); /* Add a subtle box shadow on focus */
+}
+
+.corbmainF input {
+  border: solid 1px rgb(109, 109, 109);
+  outline: none;
+  box-shadow: none;
+  width: 9rem;
+  height: 1.5rem;
+  border-radius: 4px;
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  background-color: transparent;
+}
+.corbmainF input:focus {
+  border-color: #4caf50; /* Change the border color when focused */
+  outline: none;
+
+  border: solid 1px rgb(0, 26, 255);
+}

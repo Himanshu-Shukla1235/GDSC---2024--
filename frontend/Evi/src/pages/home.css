@@ -89,7 +89,7 @@
   width: 40%; /* Adjusted width for responsiveness */
   height: 40vh;
   opacity: 1;
-  font-size: 30px;
+  font-size: 1rem;
   border-bottom: solid #34db37;
   border-top: solid #34db37;
 }
@@ -172,7 +172,7 @@
   align-items: center;
   width: 40%; /* Adjusted width for responsiveness */
   opacity: 1;
-  font-size: 30px;
+  font-size: 1rem;
   height: 40vh;
   border-bottom: solid #34db37;
   border-top: solid #34db37;
