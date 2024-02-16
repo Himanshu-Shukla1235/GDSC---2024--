@@ -19,6 +19,7 @@ import PopupModal from "../components/function components/modalpop";
 import TouchAppIcon from "@mui/icons-material/TouchApp";
 import Carbcal2 from "../components/carboncal2";
 import Carbcal3 from "../components/carbocal3";
+
 //* ------------------------------------------------------------------------------------------- MAIN FUNCTION -------------------------------------------------------------------
 const Earth = () => {
   const [mapLocation, setMapLocation] = useState({
@@ -56,7 +57,7 @@ const Earth = () => {
     for (let index = 0; index < CFPdatabyday.length; index++) {
       totalCFP += CFPdatabyday[index].carbonFootprint;
     }
-    return totalCFP;
+    return totalCFP.toFixed(3);
   };
   //--------------------------------------------------------fetching whether data
   const fetchData = async (latitude, longitude) => {
