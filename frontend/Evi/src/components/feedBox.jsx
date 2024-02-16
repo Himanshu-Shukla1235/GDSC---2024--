@@ -19,7 +19,7 @@ const Feedbox = (props) => {
       </div>
       <div className="Fb12">
         <img
-          src="https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/images/earth%20day.jpg?raw=true"
+          src={props.image}
           alt="image"
         ></img>
       </div>

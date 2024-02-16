@@ -5,7 +5,7 @@ const {StatusCodes}=require('http-status-codes');
 
 const createFeed=async(req,res,next)=>{
 
-  console.log('feed route reached')
+  console.log('feed route reached',req.body)
 
 
 
@@ -21,6 +21,7 @@ const createFeed=async(req,res,next)=>{
         location:req.body.location,
 
     });
+    console.log( "this is backend testing 3 feed",feed)
 
     res.status(StatusCodes.CREATED).json(feed);
 

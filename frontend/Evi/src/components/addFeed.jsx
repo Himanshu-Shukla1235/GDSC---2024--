@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "../components/addfeed.css";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 const AddFeed = () => {
   const [file, setFile] = useState(null);
@@ -16,40 +17,27 @@ const AddFeed = () => {
   });
 
   // Function to convert image into base64
-  const base64Converter = async (File) => {
-    if (!(File instanceof Blob)) {
-      console.error("Invalid file type. Expected a Blob object.");
-      return null;
-    }
-
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(File);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
 
   // Handling image upload
-  const handleUpload = async (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
+  // Handling image upload
+const handleUpload = async (e) => {
+  const selectedFile = e.target.files[0];
+  setFile(selectedFile);
 
-    // Convert and set base64 directly in the state
-    try {
-      const base64Result = await base64Converter(selectedFile);
-      setFeedData({
-        ...feedData,
-        image: "its image correction runing....",
-      });
-    } catch (error) {
-      console.error("Error converting to base64:", error);
-    }
-  };
+  try {
+    // Upload file and get the image URL
+    const imgUrl = await uploadFile(selectedFile);
+
+    // Set the image URL in the feedData state
+    setFeedData({
+      ...feedData,
+      image: `this is ${imgUrl}`,
+    });
+  } catch (error) {
+    console.error("Error uploading file:", error);
+  }
+};
+
 
   // Handle text input for description
   const handleDescriptionChange = (e) => {
@@ -74,8 +62,8 @@ const AddFeed = () => {
     e.preventDefault();
 
     //====aman=================imgUrl has the url of image
-     const img = await uploadFile(file);
-     setImgUrl(img);
+    const img = await uploadFile(file);
+    setImgUrl(img);
     console.log(imgUrl);
     //===========================
 
@@ -127,7 +115,7 @@ const AddFeed = () => {
       }
 
       const { secure_url } = res.data;
-      console.log(secure_url);
+      // console.log(secure_url);
       setImgUrl(secure_url);
 
       return secure_url;
@@ -136,17 +124,25 @@ const AddFeed = () => {
     }
   };
 
-
-
   return (
     <div className="mainupload">
       <form>
         <button type="submit" onClick={(e) => handleAdd(e)}>
           Upload Feed
         </button>
-        <input type="file" ref={inputRef} onChange={handleUpload} required />
+       
+        <input
+          id="fileInput"
+          type="file"
+          ref={inputRef}
+          onChange={handleUpload}
+          required
+          style={{ display: "none" }}
+        />
         <div className="setImage">
-          {file && <img src={URL.createObjectURL(file)} alt="" />}
+          {file && <img src={URL.createObjectURL(file)} alt="" />} <label htmlFor="fileInput">
+         {!file &&<AddPhotoAlternateIcon style={{ fontSize: "300px", opacity: 0.5 }} />} 
+        </label>
         </div>
 
         {/* description */}

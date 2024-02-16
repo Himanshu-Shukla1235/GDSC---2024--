@@ -49,7 +49,7 @@ const feed = () => {
   // };
   //write your code from here do not touch responsive part
   const feedGet = async () => {
-    const feeds = await axios.get();
+    const feeds = await axios.get("http://localhost:5000/api/v1/carbonFootPrint/feed/getFeedAreaWise");
   };
   return (
     <>
@@ -70,7 +70,7 @@ const feed = () => {
               <div className="feedSection21"></div>
               <div className="feedSection22">
                 {" "}
-                <Feedbox ></Feedbox>
+                <Feedbox  image={"https://st2.depositphotos.com/45307138/50235/i/450/depositphotos_502356476-stock-photo-sunset-mirror-padana-plain-river.jpg"}></Feedbox>
                 <Feedbox ></Feedbox>
                 <Feedbox ></Feedbox>
                 {/* {feedDatabase.map((feedget, index) => (
