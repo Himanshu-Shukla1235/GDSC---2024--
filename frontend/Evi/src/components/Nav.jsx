@@ -68,7 +68,7 @@ function Navbar() {
   const [avatar, setAvatar] = useState(null);
   const [imgUrl, setImgUrl] = useState(null);
   const [uploadError, setUploadError] = useState();
-  const [inputValue,setInputValue]=useState()
+  const [inputValue, setInputValue] = useState();
 
   const handleFileChange = (e) => {
     setAvatar(e.target.files[0]);
@@ -137,7 +137,7 @@ function Navbar() {
       if (navRef.current && !navRef.current.contains(event.target)) {
         setAvatarUpload("avatarUploadOFF");
         setUploadError("");
-        setInputValue(null)
+        setInputValue(null);
       }
     };
 
@@ -179,6 +179,7 @@ function Navbar() {
       <div className="avatar">
         {" "}
         <Avatar
+          className="avatar2"
           onClick={(e) => {
             e.stopPropagation(); // Stop the click event from reaching the document
             if (avatarUpload === "avatarUpload")

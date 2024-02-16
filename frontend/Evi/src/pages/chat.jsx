@@ -11,7 +11,8 @@ import Avatar from "@mui/material/Avatar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faBars } from "@fortawesome/free-solid-svg-icons";
 import { blue } from "@mui/material/colors";
-
+import CreateIcon from "@mui/icons-material/Create";
+import AddIcon from "@mui/icons-material/Add";
 const Chat = () => {
   const [placeholder, setPlaceholder] = useState("");
   const word = [
@@ -402,6 +403,8 @@ const Chat = () => {
       // Handle the error as needed
     }
   };
+  //=========================================
+  const [isadded, setisAdded] = useState("");
 
   return (
     <>
@@ -420,7 +423,7 @@ const Chat = () => {
                 placeholder="search"
               />
               <button className="createNewRoomBtn" onClick={openCreateRoomForm}>
-                create
+                <CreateIcon className="createIcon" />
               </button>
             </div>
             <div className="displayChatRooms">
@@ -435,11 +438,22 @@ const Chat = () => {
                     <Avatar alt={room.name} src={room.avatar} />
                     <a>{room.name}</a>
                   </span>
-                  <button
-                    key={room._id}
-                    onClick={() => joinRoom(room._id)}
-                    className={room.className}>
-                    join
+                  <button className="addedandPlus">
+                    <button
+                      key={room._id}
+                      onClick={() => {
+                        joinRoom(room._id), (room.isadded = "joined!");
+                      }}
+                      className={room.className}>
+                      <AddIcon
+                        style={{
+                          display:
+                            room.isadded === "joined!" ? "none" : "block",
+                        }}
+                        className="plus"
+                      />
+                    </button>
+                    <div className="joinedText">{room.isadded}</div>
                   </button>
                 </div>
               ))}
@@ -447,7 +461,11 @@ const Chat = () => {
           </div>
           <div className="chatMessagesSection">
             <span className="currentchatNameandPhoto">
-              <Avatar alt="Avatar" src={currentChatRoomURL} />
+              <Avatar
+                className="avatar2"
+                alt="Avatar"
+                src={currentChatRoomURL}
+              />
               <div className="chatRoomName">{currentChatRoomName}</div>
             </span>
             <div className="messagesDisplayArea">
@@ -495,7 +513,7 @@ const Chat = () => {
               <label htmlFor="avatarInput">
                 <Avatar
                   alt="Avatar"
-                  className="avatar"
+                  className="aavatar"
                   src={
                     roomAvatarLink ||
                     (roomAvatar instanceof File &&
