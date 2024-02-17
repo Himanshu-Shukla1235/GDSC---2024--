@@ -7,7 +7,7 @@ import Feedbox from "../components/feedBox";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Modalpop from "../components/function components/modalpop";
-import Post from "../components/addFeed"
+import Post from "../components/addFeed";
 import {
   Box,
   List,
@@ -66,6 +66,8 @@ const feed = () => {
   //   }
   // };
   //write your code from here do not touch responsive part
+  //seting the outside click visibility:
+
   const [allFeeds, setallFeeds] = useState([]);
   const feedGet = async () => {
     try {
@@ -105,7 +107,9 @@ const feed = () => {
                   width: "80%",
                   maxWidth: 360,
                   bgcolor: "background.paper",
-                }}>
+                  overflow: "hidden",
+                }}
+              >
                 <nav aria-label="main mailbox folders">
                   <List>
                     <ListItem disablePadding>
@@ -150,7 +154,7 @@ const feed = () => {
                       <ListItemButton
                         sx={{ color: "green", borderRadius: "6px" }}
                         onClick={() => {
-                          setIsModalOpen(true);
+                          setIsModalOpen5(true);
                         }}
                       >
                         <ListItemText primary="Post" sx={{}} />
@@ -170,8 +174,12 @@ const feed = () => {
                 {" "}
                 <span style={{ color: "green" }}>FEEDS</span>
               </div>
+              {isModalOpen5 && (
+                <div className="Post">
+                  <Post close={setIsModalOpen5}></Post>
+                </div>
+              )}
               <div className="feedSection22">
-                <div className="Post"></div>
                 {allFeeds &&
                   allFeeds
                     .slice()
@@ -183,7 +191,8 @@ const feed = () => {
                         date={item.time.date}
                         name={item.sender.name}
                         descrip={item.description}
-                        avatar={item.sender.avatar}></FeedBox>
+                        avatar={item.sender.avatar}
+                      ></FeedBox>
                     ))}
                 {/* {feedDatabase.map((feedget, index) => (
                   <Feedbox key={index}></Feedbox>

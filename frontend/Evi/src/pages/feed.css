@@ -37,14 +37,17 @@
   height: 12%;
   border-bottom: solid 2px rgba(72, 72, 72, 0.196);
 }
-/* .Post {
+.Post {
   position: absolute;
   z-index: 500;
-  width: 2500px;
-  left: 93%;
+  width: 190em;
+
+  left: 101%;
+  height: auto;
+ 
   top: 50%;
   transform: translate(-50%, -50%);
-} */
+}
 
 .feedSection22 {
   display: flex;

@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "../components/addfeed.css";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 
-const AddFeed = () => {
+const AddFeed = (props) => {
   const [file, setFile] = useState(null);
   const inputRef = useRef(null);
   const [feedData, setFeedData] = useState({
@@ -115,41 +117,67 @@ const AddFeed = () => {
   };
 
   return (
-    <div className="mainupload">
-      <form>
-        <button type="submit" onClick={(e) => handleAdd(e)}>
-          Upload Feed
-        </button>
+    <>
+      <div className="mainupload">
+        <form><Tooltip title="Post Your Feed" style={{fontSize:"40px", fontFamily:"sans-serif"}} > <Button
+            sx={{
+              backgroundColor: "rrgba(0, 255, 0, 0.5))",
+              marginBottom: "7px",
+              color: "whitesmoke",
+              border: "none",
+              opacity: 0.9,
+            }}
+            variant="contained"
+            type="submit"
+            onClick={(e) => {
+              handleAdd(e);
+              props.close(false);
+            }}
+          >
+            POST
+          </Button></Tooltip>
+         
 
-        <input
-          id="fileInput"
-          type="file"
-          ref={inputRef}
-          onChange={handleUpload}
-          required
-          style={{ display: "none" }}
-        />
-        <div className="setImage">
-          {file && <img src={URL.createObjectURL(file)} alt="" />}{" "}
-          <label htmlFor="fileInput">
-            {!file && (
-              <AddPhotoAlternateIcon
-                style={{ fontSize: "300px", opacity: 0.5 }}
-              />
-            )}
-          </label>
-        </div>
-
-        {/* description */}
-        <div className="discriptionf">
-          <textarea
-            placeholder="Enter your description..."
-            value={feedData.description}
-            onChange={handleDescriptionChange}
+          <input
+            id="fileInput"
+            type="file"
+            ref={inputRef}
+            onChange={handleUpload}
+            required
+            style={{ display: "none" }}
           />
-        </div>
-      </form>
-    </div>
+          <div className="setImage">
+            {file && <img src={URL.createObjectURL(file)} alt="" />}{" "}
+            <label htmlFor="fileInput">
+              {!file && (
+                <div className="addphoto">
+                  {" "}
+                  <Tooltip title="Add Photo" style={{fontSize:"40px", fontFamily:"sans-serif"}}>
+                    {" "}
+                    <AddPhotoAlternateIcon
+                      style={{
+                        fontSize: "200px",
+                        opacity: 0.7,
+                      }}
+                    />
+                  </Tooltip>
+                </div>
+              )}
+            </label>
+          </div>
+
+          {/* description */}
+          <div className="discriptionff">
+            <textarea
+              style={{ border: "none" }}
+              placeholder="Enter your description..."
+              value={feedData.description}
+              onChange={handleDescriptionChange}
+            />
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 
