@@ -27,6 +27,7 @@
   height: 86vh;
   /* overflow-y: hidden; */
   margin-bottom: 10px;
+  background-color: rgba(0, 5, 160, 0.436);
 }
 
 .chatRoomSection {
@@ -116,8 +117,11 @@
 .displayNo {
   display: none;
 }
+.currentChatRoomSET {
+  background-color: rgba(0, 5, 160, 0.436);
+}
 .chatRoom:hover {
-  background-color: rgba(234, 234, 234, 0.818);
+  background-color: rgba(0, 5, 160, 0.22);
   transition-delay: 0.1s;
 }
 /* ==================messages section */
@@ -132,6 +136,9 @@
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid rgb(0, 0, 0);
+  color: white;
+  font-weight: 600;
+  font-size: 1.2em;
 }
 .chatRoomName {
   margin-left: 20px;
@@ -161,7 +168,7 @@
 .messageUser a {
   font-weight: bold;
   text-decoration: none;
-  color: rgb(59, 157, 44);
+  color: rgba(0, 5, 160, 0.737);
 }
 .messageUser p {
   color: rgb(0, 0, 0);
@@ -178,7 +185,7 @@
 }
 .sendMessageBtn {
   width: 20%;
-  background-color: rgb(61, 158, 132);
+  background-color: rgba(0, 5, 160, 0.325);
   border-top-right-radius: 10px;
   color: white;
 }
@@ -187,7 +194,7 @@
   width: 80%;
   padding: 8px;
   /* background-color: red; */
-  border-top: 3px solid rgb(15, 133, 15);
+  border-top: 3px solid rgba(0, 5, 160, 0.436);
 }
 /* =======create room */
 .clickedCreateRoom {
@@ -232,7 +239,7 @@
 .formContainer button {
   margin-top: 10px;
   padding: 5px;
-  background-color: rgb(64, 125, 48);
+  background-color: rgba(0, 5, 160, 0.436);
   width: 100%;
   color: white;
   font-weight: bold;
@@ -270,7 +277,7 @@
   border: none;
   background-color: rgba(255, 255, 255, 0);
   align-items: center;
-  color: green;
+  color: rgba(0, 5, 160, 0.436);
 }
 .joinedText {
   margin-left: 10px;
