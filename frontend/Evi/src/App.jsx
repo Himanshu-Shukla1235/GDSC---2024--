@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav";
-import Contact from "./pages/contact";
+import Contact from "./components/contact";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Home from "./pages/home";
