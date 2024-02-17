@@ -8,6 +8,9 @@ const feed = new mongoose.Schema({
     id: {
       type: String,
     },
+    avatar: {
+      type: String,
+    },
   },
   description: {
     type: String,
@@ -19,7 +22,6 @@ const feed = new mongoose.Schema({
   time: {
     date: {
       type: String,
-  
     },
     clock: {
       type: String,

@@ -5,7 +5,7 @@ import Footer from "../components/footer";
 import FeedBox from "../components/feedBox";
 import Feedbox from "../components/feedBox";
 import axios from "axios";
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
 import {
   Box,
   List,
@@ -95,29 +95,25 @@ const feed = () => {
 
             <div className="feedSection1">
               {" "}
-              <div style={{display:"flex",marginBottom:"30px"}}>Logo</div>
-             
+              <div style={{ display: "flex", marginBottom: "30px" }}>Logo</div>
               <Box
                 sx={{
                   width: "80%",
                   maxWidth: 360,
                   bgcolor: "background.paper",
-                }}
-              >
+                }}>
                 <nav aria-label="main mailbox folders">
                   <List>
-                  <ListItem disablePadding>
+                    <ListItem disablePadding>
                       <ListItemButton>
-                      
                         <ListItemIcon>
-                         <Avatar  sx={{ width: 24, height: 24 }}></Avatar>
+                          <Avatar sx={{ width: 24, height: 24 }}></Avatar>
                         </ListItemIcon>
                         <ListItemText primary="name" />
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton>
-                      
                         <ListItemIcon>
                           <InboxIcon />
                         </ListItemIcon>
@@ -167,7 +163,7 @@ const feed = () => {
                         date={item.time.date}
                         name={item.sender.name}
                         descrip={item.description}
-                      ></FeedBox>
+                        avatar={item.sender.avatar}></FeedBox>
                     ))}
                 {/* {feedDatabase.map((feedget, index) => (
                   <Feedbox key={index}></Feedbox>
