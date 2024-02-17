@@ -19,6 +19,7 @@ const feed = new mongoose.Schema({
   time: {
     date: {
       type: String,
+  
     },
     clock: {
       type: String,

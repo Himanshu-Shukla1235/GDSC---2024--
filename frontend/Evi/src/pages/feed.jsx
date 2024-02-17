@@ -4,6 +4,20 @@ import Navbar from "../components/Nav";
 import Footer from "../components/footer";
 import FeedBox from "../components/feedBox";
 import Feedbox from "../components/feedBox";
+import axios from "axios";
+import Avatar from '@mui/material/Avatar';
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+} from "@mui/material";
+import InboxIcon from "@mui/icons-material/Inbox";
+import DraftsIcon from "@mui/icons-material/Drafts";
+
 const feed = () => {
   // responsive part===========================================
   const [navFeed_suggestion, setnavFeed_suggestion] = useState("feed");
@@ -48,9 +62,22 @@ const feed = () => {
   //   }
   // };
   //write your code from here do not touch responsive part
+  const [allFeeds, setallFeeds] = useState([]);
   const feedGet = async () => {
-    const feeds = await axios.get("http://localhost:5000/api/v1/carbonFootPrint/feed/getFeedAreaWise");
+    try {
+      const feeds = await axios.get(
+        "http://localhost:5000/api/v1/feed/getfeed"
+      );
+      console.log("these are all feeds ", feeds.data);
+      setallFeeds(feeds.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
+  useEffect(() => {
+    feedGet();
+  }, []);
+
   return (
     <>
       <div className="feedBody">
@@ -65,14 +92,83 @@ const feed = () => {
                 suggestion
               </button>
             </nav>
-            <div className="feedSection1">hi</div>
+
+            <div className="feedSection1">
+              {" "}
+              <div style={{display:"flex",marginBottom:"30px"}}>Logo</div>
+             
+              <Box
+                sx={{
+                  width: "80%",
+                  maxWidth: 360,
+                  bgcolor: "background.paper",
+                }}
+              >
+                <nav aria-label="main mailbox folders">
+                  <List>
+                  <ListItem disablePadding>
+                      <ListItemButton>
+                      
+                        <ListItemIcon>
+                         <Avatar  sx={{ width: 24, height: 24 }}></Avatar>
+                        </ListItemIcon>
+                        <ListItemText primary="name" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                      
+                        <ListItemIcon>
+                          <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Inbox" />
+                      </ListItemButton>
+                    </ListItem>
+
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <DraftsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Drafts" />
+                      </ListItemButton>
+                    </ListItem>
+                  </List>
+                </nav>
+                <Divider />
+                <nav aria-label="secondary mailbox folders">
+                  <List>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemText primary="Trash" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component="a" href="#simple-list">
+                        <ListItemText primary="Spam" />
+                      </ListItemButton>
+                    </ListItem>
+                  </List>
+                </nav>
+              </Box>
+            </div>
             <div className="feedSection2">
-              <div className="feedSection21"></div>
+              <div className="feedSection21"> FEEDS</div>
               <div className="feedSection22">
                 {" "}
-                <Feedbox  image={"https://st2.depositphotos.com/45307138/50235/i/450/depositphotos_502356476-stock-photo-sunset-mirror-padana-plain-river.jpg"}></Feedbox>
-                <Feedbox ></Feedbox>
-                <Feedbox ></Feedbox>
+                {allFeeds &&
+                  allFeeds
+                    .slice()
+                    .reverse()
+                    .map((item) => (
+                      <FeedBox
+                        image={item.image}
+                        time={item.time.clock}
+                        date={item.time.date}
+                        name={item.sender.name}
+                        descrip={item.description}
+                      ></FeedBox>
+                    ))}
                 {/* {feedDatabase.map((feedget, index) => (
                   <Feedbox key={index}></Feedbox>
                 ))}{" "} */}

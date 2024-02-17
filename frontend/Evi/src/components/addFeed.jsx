@@ -8,7 +8,7 @@ const AddFeed = () => {
   const inputRef = useRef(null);
   const [feedData, setFeedData] = useState({
     description: "",
-    image: "",
+    image: "", // Storing image URL directly
     time: {
       date: "",
       clock: "",
@@ -19,25 +19,20 @@ const AddFeed = () => {
   // Function to convert image into base64
 
   // Handling image upload
-  // Handling image upload
-const handleUpload = async (e) => {
-  const selectedFile = e.target.files[0];
-  setFile(selectedFile);
+  const handleUpload = async (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
 
-  try {
-    // Upload file and get the image URL
-    const imgUrl = await uploadFile(selectedFile);
-
-    // Set the image URL in the feedData state
-    setFeedData({
-      ...feedData,
-      image: `this is ${imgUrl}`,
-    });
-  } catch (error) {
-    console.error("Error uploading file:", error);
-  }
-};
-
+    try {
+      // Upload file and get the image URL directly set in feedData
+      setFeedData({
+        ...feedData,
+        image: await uploadFile(selectedFile),
+      });
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
 
   // Handle text input for description
   const handleDescriptionChange = (e) => {
@@ -61,12 +56,6 @@ const handleUpload = async (e) => {
   const handleAdd = async (e) => {
     e.preventDefault();
 
-    //====aman=================imgUrl has the url of image
-    const img = await uploadFile(file);
-    setImgUrl(img);
-    console.log(imgUrl);
-    //===========================
-
     try {
       // Set the current time before making the API call
       const currentTime = getCurrentTime();
@@ -78,7 +67,6 @@ const handleUpload = async (e) => {
           clock: currentTime,
         },
       }));
-      
 
       // Perform the API call with feedData
       await axios.post(
@@ -93,11 +81,9 @@ const handleUpload = async (e) => {
   };
 
   // upload url generation function
-  const [imgUrl, setImgUrl] = useState();
-
-  const uploadFile = async () => {
+  const uploadFile = async (selectedFile) => {
     const data = new FormData();
-    data.append("file", file);
+    data.append("file", selectedFile);
     data.append("upload_preset", "images_preset");
 
     try {
@@ -109,15 +95,18 @@ const handleUpload = async (e) => {
       axios.defaults.headers.common["Authorization"] = undefined;
       const res = await axios.post(api, data);
 
-      //re
+      // Set the image URL directly in feedData
+      const { secure_url } = res.data;
+      setFeedData((prevFeedData) => ({
+        ...prevFeedData,
+        image: secure_url,
+      }));
+
+      // Restore Authorization header
       const jwtToken = localStorage.getItem("token");
       if (jwtToken) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
       }
-
-      const { secure_url } = res.data;
-      // console.log(secure_url);
-      setImgUrl(secure_url);
 
       return secure_url;
     } catch (error) {
@@ -131,7 +120,7 @@ const handleUpload = async (e) => {
         <button type="submit" onClick={(e) => handleAdd(e)}>
           Upload Feed
         </button>
-       
+
         <input
           id="fileInput"
           type="file"
@@ -141,9 +130,14 @@ const handleUpload = async (e) => {
           style={{ display: "none" }}
         />
         <div className="setImage">
-          {file && <img src={URL.createObjectURL(file)} alt="" />} <label htmlFor="fileInput">
-         {!file &&<AddPhotoAlternateIcon style={{ fontSize: "300px", opacity: 0.5 }} />} 
-        </label>
+          {file && <img src={URL.createObjectURL(file)} alt="" />}{" "}
+          <label htmlFor="fileInput">
+            {!file && (
+              <AddPhotoAlternateIcon
+                style={{ fontSize: "300px", opacity: 0.5 }}
+              />
+            )}
+          </label>
         </div>
 
         {/* description */}
