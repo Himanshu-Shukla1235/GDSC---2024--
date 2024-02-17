@@ -52,6 +52,10 @@ const Chat = () => {
   // cretaeing form
   const openCreateRoomForm = () => {
     setRoomFormClass("clickedCreateRoom");
+    setchatRoomSection("chatRoomSectionClicked");
+    setchatMessagesSection("chatMessagesSectionClicked");
+    // const a=document.querySelector('.chatMessagesSection')
+    // a.style.filter="blur(5px)"
   };
 
   //crreaing new room
@@ -404,7 +408,10 @@ const Chat = () => {
     }
   };
   //=========================================
-  const [isadded, setisAdded] = useState("");
+  const [chatRoomSection, setchatRoomSection] = useState("chatRoomSection");
+  const [chatMessagesSection, setchatMessagesSection] = useState(
+    "chatMessagesSection"
+  );
 
   return (
     <>
@@ -413,7 +420,7 @@ const Chat = () => {
           <Navbar></Navbar>
         </header>
         <div className="chatContainer">
-          <div className="chatRoomSection">
+          <div className={chatRoomSection}>
             <div className="chatSearchSection">
               <input
                 onChange={onchangeRoom}
@@ -459,7 +466,7 @@ const Chat = () => {
               ))}
             </div>
           </div>
-          <div className="chatMessagesSection">
+          <div className={chatMessagesSection}>
             <span className="currentchatNameandPhoto">
               <Avatar
                 className="avatar2"
@@ -504,7 +511,10 @@ const Chat = () => {
               onClick={() => {
                 setRoomFormClass("createRoom"),
                   setCreateRoomError(""),
-                  setRoomAvatar(null);
+                  setchatRoomSection("chatRoomSection"),
+                  setchatMessagesSection("chatMessagesSection");
+                // setRoomAvatar();
+                // setRoomAvatarLink(null);
               }}>
               <CloseIcon></CloseIcon>
             </button>
@@ -515,9 +525,10 @@ const Chat = () => {
                   alt="Avatar"
                   className="aavatar"
                   src={
-                    roomAvatarLink ||
+                    // roomAvatarLink ||
                     (roomAvatar instanceof File &&
-                      URL.createObjectURL(roomAvatar))
+                      URL.createObjectURL(roomAvatar)) ||
+                    ""
                   }
                   style={{ cursor: "pointer", width: "100px", height: "100px" }}
                 />
