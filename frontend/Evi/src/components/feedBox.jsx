@@ -8,6 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Avatar from "@mui/material/Avatar";
 import ChatIcon from '@mui/icons-material/Chat';
+
 const Feedbox = (props) => {
   const [value, setValue] = React.useState(0);
   useEffect(()=>{console.log("testing image props", props.image)}
@@ -20,13 +21,12 @@ const Feedbox = (props) => {
 
   //-----------------------------------------------------
 
-  return (
-    <div className="Fb1">
+  return (<><div className="Fb1">
       <div className="Fb11">
       {/* //avatar */}
         <div className="fb-time">
           <Avatar src="/broken-image.jpg" /> {props.name}
-          <span style={{ color: "grey" }}>|{props.time}</span>
+          <span style={{ color: "grey" }}>| {props.time} | {props.date}</span>
         </div>
         <div className="fb-bar"></div>
       </div>
@@ -38,7 +38,7 @@ const Feedbox = (props) => {
       ) : null}
 
       <div className="Fb13">
-        <div className="discriptionf" style={{color:"gray"}}>{props.descrip}</div>
+       {props.descrip}
       </div>
 
       <div className="bottomnavigatef">
@@ -54,7 +54,8 @@ const Feedbox = (props) => {
           <BottomNavigationAction label="" icon={<LocationOnIcon />} />
         </BottomNavigation>
       </div>
-    </div>
+    </div></>
+    
   );
 };
 

@@ -2,12 +2,11 @@
   margin-top: 20px;
   width: 100%;
   height: 86vh;
- 
 }
 
 .feedContainer {
   border: 1px solid rgb(0, 0, 0);
-  height:95vh;
+  height: 95vh;
   width: 100%;
   display: grid;
   grid-template-columns: 20% 50% 30%;
@@ -26,11 +25,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-height: 95vh;
-  
-
+  height: 95vh;
 }
-.feedSection22{
+.feedSection21 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.358);
+  width: 98%;
+  height: 12%;
+  border-bottom: solid 2px rgba(72, 72, 72, 0.196);
+}
+/* .Post {
+  position: absolute;
+  z-index: 500;
+  width: 2500px;
+  left: 93%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+.feedSection22 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -49,14 +65,32 @@ height: 95vh;
 }
 
 .feedSection22::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0); /* Set the color of the thumb with opacity 0 */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0
+  ); /* Set the color of the thumb with opacity 0 */
 }
 
 .feedSection22::-webkit-scrollbar-track {
-  background-color: rgba(0, 0, 0, 0); /* Set the color of the track with opacity 0 */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0
+  ); /* Set the color of the track with opacity 0 */
 }
 .feedSection2 .feedSection3 {
-  border: 1px solid red;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.feedSection3 {
+  border: solid 1px black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 }
 .feed-suggestion {
   display: none;

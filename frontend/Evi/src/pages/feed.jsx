@@ -5,7 +5,9 @@ import Footer from "../components/footer";
 import FeedBox from "../components/feedBox";
 import Feedbox from "../components/feedBox";
 import axios from "axios";
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
+import Modalpop from "../components/function components/modalpop";
+import Post from "../components/addFeed"
 import {
   Box,
   List,
@@ -17,12 +19,14 @@ import {
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/Inbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
+import EmailIcon from "@mui/icons-material/Email";
 
 const feed = () => {
   // responsive part===========================================
   const [navFeed_suggestion, setnavFeed_suggestion] = useState("feed");
   const [feedContainerClassName, setFeedContainerClassName] =
     useState("feedContainer");
+  const [isModalOpen5, setIsModalOpen5] = useState(false);
 
   useEffect(() => {
     console.log(navFeed_suggestion);
@@ -95,8 +99,7 @@ const feed = () => {
 
             <div className="feedSection1">
               {" "}
-              <div style={{display:"flex",marginBottom:"30px"}}>Logo</div>
-             
+              <div style={{ display: "flex", marginBottom: "30px" }}>Logo</div>
               <Box
                 sx={{
                   width: "80%",
@@ -106,22 +109,28 @@ const feed = () => {
               >
                 <nav aria-label="main mailbox folders">
                   <List>
-                  <ListItem disablePadding>
+                    <ListItem disablePadding>
                       <ListItemButton>
-                      
                         <ListItemIcon>
-                         <Avatar  sx={{ width: 24, height: 24 }}></Avatar>
+                          <Avatar sx={{ width: 24, height: 24 }}></Avatar>
                         </ListItemIcon>
                         <ListItemText primary="name" />
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                       <ListItemButton>
-                      
                         <ListItemIcon>
                           <InboxIcon />
                         </ListItemIcon>
                         <ListItemText primary="Inbox" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <EmailIcon></EmailIcon>
+                        </ListItemIcon>
+                        <ListItemText primary="Messages" />
                       </ListItemButton>
                     </ListItem>
 
@@ -139,8 +148,13 @@ const feed = () => {
                 <nav aria-label="secondary mailbox folders">
                   <List>
                     <ListItem disablePadding>
-                      <ListItemButton>
-                        <ListItemText primary="Trash" />
+                      <ListItemButton
+                        sx={{ color: "green", borderRadius: "6px" }}
+                        onClick={() => {
+                          setIsModalOpen(true);
+                        }}
+                      >
+                        <ListItemText primary="Post" sx={{}} />
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -153,9 +167,12 @@ const feed = () => {
               </Box>
             </div>
             <div className="feedSection2">
-              <div className="feedSection21"> FEEDS</div>
-              <div className="feedSection22">
+              <div className="feedSection21">
                 {" "}
+                <span style={{ color: "green" }}>FEEDS</span>
+              </div>
+              <div className="feedSection22">
+                <div className="Post"></div>
                 {allFeeds &&
                   allFeeds
                     .slice()
@@ -174,7 +191,9 @@ const feed = () => {
                 ))}{" "} */}
               </div>{" "}
             </div>
-            <div className="feedSection3">sugg</div>
+            <div className="feedSection3">
+              <span style={{ color: "green" }}>Recomend </span> <div></div>
+            </div>
           </div>
         </main>
 
