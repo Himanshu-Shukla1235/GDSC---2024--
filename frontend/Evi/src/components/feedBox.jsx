@@ -14,9 +14,16 @@ const Feedbox = (props) => {
    
   ,[])
 
+  //aman write from here
+
+
+
+  //-----------------------------------------------------
+
   return (
     <div className="Fb1">
       <div className="Fb11">
+      {/* //avatar */}
         <div className="fb-time">
           <Avatar src="/broken-image.jpg" /> {props.name}
           <span style={{ color: "grey" }}>|{props.time}</span>
