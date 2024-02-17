@@ -9,8 +9,6 @@
   align-items: center;
   /* border: 1px solid green; */
   padding-bottom: 20px;
-  
-  
 }
 
 /* #bottomnav{
@@ -48,6 +46,6 @@
   background-color: rgb(255, 255, 255, 0);
   /* backdrop-filter: blur(7px); */
 }
-.displayNO{
+.displayNO {
   display: none;
 }

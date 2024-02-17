@@ -96,10 +96,10 @@ const Home = () => {
           </div>
         </div>
         <div className="boxH5"></div>
-        <Contact/>
+        <Contact />
       </main>
       <footer className="footer">
-        <Footer />
+        <Footer className="footerContact" />
       </footer>
     </>
   );
