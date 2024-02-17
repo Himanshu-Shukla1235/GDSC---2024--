@@ -20,9 +20,11 @@
 } */
 
 .chatContainer {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.244);
   border: 1px solid rgb(0, 0, 0);
 
   display: flex;
+
   flex-direction: row;
   height: 86vh;
   /* overflow-y: hidden; */
@@ -32,14 +34,29 @@
 
 .chatRoomSection {
   /* border: 1px solid red; */
+
   width: 40vw;
   border: none;
+  box-shadow: 40px;
+}
+.chatRoomSectionClicked {
+  display: grid;
+  grid-template-rows: 6% 90%;
+  width: 40vw;
+  border: none;
+  box-shadow: 40px;
+  filter: blur(5px);
 }
 
 .chatMessagesSection {
   /* border: 1px solid red; */
   width: 60vw;
   border: none;
+}
+.chatMessagesSectionClicked {
+  width: 60vw;
+  border: none;
+  filter: blur(5px);
 }
 
 /* ====================chat room section */
@@ -135,10 +152,13 @@
   display: inline-flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid rgb(0, 0, 0);
+
   color: white;
   font-weight: 600;
   font-size: 1.2em;
+  z-index: 10;
+
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.244);
 }
 .chatRoomName {
   margin-left: 20px;
@@ -204,14 +224,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 40px -10px;
 
-  background-color: rgba(216, 216, 216, 0.3);
+  background-color: rgb(231, 231, 231);
   backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
   transition: opacity 0.5s ease-in-out, transform 2s ease-in-out;
   border: 1px solid black;
 }
+
 .createRoom {
   display: none;
 }
@@ -225,6 +247,8 @@
 }
 .aavatar {
   margin-bottom: 40px;
+
+  box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.741);
   transition: transform 0.3s ease-in-out;
 }
 .aavatar:hover {
