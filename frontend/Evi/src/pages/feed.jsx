@@ -105,8 +105,7 @@ const feed = () => {
                   width: "80%",
                   maxWidth: 360,
                   bgcolor: "background.paper",
-                }}
-              >
+                }}>
                 <nav aria-label="main mailbox folders">
                   <List>
                     <ListItem disablePadding>
@@ -184,7 +183,7 @@ const feed = () => {
                         date={item.time.date}
                         name={item.sender.name}
                         descrip={item.description}
-                      ></FeedBox>
+                        avatar={item.sender.avatar}></FeedBox>
                     ))}
                 {/* {feedDatabase.map((feedget, index) => (
                   <Feedbox key={index}></Feedbox>
