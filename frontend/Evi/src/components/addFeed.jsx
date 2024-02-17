@@ -119,24 +119,30 @@ const AddFeed = (props) => {
   return (
     <>
       <div className="mainupload">
-        <form><Tooltip title="Post Your Feed" style={{fontSize:"40px", fontFamily:"sans-serif"}} > <Button
-            sx={{
-              backgroundColor: "rrgba(0, 255, 0, 0.5))",
-              marginBottom: "7px",
-              color: "whitesmoke",
-              border: "none",
-              opacity: 0.9,
-            }}
-            variant="contained"
-            type="submit"
-            onClick={(e) => {
-              handleAdd(e);
-              props.close(false);
-            }}
+        <form>
+          <Tooltip
+            title="Post Your Feed"
+            style={{ fontSize: "40px", fontFamily: "sans-serif" }}
           >
-            POST
-          </Button></Tooltip>
-         
+            {" "}
+            <Button
+              sx={{
+                backgroundColor: "rrgba(0, 255, 0, 0.5))",
+                marginBottom: "7px",
+                color: "whitesmoke",
+                border: "none",
+                opacity: 0.9,
+              }}
+              variant="contained"
+              type="submit"
+              onClick={(e) => {
+                handleAdd(e);
+                props.close(false);
+              }}
+            >
+              POST
+            </Button>
+          </Tooltip>
 
           <input
             id="fileInput"
@@ -152,7 +158,10 @@ const AddFeed = (props) => {
               {!file && (
                 <div className="addphoto">
                   {" "}
-                  <Tooltip title="Add Photo" style={{fontSize:"40px", fontFamily:"sans-serif"}}>
+                  <Tooltip
+                    title="Add Photo"
+                    style={{ fontSize: "40px", fontFamily: "sans-serif" }}
+                  >
                     {" "}
                     <AddPhotoAlternateIcon
                       style={{

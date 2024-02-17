@@ -74,7 +74,7 @@ const feed = () => {
       const feeds = await axios.get(
         "http://localhost:5000/api/v1/feed/getfeed"
       );
-      console.log("these are all feeds ", feeds.data);
+      console.log("these are all feeds ", feeds.data[1]._id);
       setallFeeds(feeds.data);
     } catch (err) {
       console.log(err);
