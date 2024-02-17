@@ -9,6 +9,7 @@ const createFeed = async (req, res, next) => {
     sender: {
       name: req.user.username,
       id: req.user.userId,
+      avatar: req.user.avatar,
     },
     description: req.body.description,
     image: req.body.image,
