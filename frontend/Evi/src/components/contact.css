@@ -3,7 +3,7 @@
 .contactContainer {
   height: 90vh;
   width: 100%;
-  background-color: rgb(29, 100, 65);
+  background-color: rgba(11, 23, 72, 0.918);
   display: flex;
   flex-direction: column;
   align-items: center;

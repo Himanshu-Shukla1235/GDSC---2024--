@@ -15,7 +15,7 @@
   justify-content: flex-start;
   align-items: center;
   background-color: white;
-  height: 400vh; /* Adjusted height for responsiveness */
+  /* Adjusted height for responsiveness */
 }
 
 .boxH1 {
@@ -51,6 +51,7 @@
     background-image: url("https://r4.wallpaperflare.com/wallpaper/270/709/236/macos-mojave-macbook-pro-apple-computer-wallpaper-07ff12647fa5af1aef72f49111118755.jpg");
   }
 }
+/* ==================== */
 
 .boxH11 {
   display: flex;
@@ -66,194 +67,81 @@
   backdrop-filter: blur(5px);
   color: rgb(232, 229, 229);
 }
-
-.boxH2 {
-  display: flex;
-  height: 60vh;
-  width: 80%; /* Adjusted width for responsiveness */
-  background-size: cover;
-  background-position: center;
-  align-items: center;
-  background-repeat: no-repeat;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  align-self: center; /* Centered the element */
-  gap: 30%;
+/* =========section0home */
+.section0home {
+  height: 500px;
+  border: 1px solid;
+  width: 90vw;
+  position: absolute;
+  top: 70vh;
+  background-color: aliceblue;
+  /* border-top-left-radius: 50px;
+  border-top-right-radius: 50px; */
+  border-radius: 10px;
 }
-
-.boxH21 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 40%; /* Adjusted width for responsiveness */
-  height: 40vh;
-  opacity: 1;
-  font-size: 1rem;
-  border-bottom: solid #34db37;
-  border-top: solid #34db37;
+/* ========section */
+.section1 {
+  font-size: 1.2em;
+  margin-top: 400px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
-.boxH22 {
+.section1ele {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 300px; /* Adjust the width and height as needed */
   height: 300px;
-  background-color: #34db37; /* Adjust the background color as needed */
-  border-radius: 50%;
-  /* Adjusted width for responsiveness */
-  opacity: 1;
-  background: url("https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/images/03e1ce49-9ac5-42ee-97c6-f8bc2b3b44c3.png?raw=true")
-    center/cover no-repeat;
-  animation: upDownMotion 2s ease-in-out infinite;
+
+  width: 380px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  padding: 20px;
+  box-shadow: 2px -2px 8px -2px rgba(53, 111, 198, 0.615);
+  background-color: rgb(155, 189, 219);
 }
-/* CSS for smooth up and down motion */
-@keyframes upDownMotion {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px); /* Adjust the distance as needed */
-  }
+.section1ele button {
+  border: none;
+  padding: 5px;
+  margin-top: 10px;
+  box-shadow: 5px 5px 5px -2px rgb(45, 45, 45);
+  width: 100px;
+  color: white;
+  border-radius: 4px;
+  transition: transform 0.3s ease-in-out;
+  background-color: rgb(37, 87, 131);
 }
-
-.boxH3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 80vh;
-  width: 95%; /* Adjusted width for responsiveness */
-  background-color: rgba(255, 255, 255, 0.342);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  border: solid 3px center;
-
-  align-self: center; /* Centered the element */
-
-  background: url("https://wepik.com/api/image/ai/9b459a42-4179-4962-b3c1-aa18c2f25a28?thumb=1")
-    center/cover no-repeat;
-
-  border-radius: 10px;
-  border: solid 3px black;
-}
-.boxH31 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.297);
-  height: 95%;
-  width: 95%;
-  backdrop-filter: blur(8px);
+.section1ele button:hover {
+  transform: scale(1.2);
 }
 
-.boxH4 {
-  display: flex;
-  height: 60vh;
-  width: 80%; /* Adjusted width for responsiveness */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  align-self: center; /* Centered the element */
-  overflow: hidden;
-  gap: 40%;
+.news {
+  margin-top: 100px;
+  margin-left: 500px;
 }
-.boxH41 {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 40%; /* Adjusted width for responsiveness */
-  opacity: 1;
-  font-size: 1rem;
-  height: 40vh;
-  border-bottom: solid #34db37;
-  border-top: solid #34db37;
+.newsContainer {
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
-.boxH42 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 400px; /* Adjust the width and height as needed */
-  height: 400px;
-  background-color: #34db37; /* Adjust the background color as needed */
-  border-radius: 50%;
-  /* Adjusted width for responsiveness */
-  opacity: 1;
-  background: url("https://github.com/Himanshu-Shukla1235/GDSC---2024--/blob/main/frontend/Evi/public/images/air%20polutedEarth.jpg?raw=true")
-    center/cover no-repeat;
-  animation: upDownMotion 2s ease-in-out infinite;
+.newsContainer div {
+  margin-left: 20px;
+  margin-top: 20px;
 }
-
-.boxH5 {
-  display: flex;
-  height: 80vh;
-  width: 95%; /* Adjusted width for responsiveness */
-  background-color: rgba(255, 255, 255, 0.342);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  border: solid 3px center;
-
-  align-self: center; /* Centered the element */
-
-  background: url("") center/cover no-repeat;
-
-  border-radius: 10px;
-  border: solid 3px black;
+.newsContainer div a {
+  text-decoration: none;
+  background-color: rgb(167, 203, 235);
+  padding: 5px;
+  margin-top: 20px;
 }
-
-/* Media Queries for responsiveness */
-@media screen and (max-width: 768px) {
-  .boxH1,
-  .boxH11,
-  .boxH3 {
-    width: 100%;
-  }
-  .boxH1 {
-    height: 50vh;
-  }
-  .boxH41 {
-    width: 100%;
-    height: 30vh;
-    margin: 25px;
-    border-bottom: solid #34db37;
-    border-top: solid #34db37;
-    font-size: 20px;
-  }
-  .boxH42 {
-    display: none;
-  }
-  .boxH21 {
-    padding: 3px;
-    width: 100%;
-    height: 30vh;
-    margin: 25px;
-    border-bottom: solid #34db37;
-    border-top: solid #34db37;
-    font-size: 20px;
-  }
-
-  .boxH2 {
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-  .boxH22 {
-    display: none;
-  }
-  .boxH3,
-  .boxH5 {
-    height: 50vh;
-  }
+.newsContainer div p {
+  width: 500px;
+  margin-bottom: 20px;
+}
+/*  */
+.iconFe {
+  color: rgb(5, 34, 55);
+  transform: scale(1.8);
+  margin-bottom: 30px;
+  margin-left: 10px;
 }
