@@ -24,12 +24,13 @@
   height: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+
   justify-content: space-between;
   /* border: 1px solid red; */
   border-radius: 20px;
-  background-color: rgba(3, 3, 3, 0.162);
+  background-color: rgba(14, 13, 13, 0.162);
   backdrop-filter: blur(8px);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.5); */
 }
 #bottomnav a {
   /* border: 1px solid rgb(100, 186, 25); */
@@ -42,7 +43,7 @@
   /* font-weight: bold; */
 }
 #bottomnav a:hover {
-  color: rgb(54, 104, 65);
+  color: rgb(14, 34, 247);
   background-color: rgb(255, 255, 255, 0);
   /* backdrop-filter: blur(7px); */
 }

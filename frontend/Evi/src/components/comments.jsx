@@ -3,6 +3,8 @@ import axios from "axios";
 import "../components/comments.css";
 import { Avatar } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import EditIcon from "@mui/icons-material/Edit";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 
 const MessagesPage = ({ Feedid }) => {
   const [FeedDataById, setFeedDatabyId] = useState([]);
@@ -65,52 +67,73 @@ const MessagesPage = ({ Feedid }) => {
       <div className="comentsMain">
         <div className="allcomments">
           {FeedDataById &&
-            FeedDataById.map((item) => (
-              <>
-                <div className="commentShowBox">
-                  <Avatar
-                    alt=""
-                    src={item.sender.avatar}
-                    sx={{ width: 33, height: 33, marginBottom: "15%" }}
-                    style={{}}
-                  ></Avatar>
-                  <div
-                    style={{
-                      borderLeft: "1px solid #ccc",
-                      height: "100px",
-                      margin: "0 10px",
-                    }}
-                  ></div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      width: "95%",
+            FeedDataById.slice()
+              .reverse()
+              .map((item) => (
+                <>
+                  <div className="commentShowBox">
+                    <Avatar
+                      alt=""
+                      src={item.sender.avatar}
+                      sx={{ width: 33, height: 33, marginBottom: "15%" }}
+                      style={{}}
+                    ></Avatar>
+                    <div
+                      style={{
+                        borderLeft: "1px solid #ccc",
+                        height: "100px",
+                        margin: "0 10px",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "95%",
 
-                      justifyContent: "flex-start",
-                      alignItems: "flex-start",
-                      wordWrap: "break-word", // Enable word wrapping
-                      height: "10em",
-                      padding: "0.4em",
-                    }}
-                  >
-                    <h1 style={{ fontSize: "1em", color: "black" }}>
-                      {item.sender.name}{" "}
-                      <span
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                        wordWrap: "break-word", // Enable word wrapping
+                        height: "10em",
+                        padding: "0.4em",
+                      }}
+                    >
+                      <h1 style={{ fontSize: "1em", color: "black" }}>
+                        {item.sender.name}{" "}
+                        <span
+                          style={{
+                            fontSize: "1em",
+                            color: "grey",
+                            fontWeight: 10,
+                          }}
+                        >
+                          | {item.time} |{" "}
+                        </span>
+                      </h1>
+                      <p style={{}}>{item.comment}</p>
+                      <div
                         style={{
-                          fontSize: "1em",
-                          color: "grey",
-                          fontWeight: 10,
+                          display: "flex",
+                          flexDirection: "row",
+                          marginTop: "10%",
+                          opacity: 0.3,
+                          gap: "0.8em",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          alignSelf: "end",
+                          
                         }}
                       >
-                        | {item.time}
-                      </span>
-                    </h1>
-                    <p style={{}}>{item.comment}</p>
+                        {" "}
+                        <ThumbUpAltIcon
+                          style={{ fontSize: "1.1em" }}
+                        ></ThumbUpAltIcon>{" "}
+                        <EditIcon style={{ fontSize: "1.1em" }}></EditIcon>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </>
-            ))}
+                </>
+              ))}
         </div>
         <div className="addComments">
           <textarea
