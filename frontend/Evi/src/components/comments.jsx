@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../components/comments.css";
+import { Avatar } from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
 
 const MessagesPage = ({ Feedid }) => {
   const [FeedDataById, setFeedDatabyId] = useState([]);
-  const [commentText,setcommentText]=useState("")
+  const [commentText, setcommentText] = useState("");
 
   const settingCommentsByFeedId = (feedid, Feed) => {
     for (let index = Feed.data.length - 1; index >= 0; index--) {
@@ -14,23 +16,41 @@ const MessagesPage = ({ Feedid }) => {
       }
     }
   };
-   //add comments to the feed
-   const addcomment=async()=>{
-    const commentdata={
-        comment:{commentText}
-    }
-    try{
+  //add comments to the feed
+  const addcomment = async () => {
+    const commentdata = {
+      comment: commentText,
+      id: Feedid,
+    };
 
-    }catch(err){
-        console.log(err)
+    // Split the commentText into words using regex
+    const words = commentText.match(/\S+/g) || [];
+
+    // Check if the word count exceeds 70
+    if (words.length > 70) {
+      alert("Exceeded word limit (70 words).");
+      return;
     }
-   }
+    try {
+      await axios.patch(
+        "http://localhost:5000/api/v1/feed/addComment",
+        commentdata
+      );
+      getCommentsData();
+      setcommentText(""); // Clear the textarea after adding the comment
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const getCommentsData = async () => {
     try {
-      const feeds = await axios.get("http://localhost:5000/api/v1/feed/getfeed");
-      console.log("these are all feeds ", feeds.data[31].Comments);
-      settingCommentsByFeedId(feeds.data[31]._id, feeds);
+      const feeds = await axios.get(
+        "http://localhost:5000/api/v1/feed/getfeed"
+      );
+
+      console.log("these are all feeds ", feeds.data[31]._id);
+      settingCommentsByFeedId(Feedid, feeds);
     } catch (err) {
       console.log(err);
     }
@@ -45,19 +65,46 @@ const MessagesPage = ({ Feedid }) => {
       <div className="comentsMain">
         <div className="allcomments">
           {FeedDataById.map((item, index) => (
-            <div  className="commentShowBox">
-              {item}
-            </div>
+            <>
+              <div className="commentShowBox" key={index}>
+                <Avatar
+                  alt=""
+                  src={item.sender.avatar}
+                  sx={{ width: 33, height: 33, marginBottom: "15%" }}
+                  style={{}}
+                ></Avatar>
+                 <div style={{ borderLeft: '1px solid #ccc', height: '100px', margin: '0 10px' }}></div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "95%",
+
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                    wordWrap: "break-word", // Enable word wrapping
+                    height: "10em",
+                    padding: "0.4em",
+                  }}
+                >
+                  <h1 style={{ fontSize: "1em", color: "black" ,}}>{item.sender.name}</h1>
+                  <p style={{}}>{item.comment}</p>
+                </div>
+              </div>
+            </>
           ))}
         </div>
         <div className="addComments">
           <textarea
             id="message"
             placeholder="Enter your comment..."
-            style={{ width: "70%" }}
+            style={{ width: "70%", height: "3em", padding: "0.4em",borderRadius:'7px' }}
             value={commentText}
-            onChange={(e)=>(setcommentText(e.target.value))}
+            onChange={(e) => setcommentText(e.target.value)}
+            
           ></textarea>
+          <button onClick={addcomment} style={{border:'none' ,backgroundColor: "transparent"}}><SendIcon></SendIcon></button>
+         
         </div>
       </div>
     </>

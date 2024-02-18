@@ -4,7 +4,7 @@ import "../components/addfeed.css";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-
+import CloseIcon from "@mui/icons-material/Close";
 const AddFeed = (props) => {
   const [file, setFile] = useState(null);
   const inputRef = useRef(null);
@@ -143,6 +143,20 @@ const AddFeed = (props) => {
               POST
             </Button>
           </Tooltip>
+          <Tooltip  title="Post "
+            style={{ fontSize: "40px", fontFamily: "sans-serif" }}><CloseIcon
+            onClick={() => {
+              props.close(false);
+            }}
+            style={{
+              marginLeft: "670px",
+              marginBottom: "100px",
+              fontSize: "50px",
+              position: "absolute",
+              zIndex: "500",
+            }}
+          ></CloseIcon></Tooltip>
+          
 
           <input
             id="fileInput"

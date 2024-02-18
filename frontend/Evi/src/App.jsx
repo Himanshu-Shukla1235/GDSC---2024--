@@ -58,6 +58,7 @@ function App() {
           <Route path="/afb" element={<Addfeed></Addfeed>} />
           <Route path="/test2" element={<Testing2></Testing2>} />
           <Route path="/comment" element={<Comment></Comment>} />
+          
         </Routes>
       </BrowserRouter>
     </>

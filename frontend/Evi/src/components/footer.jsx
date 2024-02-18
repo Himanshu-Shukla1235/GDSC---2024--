@@ -24,10 +24,10 @@ const footer = () => {
         {/* <button onclick="openBottomnav()">O</button> */}
 
           <div id="bottomnav">
-            <a href="#">Feed</a>
+            <a ><NavLink to={'/feed'}>Feed</NavLink></a>
             <a class="mid"><NavLink to={'/chat'}>Chat</NavLink></a>
             <a href="#" class="mid">Carbon</a>
-            <a href="/earth">Earth</a>
+            <a ><NavLink to={'/earth'}>Earth</NavLink></a>
           </div>
         </div>
     </div>

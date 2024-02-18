@@ -90,6 +90,14 @@ border-radius: 15px;
     font-size: small;
   }
 
+  .comments{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  height: auto;
+  min-height: 100px;
+  }
 
   @media (max-width: 768px) {
     .Fb1 {

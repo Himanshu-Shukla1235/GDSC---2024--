@@ -29,10 +29,11 @@ const getFeedAreaWise = async (req, res, next) => {
 };
 
 const addComment = async (req, res, next) => {
-  console.log("feed route reached");
+  console.log("feed comment route reached");
 
   const feedId = req.body.id; // Assuming the id is in req.body.id
-  const commentText = req.body.comment; // Assuming req.body.comment contains the comment text
+  const commentText = req.body.comment;
+  // Assuming req.body.comment contains the comment text
 
   // Update the feed document by pushing the comment object to the comments array
   const updatedFeed = await Feed.findOneAndUpdate(
@@ -40,7 +41,11 @@ const addComment = async (req, res, next) => {
     {
       $push: {
         Comments: {
-          sender: { name: req.user.username, id: req.user.userId },
+          sender: {
+            name: req.user.username,
+            id: req.user.userId,
+            avatar: req.user.avatar,
+          },
           comment: commentText,
         },
       },

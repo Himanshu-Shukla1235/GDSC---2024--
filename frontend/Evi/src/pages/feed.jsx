@@ -74,7 +74,7 @@ const feed = () => {
       const feeds = await axios.get(
         "http://localhost:5000/api/v1/feed/getfeed"
       );
-      console.log("these are all feeds ", feeds.data[1]._id);
+      console.log("these are all feeds ", feeds.data);
       setallFeeds(feeds.data);
     } catch (err) {
       console.log(err);
@@ -83,6 +83,7 @@ const feed = () => {
   useEffect(() => {
     feedGet();
   }, []);
+
 
   return (
     <>
@@ -192,6 +193,8 @@ const feed = () => {
                         name={item.sender.name}
                         descrip={item.description}
                         avatar={item.sender.avatar}
+                        comment={item.Comments}
+                        feedId={item._id}
                       ></FeedBox>
                     ))}
                 {/* {feedDatabase.map((feedget, index) => (

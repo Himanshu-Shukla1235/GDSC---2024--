@@ -9,9 +9,11 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Avatar from "@mui/material/Avatar";
 import ChatIcon from "@mui/icons-material/Chat";
 import axios from "axios";
+import Commentsin from "../components/comments"
 
 const Feedbox = (props) => {
   const [value, setValue] = React.useState(0);
+  const [commentopen,setcommentopen]=useState(false)
 
   useEffect(() => {
     console.log("testing image props", props.image);
@@ -24,6 +26,7 @@ const Feedbox = (props) => {
   return (
     <>
       <div className="Fb1">
+
         <div className="Fb11">
           {/* //avatar */}
           <div className="fb-time">
@@ -51,11 +54,13 @@ const Feedbox = (props) => {
               setValue(newValue);
             }}
           >
-            <BottomNavigationAction label="" icon={<ChatIcon></ChatIcon>} />
+            <BottomNavigationAction label="" icon={<ChatIcon ></ChatIcon>}  onClick={setcommentopen} />
             <BottomNavigationAction label="" icon={<FavoriteIcon />} />
             <BottomNavigationAction label="" icon={<LocationOnIcon />} />
           </BottomNavigation>
         </div>
+        {commentopen && (<div className="comments"><Commentsin Feedid={props.feedId}></Commentsin></div>)}
+        
       </div>
     </>
   );
