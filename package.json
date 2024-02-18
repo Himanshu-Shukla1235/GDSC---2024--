@@ -15,11 +15,10 @@
       },
       "changeOrigin": true
     },
-    "/cloudinary":{
-      "target":"https://api.cloudinary.com",
-      "changeOrigin":true
+    "/cloudinary": {
+      "target": "https://api.cloudinary.com",
+      "changeOrigin": true
     }
-
   },
   "scripts": {
     "start": "node server/app.js",
@@ -29,6 +28,7 @@
   "author": "him",
   "license": "ISC",
   "dependencies": {
+    "@ant-design/icons": "^5.3.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/lab": "^5.0.0-alpha.165",
