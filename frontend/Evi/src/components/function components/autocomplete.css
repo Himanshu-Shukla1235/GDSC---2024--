@@ -2,18 +2,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 7rem;
   flex-direction: column;
   /* border: solid 3px red; */
   position: relative;
     /* border: solid 3px red; */
+    width: auto;
 }
 
 .boxE11 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: solid 3px red; */
+  width: 70%;
+
 }
 
 .boxE12 {
@@ -27,7 +29,7 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.231);
   /* border: solid 3px red; */
-  width: 30rem;
+  width: 70%;
   height: auto;
   z-index: 2000;
  

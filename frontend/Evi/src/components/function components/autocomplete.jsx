@@ -12,7 +12,7 @@ const LocationSearch = ({ onLocationSelect }) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [showResults, setShowResults] = useState(true); // New state for controlling visibility
 
-// #when the text changes in search the function call...
+  // #when the text changes in search the function call...
   const handleChange = async (value) => {
     setSearchTerm(value);
 
@@ -35,8 +35,7 @@ const LocationSearch = ({ onLocationSelect }) => {
     }
   };
 
-  
-//#to handle the selected location on search
+  //#to handle the selected location on search
   const handleSelectLocation = (selectedLocation) => {
     setSearchTerm(
       `${selectedLocation.name},${selectedLocation.region}, ${selectedLocation.country}`
@@ -63,7 +62,10 @@ const LocationSearch = ({ onLocationSelect }) => {
 
   return (
     <>
+      {/*  ----------------------------------------------------------| navigate |-------------- */}
       <div className="navigate">
+
+   {/* --------------------------------------------------------------| boxE11 |-------------- */}
         <div className="boxE11">
           <TextField
             id="standard-basic"
@@ -88,6 +90,8 @@ const LocationSearch = ({ onLocationSelect }) => {
             style={{ width: "350px" }}
           />
         </div>
+        {/* ------------------------------------------------------------------------|            |-------------- */}
+        
         {showResults && ( // Only render search results if showResults is true
           <div className="searchre">
             <ul>
@@ -104,6 +108,7 @@ const LocationSearch = ({ onLocationSelect }) => {
           </div>
         )}
       </div>
+      {/* ----------------------------------------------------------------|      |-------------- */}
     </>
   );
 };
