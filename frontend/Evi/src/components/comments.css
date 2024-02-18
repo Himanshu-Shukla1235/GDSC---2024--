@@ -9,12 +9,13 @@
   width: 94vh;
   max-height: 60vh;
   padding-top: 2em;
+  background-color: rgba(1, 1, 237, 0);
 }
 
 .allcomments {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   border: solid 1px rgb(86, 86, 86);
   height: 100%;
@@ -22,7 +23,9 @@
   overflow-y: scroll;
 
   gap: 0.4em;
-  background: rgba(85, 85, 85, 0.05);
+  background: rgba(255, 255, 255, 0.05);
+  padding-left: 1em;
+  border-radius: 10px;
 }
 /* scroll design */
 .allcomments::-webkit-scrollbar {
