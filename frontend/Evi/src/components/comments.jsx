@@ -49,7 +49,7 @@ const MessagesPage = ({ Feedid }) => {
         "http://localhost:5000/api/v1/feed/getfeed"
       );
 
-      console.log("these are all feeds ", feeds.data[31]._id);
+      console.log("these are all feeds ", feeds.data);
       settingCommentsByFeedId(Feedid, feeds);
     } catch (err) {
       console.log(err);
@@ -64,44 +64,53 @@ const MessagesPage = ({ Feedid }) => {
     <>
       <div className="comentsMain">
         <div className="allcomments">
-          {FeedDataById.map((item, index) => (
-            <>
-              <div className="commentShowBox" key={index}>
-                <Avatar
-                  alt=""
-                  src={item.sender.avatar}
-                  sx={{ width: 33, height: 33, marginBottom: "15%" }}
-                  style={{}}
-                ></Avatar>
-                <div
-                  style={{
-                    borderLeft: "1px solid #ccc",
-                    height: "100px",
-                    margin: "0 10px",
-                  }}
-                ></div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "95%",
+          {FeedDataById &&
+            FeedDataById.map((item) => (
+              <>
+                <div className="commentShowBox">
+                  <Avatar
+                    alt=""
+                    src={item.sender.avatar}
+                    sx={{ width: 33, height: 33, marginBottom: "15%" }}
+                    style={{}}
+                  ></Avatar>
+                  <div
+                    style={{
+                      borderLeft: "1px solid #ccc",
+                      height: "100px",
+                      margin: "0 10px",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "95%",
 
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
-                    wordWrap: "break-word", // Enable word wrapping
-                    height: "10em",
-                    padding: "0.4em",
-                  }}
-                >
-                  <h1 style={{ fontSize: "1em", color: "black" }}>
-                    {item.sender.name}{" "}
-                    <span style={{ fontSize: "1em", color: "grey",fontWeight:10}}>| {item.time}</span>
-                  </h1>
-                  <p style={{}}>{item.comment}</p>
+                      justifyContent: "flex-start",
+                      alignItems: "flex-start",
+                      wordWrap: "break-word", // Enable word wrapping
+                      height: "10em",
+                      padding: "0.4em",
+                    }}
+                  >
+                    <h1 style={{ fontSize: "1em", color: "black" }}>
+                      {item.sender.name}{" "}
+                      <span
+                        style={{
+                          fontSize: "1em",
+                          color: "grey",
+                          fontWeight: 10,
+                        }}
+                      >
+                        | {item.time}
+                      </span>
+                    </h1>
+                    <p style={{}}>{item.comment}</p>
+                  </div>
                 </div>
-              </div>
-            </>
-          ))}
+              </>
+            ))}
         </div>
         <div className="addComments">
           <textarea

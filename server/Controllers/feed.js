@@ -33,7 +33,7 @@ const addComment = async (req, res, next) => {
 
   const feedId = req.body.id; // Assuming the id is in req.body.id
   const commentText = req.body.comment; // Assuming req.body.comment contains the comment text
-  const currentTime = new Date().toLocaleTimeString();
+  const currentTime = new Date().toLocaleTimeString()
   console.log(currentTime);
   // Update the feed document by pushing the comment object to the comments array
   const updatedFeed = await Feed.findOneAndUpdate(
