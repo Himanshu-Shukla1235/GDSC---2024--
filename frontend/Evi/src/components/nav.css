@@ -47,7 +47,6 @@ nav a:hover {
   visibility: hidden;
   opacity: 0;
   font-size: 1.8rem;
-
 }
 
 .header div,
@@ -60,6 +59,7 @@ nav {
 .mainComponent {
   display: flex;
   justify-content: center;
+
   /* border: 1px solid red; */
   backdrop-filter: blur(7px);
   /* border-bottom: solid 3px blue; */
