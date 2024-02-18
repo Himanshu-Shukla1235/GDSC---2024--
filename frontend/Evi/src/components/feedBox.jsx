@@ -55,7 +55,9 @@ const Feedbox = (props) => {
             }}
           >
             <BottomNavigationAction label="" icon={<ChatIcon ></ChatIcon>}  onClick={setcommentopen} />
-            <BottomNavigationAction label="" icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="" icon={<FavoriteIcon />}  onClick={()=>{
+              setcommentopen(false)
+            }}/>
             <BottomNavigationAction label="" icon={<LocationOnIcon />} />
           </BottomNavigation>
         </div>
