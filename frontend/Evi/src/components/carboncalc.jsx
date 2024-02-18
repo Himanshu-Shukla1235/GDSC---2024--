@@ -10,7 +10,8 @@ import Select from "@mui/material/Select";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-const CarbonFootprintCalculator = () => {
+import CheckIcon from "@mui/icons-material/Check";
+const CarbonFootprintCalculator = (props) => {
   const [countryName, setCountryName] = useState("");
   const [electricityValue, setElectricityValue] = useState("");
   const [electricityUnit, setElectricityUnit] = useState("kWh"); // Default value kWh
@@ -18,9 +19,10 @@ const CarbonFootprintCalculator = () => {
   const dayOnly = new Date().getDate();
   const monthOnly = new Date().getMonth() + 1;
   const yearOnly = new Date().getFullYear();
+  const [additioncheck, setAdditionCheck] = useState(false);
 
-   // Get the current time
-   const getCurrentTime = () => {
+  // Get the current time
+  const getCurrentTime = () => {
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, "0");
     const minutes = now.getMinutes().toString().padStart(2, "0");
@@ -30,25 +32,30 @@ const CarbonFootprintCalculator = () => {
   };
   const currentTime = getCurrentTime();
 
-//-------------------------------------adding the  CFP in database
+  //-------------------------------------adding the  CFP in database
   const addCFP = async () => {
-    console.log("with",carbonFootprint.data.co2e_kg)
+    console.log("with", carbonFootprint.data.co2e_kg);
     const CFPdata = {
       date: {
-        day:dayOnly,
+        day: dayOnly,
         month: monthOnly,
         year: yearOnly,
       },
-      time:currentTime ,
+      time: currentTime,
       carbonFootprint: carbonFootprint.data.co2e_kg,
     };
 
-    try{
-      await axios.post("http://localhost:5000/api/v1/carbonFootPrint/addcarbonFootPrint",CFPdata)
-      console.log("CFP data is posted")
-      console.log(dayOnly,currentTime);
-    }catch(err){
-      console.log("err in posting CFP data",err)
+    try {
+      await axios.post(
+        "http://localhost:5000/api/v1/carbonFootPrint/addcarbonFootPrint",
+        CFPdata
+      );
+      console.log("CFP data is posted");
+      console.log(dayOnly, currentTime);
+
+      props.addlist();
+    } catch (err) {
+      console.log("err in posting CFP data", err);
     }
   };
   //---------------------------------------------calculate Carbon Footprint
@@ -148,16 +155,22 @@ const CarbonFootprintCalculator = () => {
           Submit
         </Button>{" "}
         {carbonFootprint && <h4>|</h4>}
-        {carbonFootprint && (
+        {carbonFootprint && !additioncheck && (
           <Fab
             color="primary"
             aria-label="add"
             size="small"
             sx={{}}
-            onClick={addCFP}
+            onClick={() => {
+              addCFP();
+              setAdditionCheck(true);
+            }}
           >
             <AddIcon />
           </Fab>
+        )}
+        {additioncheck &&  (
+          <CheckIcon style={{color:"black",backgroundColor:"greenyellow",borderRadius:'60%',}} ></CheckIcon>
         )}
       </div>
       {carbonFootprint && (

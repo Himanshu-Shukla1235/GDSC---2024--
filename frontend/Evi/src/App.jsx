@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav";
-import Contact from "./pages/contact";
+import Contact from "./components/contact";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Home from "./pages/home";
@@ -23,6 +23,7 @@ import Feedbox from "../src/components/feedBox.jsx"
 import Addfeed from "../src/components/addFeed.jsx"
 import CarbonCalculator3 from "../src/components/carbocal3.jsx"
 import Testing2 from "../src/components/testing2.jsx"
+import Comment from "../src/components/comments.jsx"
 
 function App() {
   useEffect(() => {
@@ -56,6 +57,8 @@ function App() {
           <Route path="/fb" element={<Feedbox></Feedbox>} />
           <Route path="/afb" element={<Addfeed></Addfeed>} />
           <Route path="/test2" element={<Testing2></Testing2>} />
+          <Route path="/comment" element={<Comment></Comment>} />
+          
         </Routes>
       </BrowserRouter>
     </>

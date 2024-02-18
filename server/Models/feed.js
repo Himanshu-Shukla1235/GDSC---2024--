@@ -8,6 +8,9 @@ const feed = new mongoose.Schema({
     id: {
       type: String,
     },
+    avatar: {
+      type: String,
+    },
   },
   description: {
     type: String,

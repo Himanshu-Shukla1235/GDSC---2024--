@@ -157,3 +157,9 @@ nav {
 .navLoaderOFF {
   display: none;
 }
+.avatar2 {
+  transition: transform 0.3s ease-in-out;
+}
+.avatar2:hover {
+  transform: scale(1.1);
+}

@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "../components/addfeed.css";
-
-const AddFeed = () => {
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import CloseIcon from "@mui/icons-material/Close";
+const AddFeed = (props) => {
   const [file, setFile] = useState(null);
   const inputRef = useRef(null);
   const [feedData, setFeedData] = useState({
     description: "",
-    image: "",
+    image: "", // Storing image URL directly
     time: {
       date: "",
       clock: "",
@@ -16,38 +19,20 @@ const AddFeed = () => {
   });
 
   // Function to convert image into base64
-  const base64Converter = async (File) => {
-    if (!(File instanceof Blob)) {
-      console.error("Invalid file type. Expected a Blob object.");
-      return null;
-    }
-
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(File);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
 
   // Handling image upload
   const handleUpload = async (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
 
-    // Convert and set base64 directly in the state
     try {
-      const base64Result = await base64Converter(selectedFile);
+      // Upload file and get the image URL directly set in feedData
       setFeedData({
         ...feedData,
-        image: "its image correction runing....",
+        image: await uploadFile(selectedFile),
       });
     } catch (error) {
-      console.error("Error converting to base64:", error);
+      console.error("Error uploading file:", error);
     }
   };
 
@@ -72,12 +57,6 @@ const AddFeed = () => {
   // Handle add
   const handleAdd = async (e) => {
     e.preventDefault();
-
-    //====aman=================imgUrl has the url of image
-     const img = await uploadFile(file);
-     setImgUrl(img);
-    console.log(imgUrl);
-    //===========================
 
     try {
       // Set the current time before making the API call
@@ -104,11 +83,9 @@ const AddFeed = () => {
   };
 
   // upload url generation function
-  const [imgUrl, setImgUrl] = useState();
-
-  const uploadFile = async () => {
+  const uploadFile = async (selectedFile) => {
     const data = new FormData();
-    data.append("file", file);
+    data.append("file", selectedFile);
     data.append("upload_preset", "images_preset");
 
     try {
@@ -120,15 +97,18 @@ const AddFeed = () => {
       axios.defaults.headers.common["Authorization"] = undefined;
       const res = await axios.post(api, data);
 
-      //re
+      // Set the image URL directly in feedData
+      const { secure_url } = res.data;
+      setFeedData((prevFeedData) => ({
+        ...prevFeedData,
+        image: secure_url,
+      }));
+
+      // Restore Authorization header
       const jwtToken = localStorage.getItem("token");
       if (jwtToken) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
       }
-
-      const { secure_url } = res.data;
-      console.log(secure_url);
-      setImgUrl(secure_url);
 
       return secure_url;
     } catch (error) {
@@ -136,29 +116,91 @@ const AddFeed = () => {
     }
   };
 
-
-
   return (
-    <div className="mainupload">
-      <form>
-        <button type="submit" onClick={(e) => handleAdd(e)}>
-          Upload Feed
-        </button>
-        <input type="file" ref={inputRef} onChange={handleUpload} required />
-        <div className="setImage">
-          {file && <img src={URL.createObjectURL(file)} alt="" />}
-        </div>
+    <>
+      <div className="mainupload">
+        <form>
+          <Tooltip
+            title="Post Your Feed"
+            style={{ fontSize: "40px", fontFamily: "sans-serif" }}
+          >
+            {" "}
+            <Button
+              sx={{
+                backgroundColor: "rrgba(0, 255, 0, 0.5))",
+                marginBottom: "7px",
+                color: "whitesmoke",
+                border: "none",
+                opacity: 0.9,
+              }}
+              variant="contained"
+              type="submit"
+              onClick={(e) => {
+                handleAdd(e);
+                props.close(false);
+              }}
+            >
+              POST
+            </Button>
+          </Tooltip>
+          <Tooltip  title="Post "
+            style={{ fontSize: "40px", fontFamily: "sans-serif" }}><CloseIcon
+            onClick={() => {
+              props.close(false);
+            }}
+            style={{
+              marginLeft: "670px",
+              marginBottom: "100px",
+              fontSize: "50px",
+              position: "absolute",
+              zIndex: "500",
+            }}
+          ></CloseIcon></Tooltip>
+          
 
-        {/* description */}
-        <div className="discriptionf">
-          <textarea
-            placeholder="Enter your description..."
-            value={feedData.description}
-            onChange={handleDescriptionChange}
+          <input
+            id="fileInput"
+            type="file"
+            ref={inputRef}
+            onChange={handleUpload}
+            required
+            style={{ display: "none" }}
           />
-        </div>
-      </form>
-    </div>
+          <div className="setImage">
+            {file && <img src={URL.createObjectURL(file)} alt="" />}{" "}
+            <label htmlFor="fileInput">
+              {!file && (
+                <div className="addphoto">
+                  {" "}
+                  <Tooltip
+                    title="Add Photo"
+                    style={{ fontSize: "40px", fontFamily: "sans-serif" }}
+                  >
+                    {" "}
+                    <AddPhotoAlternateIcon
+                      style={{
+                        fontSize: "200px",
+                        opacity: 0.7,
+                      }}
+                    />
+                  </Tooltip>
+                </div>
+              )}
+            </label>
+          </div>
+
+          {/* description */}
+          <div className="discriptionff">
+            <textarea
+              style={{ border: "none" }}
+              placeholder="Enter your description..."
+              value={feedData.description}
+              onChange={handleDescriptionChange}
+            />
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

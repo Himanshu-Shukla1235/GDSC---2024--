@@ -4,6 +4,7 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import "../components/carbocal3.css";
 import Button from "@mui/material/Button";
+import CheckIcon from "@mui/icons-material/Check";
 
 const vehicleTypes = [
   "Car-Type-Mini",
@@ -33,7 +34,7 @@ const vehicleTypes = [
 
 const distanceUnits = ["km", "mi"];
 
-const CarbonCalculator = () => {
+const CarbonCalculator = (props) => {
   const [vehicleType, setVehicleType] = useState("");
   const [distanceValue, setDistanceValue] = useState("");
   const [distanceUnit, setDistanceUnit] = useState("mi"); // Default to 'mi'
@@ -42,6 +43,7 @@ const CarbonCalculator = () => {
   const dayOnly = new Date().getDate();
   const monthOnly = new Date().getMonth() + 1;
   const yearOnly = new Date().getFullYear();
+  const [additioncheck, setAdditionCheck] = useState(false);
 
   // Get the current time
   const getCurrentTime = () => {
@@ -73,6 +75,7 @@ const CarbonCalculator = () => {
       );
       console.log("CFP data is posted");
       console.log(dayOnly, currentTime);
+      props.addlist();
     } catch (err) {
       console.log("err in posting CFP data", err);
     }
@@ -172,19 +175,42 @@ const CarbonCalculator = () => {
               </select>
             </label>
             <br />
-            <div style={{ textAlign: "center", marginTop: "20px" }}>
-              <Button variant="outlined" type="submit">Submit</Button>
-              {result && <span style={{ marginLeft: "10px" }}>|</span>}
-              {result && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                marginTop: "20px",
+              }}
+            >
+              <Button variant="outlined" type="submit">
+                Submit
+              </Button>
+              {result && <span style={{ marginLeft: "10px" }}> | </span>}
+              {result && !additioncheck && (
                 <Fab
                   color="primary"
                   aria-label="add"
                   size="small"
                   style={{ marginLeft: "10px" }}
-                  onClick={addCFP}
+                  onClick={() => {
+                    addCFP();
+                    setAdditionCheck(true);
+                  }}
                 >
                   <AddIcon />
                 </Fab>
+              )}
+              {additioncheck && (
+                <CheckIcon
+                  style={{
+                    color: "black",
+                    backgroundColor: "greenyellow",
+                    borderRadius: "60%",
+                    marginLeft:"8px"
+                  }}
+                ></CheckIcon>
               )}
             </div>
           </form>

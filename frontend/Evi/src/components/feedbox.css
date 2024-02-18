@@ -3,19 +3,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid 3px red;
+
+  background-color: rgb(255, 255, 255);
   width: 95%;
-  height: 700px;
+  height: auto;
   margin-top: 50px;
   gap: 5px;
-
+border-radius: 15px;
 }
 .Fb11 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: solid 3px rgb(60, 255, 0);
+  border-bottom: solid 1px rgba(88, 88, 88, 0.61);
   width: 94%;
   height: 60px;
 }
@@ -24,19 +25,47 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid 3px rgb(60, 255, 0);
+    border: solid 2px rgba(88, 88, 88, 0.61);
     width: 94%;
     height: 500px;
+    border-radius: 5px;
+    margin-top: 0.5em;
   }
   .Fb13 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: solid 3px rgb(60, 255, 0);
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: solid 2px rgba(88, 88, 88, 0.094);
     width: 94%;
-    height: 60px;
+    max-height: 400px;
+    min-height: 100px;
+    height: auto;
+    border-radius: 5px;
+    overflow-y: scroll;
+    /* Add padding to all sides */
+    margin-top: 0.5em; /* Add a margin to the top */
+    padding-top: 0.5em;
+    padding-right: 0.5em; 
+    padding-left: 0.5em;/* Adjust padding-top to give more space at the top */
+    color:"gray"
   }
+  
+  /* WebKit (Chrome, Safari) scrollbar styles */
+.Fb13::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+
+.Fb13::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0); /* Set the color of the thumb with opacity 0 */
+}
+
+.Fb13::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0); /* Set the color of the track with opacity 0 */
+}
+.discriptionf{
+  border: solid 3px red;
+}
   .Fb12 img{
     width: 100%;
     height: 100%;
@@ -48,11 +77,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid 3px rgb(60, 255, 0);
+  
     width: 94%;
     height: 60px;
   }
+  .fb-time{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    font-size: small;
+  }
 
+  .comments{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  height: auto;
+  min-height: 100px;
+  }
 
   @media (max-width: 768px) {
     .Fb1 {

@@ -7,7 +7,7 @@ import Nav from "../components/Nav";
 import { colors } from "@mui/material";
 import SlideInComponent from "../components/function components/scrollEffect/slide";
 import SlideInComponent2 from "../components/function components/scrollEffect/slide2";
-
+import Contact from "../components/contact";
 const Home = () => {
   const words = [
     "Earth-Friendly Initiatives for a Cleaner Future",
@@ -53,8 +53,7 @@ const Home = () => {
                 cursor
                 loop={true}
                 typeSpeed={100}
-                className="custom-typewriter"
-              >
+                className="custom-typewriter">
                 <Cursor className="green-cursor" />
               </Typewriter>
             </h1>
@@ -97,9 +96,10 @@ const Home = () => {
           </div>
         </div>
         <div className="boxH5"></div>
+        <Contact />
       </main>
       <footer className="footer">
-        <Footer />
+        <Footer className="footerContact" />
       </footer>
     </>
   );

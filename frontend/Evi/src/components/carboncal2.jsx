@@ -4,7 +4,8 @@ import Button from "@mui/material/Button";
 import "../components/carbonc2.css";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-const CarbonFootprintCalculator = () => {
+import CheckIcon from "@mui/icons-material/Check";
+const CarbonFootprintCalculator = (props) => {
   const [fuelUsage, setFuelUsage] = useState("");
   const [fuelName, setFuelName] = useState("");
   const [fuelValue, setFuelValue] = useState("");
@@ -12,13 +13,14 @@ const CarbonFootprintCalculator = () => {
   const dayOnly = new Date().getDate();
   const monthOnly = new Date().getMonth() + 1;
   const yearOnly = new Date().getFullYear();
-
+ const [additioncheck, setAdditionCheck] = useState(false);
   // Get the current time
   const getCurrentTime = () => {
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, "0");
     const minutes = now.getMinutes().toString().padStart(2, "0");
     const seconds = now.getSeconds().toString().padStart(2, "0");
+   
 
     return `${hours}:${minutes}:${seconds}`;
   };
@@ -43,6 +45,7 @@ const CarbonFootprintCalculator = () => {
       );
       console.log("CFP data is posted");
       console.log(dayOnly, currentTime);
+      props.addlist();
     } catch (err) {
       console.log("err in posting CFP data", err);
     }
@@ -147,10 +150,28 @@ const CarbonFootprintCalculator = () => {
           Submit
         </Button>
         {carbonFootprint && <h4>|</h4>}
-        {carbonFootprint && (
-          <Fab color="primary" aria-label="add" size="small" sx={{}} onClick={addCFP}>
+        {carbonFootprint && !additioncheck && (
+          <Fab
+            color="primary"
+            aria-label="add"
+            size="small"
+            sx={{}}
+            onClick={() => {
+              addCFP();
+              setAdditionCheck(true);
+            }}
+          >
             <AddIcon />
           </Fab>
+        )}
+        {additioncheck && (
+          <CheckIcon
+            style={{
+              color: "black",
+              backgroundColor: "greenyellow",
+              borderRadius: "60%",
+            }}
+          ></CheckIcon>
         )}
       </div>
 
