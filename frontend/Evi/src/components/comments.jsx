@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../components/comments.css";
 import { Avatar } from "@mui/material";
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from "@mui/icons-material/Send";
 
 const MessagesPage = ({ Feedid }) => {
   const [FeedDataById, setFeedDatabyId] = useState([]);
@@ -73,7 +73,13 @@ const MessagesPage = ({ Feedid }) => {
                   sx={{ width: 33, height: 33, marginBottom: "15%" }}
                   style={{}}
                 ></Avatar>
-                 <div style={{ borderLeft: '1px solid #ccc', height: '100px', margin: '0 10px' }}></div>
+                <div
+                  style={{
+                    borderLeft: "1px solid #ccc",
+                    height: "100px",
+                    margin: "0 10px",
+                  }}
+                ></div>
                 <div
                   style={{
                     display: "flex",
@@ -87,7 +93,10 @@ const MessagesPage = ({ Feedid }) => {
                     padding: "0.4em",
                   }}
                 >
-                  <h1 style={{ fontSize: "1em", color: "black" ,}}>{item.sender.name}</h1>
+                  <h1 style={{ fontSize: "1em", color: "black" }}>
+                    {item.sender.name}{" "}
+                    <span style={{ fontSize: "1em", color: "grey",fontWeight:10}}>| {item.time}</span>
+                  </h1>
                   <p style={{}}>{item.comment}</p>
                 </div>
               </div>
@@ -98,13 +107,21 @@ const MessagesPage = ({ Feedid }) => {
           <textarea
             id="message"
             placeholder="Enter your comment..."
-            style={{ width: "70%", height: "3em", padding: "0.4em",borderRadius:'7px' }}
+            style={{
+              width: "70%",
+              height: "3em",
+              padding: "0.4em",
+              borderRadius: "7px",
+            }}
             value={commentText}
             onChange={(e) => setcommentText(e.target.value)}
-            
           ></textarea>
-          <button onClick={addcomment} style={{border:'none' ,backgroundColor: "transparent"}}><SendIcon></SendIcon></button>
-         
+          <button
+            onClick={addcomment}
+            style={{ border: "none", backgroundColor: "transparent" }}
+          >
+            <SendIcon></SendIcon>
+          </button>
         </div>
       </div>
     </>

@@ -32,9 +32,9 @@ const addComment = async (req, res, next) => {
   console.log("feed comment route reached");
 
   const feedId = req.body.id; // Assuming the id is in req.body.id
-  const commentText = req.body.comment;
-  // Assuming req.body.comment contains the comment text
-
+  const commentText = req.body.comment; // Assuming req.body.comment contains the comment text
+  const currentTime = new Date().toLocaleTimeString();
+  console.log(currentTime);
   // Update the feed document by pushing the comment object to the comments array
   const updatedFeed = await Feed.findOneAndUpdate(
     { _id: feedId },
@@ -47,6 +47,7 @@ const addComment = async (req, res, next) => {
             avatar: req.user.avatar,
           },
           comment: commentText,
+          time: currentTime,
         },
       },
     },
