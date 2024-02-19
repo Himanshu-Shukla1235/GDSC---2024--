@@ -27,12 +27,7 @@ const options = {
 };
 
 const imagesFeatures = [];
-const imageUrls = [
-  "https://media.istockphoto.com/id/1305691581/vector/planting-of-trees-to-absorb-co2-in-compensation-of-same-amount-produced.jpg?s=612x612&w=0&k=20&c=rKxyvzrK6ESxasgd421t72VXKqpJtaOnQP6GghpbT2g=",
-  "https://r4.wallpaperflare.com/wallpaper/764/431/702/river-trees-forest-clouds-wallpaper-d4ba55cd41062d25051044aa61cfaf9c.jpg",
-  "https://r4.wallpaperflare.com/wallpaper/270/709/236/macos-mojave-macbook-pro-apple-computer-wallpaper-07ff12647fa5af1aef72f49111118755.jpg",
-  // ... add more image URLs as needed
-];
+
 
 const Home = () => {
   const words = [
@@ -86,9 +81,10 @@ const Home = () => {
   const [currentDes, setCurrentDes] = useState(0);
 
   const imageUrls = [
-    "https://media.istockphoto.com/id/1305691581/vector/planting-of-trees-to-absorb-co2-in-compensation-of-same-amount-produced.jpg?s=612x612&w=0&k=20&c=rKxyvzrK6ESxasgd421t72VXKqpJtaOnQP6GghpbT2g=",
-    "https://r4.wallpaperflare.com/wallpaper/764/431/702/river-trees-forest-clouds-wallpaper-d4ba55cd41062d25051044aa61cfaf9c.jpg",
-    "https://r4.wallpaperflare.com/wallpaper/270/709/236/macos-mojave-macbook-pro-apple-computer-wallpaper-07ff12647fa5af1aef72f49111118755.jpg",
+    "https://media.istockphoto.com/id/1352321814/vector/3d-isometric-flat-vector-conceptual-illustration-of-carbon-footprint.jpg?s=612x612&w=0&k=20&c=Kq0fomWgvD9xTt9bZaCUwiE_Pe066zGNFZgJHz_T-GI=",
+    "data:image/png;base64,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",
+    
+    "https://media.licdn.com/dms/image/C4E12AQGNC7T8V7tPKQ/article-cover_image-shrink_600_2000/0/1520142110482?e=2147483647&v=beta&t=2NTT4mpuqVpq35WrtcTB7GleCWvYyD1on5uhIjh3gtI",
     // ... add more image URLs as needed
   ];
 
@@ -161,7 +157,6 @@ const Home = () => {
           </div>
         </div>
         {/* ====================================== */}
-        <div className="section0home"></div>
 
         {/* ============================================== */}
         <div className="section1">
@@ -194,6 +189,38 @@ const Home = () => {
             <a href="/education">
               <button>go and Check</button>
             </a>
+          </div>
+        </div>
+        {/* ============== */}
+        <div className="section0home">
+          <div class="complete-launch">
+            <div class="left">
+              <img
+                src="https://png.pngtree.com/png-vector/20220724/ourmid/pngtree-people-looking-nature-mountain-tourist-png-image_6063213.png"
+                alt=""
+              />
+
+              <div class="explore sameee">
+                <pa className="pppIde">
+                  Explore various impactful programs around you.
+                </pa>
+
+                <button>Let's go</button>
+              </div>
+            </div>
+
+            <div class="right">
+              <img
+                src="https://i.pngimg.me/thumb/f/720/d24de355df734126940b.jpg"
+                alt=""
+              />
+
+              <div class="create sameee">
+                <pa>Launch your own program by working together.</pa>
+
+                <button>create</button>
+              </div>
+            </div>
           </div>
         </div>
         {/* news */}

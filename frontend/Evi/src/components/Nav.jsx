@@ -160,16 +160,16 @@ function Navbar() {
       <h3>LOGO</h3>
       <div className="mainComponent">
         <nav ref={navRef} className={UpDown}>
-          <a onClick={showNavbar}>
+          <a className="elementsNav" onClick={showNavbar}>
             <NavLink to={"/"}>Home</NavLink>
           </a>
-          <a onClick={showNavbar}>
+          <a className="elementsNav" onClick={showNavbar}>
             <NavLink to={"/contact"}>contact</NavLink>
           </a>
-          <a onClick={showNavbar}>
+          <a className="elementsNav" onClick={showNavbar}>
             <NavLink to={"/about"}>about</NavLink>
           </a>
-          <a onClick={showNavbar}>
+          <a className="elementsNav" onClick={showNavbar}>
             <NavLink onClick={logout} to={logoutRoute}>
               {loginOption}
             </NavLink>
