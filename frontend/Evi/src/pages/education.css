@@ -16,15 +16,16 @@
   box-shadow: -15px 0.5px 20px;
   margin-top: -70px;
   height: 400px;
-  background-color: rgba(134, 235, 134, 0.418);
+  background-color: rgba(46, 91, 159, 0.793);
   border-radius: 0px 0px 80% 0px;
+  color: white;
   overflow: hidden;
   position: relative;
 }
 
 .hero .left {
   position: absolute;
-  top: 250px;
+  top: 100px;
   left: 100px;
   width: 30%;
   gap: 10px;
@@ -34,11 +35,11 @@
   /* justify-content: center; */
 }
 .left h1 {
+  color: white;
   text-transform: uppercase;
-  opacity: 0;
-  line-height: 60px;
-  font-size: 4em;
-  color: transparent;
+  line-height: 6vw;
+  font-size: 6em;
+  /* color: transparent; */
   -webkit-text-stroke: 0.3vw black;
   transition: all 0.3s ease-in-out;
 }

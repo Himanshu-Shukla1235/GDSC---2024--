@@ -15,8 +15,15 @@ import { FaBars, FaTimes } from "react-icons/fa";
 function Navbar() {
   const navRef = useRef();
 
+  const [UpDown, setUpDown] = useState("");
+
   const showNavbar = () => {
-    navRef.current.classList.toggle("responsive_nav");
+    if (UpDown == "responsive_nav") {
+      setUpDown("");
+      return;
+    }
+    setUpDown("responsive_nav");
+    console.log("clicked");
   };
 
   //setting if useris alredy loged in
@@ -152,7 +159,7 @@ function Navbar() {
     <div className="header">
       <h3>LOGO</h3>
       <div className="mainComponent">
-        <nav ref={navRef}>
+        <nav ref={navRef} className={UpDown}>
           <a onClick={showNavbar}>
             <NavLink to={"/"}>Home</NavLink>
           </a>

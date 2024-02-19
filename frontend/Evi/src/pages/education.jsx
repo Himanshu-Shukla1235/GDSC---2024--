@@ -1,37 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import "./education.css";
 import Nav from "../components/Nav";
 import Footer from "../components/footer";
-import gsap from "gsap";
 
 const education = () => {
   const firstRef = useRef();
   const secondRef = useRef();
   const thirdRef = useRef();
   const fourthRef = useRef();
-  
-
 
   const scrollHandler = (elmRef) => {
     window.scrollTo({ top: elmRef.current.offsetTop, behavior: "smooth" });
   };
-  useEffect(() => {
-    const tl = gsap.timeline();
-
-    tl.from(".hero .left h1", {
-      y: -373,
-      top: "200px",
-      opacity: 1,
-      position: "absolute",
-      duration: 3,
-      ease: "power3.out",
-      delay: 10,
-    });
-  }, []);
 
   return (
     <>
-      <header className="header12">
+      <header className="header1">
         <Nav />
       </header>
 
@@ -266,7 +250,7 @@ const education = () => {
       </main>
 
       <footer className="footer">
-      <Footer />
+        <Footer />
       </footer>
     </>
   );

@@ -1,6 +1,7 @@
 .header1 {
+  width: 100%;
   position: sticky;
-  top: 0;
+  top: 0; /* Adjust this value as needed, for example, top: 0; */
   z-index: 2000;
 }
 
@@ -14,7 +15,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: white;
+  background-color: rgba(192, 230, 241, 0.385);
   /* Adjusted height for responsiveness */
 }
 
@@ -37,21 +38,106 @@
   font-style: "Inconsolata";
 }
 
-@keyframes slideshow {
-  0%,
-  24.2% {
-    background-image: url("https://r4.wallpaperflare.com/wallpaper/33/261/282/5bd28eeaec175-wallpaper-798098fda1aa5deb0677c83f7061e6ed.jpg");
-  }
-  25%,
-  49.2% {
-    background-image: url("https://r4.wallpaperflare.com/wallpaper/764/431/702/river-trees-forest-clouds-wallpaper-d4ba55cd41062d25051044aa61cfaf9c.jpg");
-  }
-  50%,
-  100% {
-    background-image: url("https://r4.wallpaperflare.com/wallpaper/270/709/236/macos-mojave-macbook-pro-apple-computer-wallpaper-07ff12647fa5af1aef72f49111118755.jpg");
+/* ==================== slideshow*/
+.featuresShow {
+  height: 100%;
+  width: 100%;
+  max-width: 1800px;
+}
+@media screen and (min-width: 1800px) {
+  .featuresShow {
+    margin-left: 45px;
   }
 }
-/* ==================== */
+
+.internalButtons {
+  padding-left: 20px;
+  padding-right: 20px;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.arrows {
+  box-shadow: 0.1px 0.1px 5px 0.1px rgb(14, 38, 68);
+  background-color: rgba(48, 48, 48, 0.532);
+  color: rgb(255, 255, 255);
+  transform: scale(1.8);
+  margin-bottom: 30px;
+  margin-left: 10px;
+  padding: 3px;
+  border: 1px solid rgba(41, 90, 155, 0);
+}
+.arrows:hover {
+  background-color: rgba(77, 77, 77, 0.5);
+}
+
+/* CSS */
+
+.buttonForNav {
+  appearance: none;
+  background-color: #8bc9e3;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: #c5f7f1 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.24px;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.3rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.buttonForNav:hover {
+  background-color: #42b0cca7;
+  color: white;
+  box-shadow: #bfe3ec 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.buttonForNav:active {
+  transform: scale(1.025);
+}
+
+@media (max-width: 768px) {
+  .buttonForNav {
+    font-size: 1.1rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+.discriptionOfNav {
+  height: 200px;
+  width: 300px;
+
+  margin-bottom: 0px;
+  padding: 20px;
+}
+.middleBoxNav {
+  border-radius: 5px;
+  display: flex;
+  background-color: #dcdcdc76;
+  flex-direction: column;
+  align-items: center;
+}
+.middleBoxNav p {
+  color: #000000;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+/* ====================== */
 
 .boxH11 {
   display: flex;
@@ -59,7 +145,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 45vh;
+  height: 45vw;
   width: 80%; /* Adjusted width for responsiveness */
   margin: 0 auto; /* Centered the element */
   padding: 20px;
@@ -100,6 +186,7 @@
   box-shadow: 2px -2px 8px -2px rgba(53, 111, 198, 0.615);
   background-color: rgb(155, 189, 219);
 }
+
 .section1ele button {
   border: none;
   padding: 5px;
@@ -111,14 +198,16 @@
   transition: transform 0.3s ease-in-out;
   background-color: rgb(37, 87, 131);
 }
+
 .section1ele button:hover {
   transform: scale(1.2);
 }
 
 .news {
-  margin-top: 100px;
-  margin-left: 500px;
+  padding-top: 100px;
+  margin-left: 22vw;
 }
+
 .newsContainer {
   display: inline-flex;
   flex-wrap: wrap;
@@ -135,7 +224,8 @@
   margin-top: 20px;
 }
 .newsContainer div p {
-  width: 500px;
+  font-size: 1.2em;
+  width: 290px;
   margin-bottom: 20px;
 }
 /*  */

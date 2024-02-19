@@ -3,17 +3,20 @@
 * {
   padding: 0;
   margin: 0;
+  margin-top: 200px;
   box-sizing: border-box;
   font-family: "Titillium Web", sans-serif;
 }
 
 .header {
+  font-size: 1.2em;
+  background-color: rgb(102, 135, 172);
+  box-shadow: 5px 1px 10px;
   display: flex;
 
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 30px;
 
   padding-top: 1%;
   margin-bottom: 1.5rem;
@@ -61,11 +64,16 @@ nav {
   justify-content: center;
 
   /* border: 1px solid red; */
-  backdrop-filter: blur(7px);
+
   /* border-bottom: solid 3px blue; */
 }
 
 @media only screen and (max-width: 600px) {
+  .header {
+    padding-top: 20px;
+    margin-bottom: 0px;
+    overflow-y: hidden;
+  }
   .header .nav-btn {
     visibility: visible;
     opacity: 1;
@@ -78,12 +86,14 @@ nav {
 
   .mainComponent {
     backdrop-filter: none;
+    margin-bottom: 20px;
+    overflow-y: hidden;
   }
 
   .header nav {
     position: fixed;
-    top: -100vh;
-    left: 0;
+    top: -110vh;
+    left: 0vh;
     height: 100%;
     width: 100%;
     display: flex;
@@ -97,7 +107,7 @@ nav {
   }
 
   .header .responsive_nav {
-    transform: translateY(100vh);
+    transform: translateY(110vh);
     z-index: 1000;
   }
 

@@ -1,0 +1,37 @@
+/* AboutPage.css */
+
+.about-container {
+  overflow: hidden;
+  font-size: 1.2em;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.about-content {
+  opacity: 1;
+}
+
+.about-content h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.about-content h3 {
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+.about-content h4 {
+  font-size: 1.2em;
+  margin-top: 15px;
+}
+
+.about-content p {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.about-content strong {
+  color: #2ecc71; /* Change the color to your preference */
+}
