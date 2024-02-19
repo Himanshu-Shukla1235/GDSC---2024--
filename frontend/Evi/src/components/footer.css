@@ -28,7 +28,8 @@
   justify-content: space-between;
   /* border: 1px solid red; */
   border-radius: 20px;
-  background-color: rgba(14, 13, 13, 0.162);
+  color: wh;
+  background-color: rgba(119, 142, 172, 0.628);
   backdrop-filter: blur(8px);
   /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.5); */
 }
@@ -40,6 +41,7 @@
   justify-content: center;
   align-items: center;
   color: rgb(0, 0, 0);
+ 
   /* font-weight: bold; */
 }
 #bottomnav a:hover {

@@ -9,6 +9,7 @@
 }
 
 .header {
+  color: white;
   font-size: 1.2em;
   background-color: rgb(102, 135, 172);
   box-shadow: 5px 1px 10px;
@@ -31,6 +32,7 @@
 }
 
 nav a {
+  color: white;
   margin: 0 1rem;
   color: var(--textColor);
   text-decoration: none;
@@ -62,6 +64,8 @@ nav {
 .mainComponent {
   display: flex;
   justify-content: center;
+  color: rgb(200, 225, 240);
+  font-weight: 510;
 
   /* border: 1px solid red; */
 
@@ -172,4 +176,8 @@ nav {
 }
 .avatar2:hover {
   transform: scale(1.1);
+}
+.elementsNav:hover {
+  background-color: rgb(125, 168, 206);
+  border-radius: 5px;
 }
