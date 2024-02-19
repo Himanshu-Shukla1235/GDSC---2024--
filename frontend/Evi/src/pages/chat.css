@@ -1,12 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap");
 
-.header1 {
-  position: sticky;
-  top: 0;
-
-  z-index: 2000;
-}
-
 .footer {
   position: sticky;
   bottom: 0;
@@ -24,6 +17,7 @@
   border: 1px solid rgb(0, 0, 0);
 
   display: flex;
+  width: 100vw;
 
   flex-direction: row;
   height: 86vh;
@@ -263,7 +257,7 @@
 .formContainer button {
   margin-top: 10px;
   padding: 5px;
-  background-color: rgba(0, 5, 160, 0.436);
+  background-color: rgba(31, 92, 150, 0.845);
   width: 100%;
   color: white;
   font-weight: bold;
@@ -307,4 +301,10 @@
   margin-left: 10px;
   font-weight: bold;
   font-size: 1.2em;
+}
+@media only screen and (max-width: 600px) {
+  .chatContainer {
+    margin-top: 20px;
+    width: 100vw;
+  }
 }

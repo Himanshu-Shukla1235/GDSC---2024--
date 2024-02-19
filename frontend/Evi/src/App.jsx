@@ -24,6 +24,7 @@ import Addfeed from "../src/components/addFeed.jsx"
 import CarbonCalculator3 from "../src/components/carbocal3.jsx"
 import Testing2 from "../src/components/testing2.jsx"
 import Comment from "../src/components/comments.jsx"
+import AboutPage from "./pages/about.jsx";
 
 function App() {
   useEffect(() => {
@@ -47,6 +48,7 @@ function App() {
           <Route path="/earth" element={<Earth />} />
           <Route path="/airQuality" element={<Air></Air>} />
           <Route path="/feed" element={<Feed />} />
+          <Route path="/about" element={<AboutPage/>}/>
 
           <Route path="/education" element={<Education />} />
           <Route path="/corbon" element={<Corboncal></Corboncal>} />

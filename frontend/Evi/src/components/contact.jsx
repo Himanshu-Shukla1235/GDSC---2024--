@@ -16,7 +16,12 @@ const contact = () => {
             <EmailIcon
               className="contactWayItem"
               style={{ fontSize: "1.4em" }}
+              onClick={() => {
+                const gmailComposeUrl = `mailto:${"amangubrele01@gmail.com"}`;
+                window.location.href = gmailComposeUrl;
+              }}
             />
+
             <p style={{ fontSize: "0.5em", width: "300px" }}>
               Just send us your questionor concerns by sending an email and we
               will give you the help you need.
@@ -27,6 +32,10 @@ const contact = () => {
             <WhatsAppIcon
               className="contactWayItem"
               style={{ fontSize: "1.4em" }}
+              onClick={() => {
+                const whatsappUrl = `https://wa.me/${+917987708692}`;
+                window.open(whatsappUrl, "_blank");
+              }}
             />
             <p style={{ fontSize: "0.5em", width: "300px" }}>
               Just send us your questionor concerns by sending an email and we
@@ -44,10 +53,9 @@ const contact = () => {
             </p>
           </div>
           <div>
-            <a>here</a>
+            <a>logo</a>
             <p style={{ fontSize: "0.5em", width: "300px" }}>
-              Just send us your questionor concerns by sending an email and we
-              will give you the help you need.
+              contact from here itself.
             </p>
           </div>
         </div>
