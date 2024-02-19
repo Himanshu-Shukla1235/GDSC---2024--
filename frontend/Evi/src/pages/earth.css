@@ -10,7 +10,7 @@
   align-items: center;
 
   /* border: solid 3px black; */
-  height: auto;
+  height: 360vh;
   width: 100%;
   overflow-y: hidden;
 }
@@ -25,7 +25,7 @@
   height: 50px;
   width: 300px;
 
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.037);
   margin: 3%;
   border-radius: 10px;
 }
@@ -71,7 +71,7 @@
   align-items: center;
   width: 90%;
   height: 60%;
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(56, 57, 56, 0));
+  background: linear-gradient(rgb(255, 255, 255), rgba(56, 57, 56, 0));
 
   backdrop-filter: blur(10px);
   border-radius: 10px;
@@ -86,7 +86,7 @@
   height: 70%;
   background-color: none;
 
-  border-right: solid 3px rgb(4, 61, 229);
+  border-right: solid 3px rgb(0, 50, 73);
   gap: 20px;
 }
 .boxE32 {
@@ -96,10 +96,7 @@
   align-items: center;
   width: 90%;
   height: 35%;
-  background: linear-gradient(
-    rgba(244, 244, 244, 0.153),
-    rgba(255, 255, 255, 0.038)
-  );
+  background: linear-gradient(rgba(1, 75, 124, 0.751), rgba(255, 254, 254, 0.349));
   border: solid 3px black;
   backdrop-filter: blur(10px);
   border-radius: 10px;
@@ -390,6 +387,27 @@
   .boxE3321 {
     /* border: solid 3px red; */
     width: 250%;
+  }
+  .boxE3211 {
+    /* border: solid red 3px; */
+    width: 22rem;
+    height: 5rem;
+  }
+  .boxE3212 ul {
+    width: 22rem;
+  }
+  .boxE3212 li {
+    /* width: 95%;
+height: 95%; */
+  }
+  li.oxy {
+    display: none;
+  }
+  .aiqLocation {
+    display: none;
+    overflow: hidden;
+    width: 0px;
+    height: 0px;
   }
   .modal-overlay {
     min-width: 60%;

@@ -206,6 +206,7 @@ const Earth = () => {
                     {weatherData && weatherData.location && (
                       <>
                         <h1
+                          className="aiqLocation"
                           style={{
                             display: "flex",
                             justifyContent: "center",
@@ -227,24 +228,39 @@ const Earth = () => {
                     )}
                     {!weatherData && (
                       <div>
-                        <p>
-                          Unable to fetch weather data. Please try again later.
-                        </p>
+                        <p>?</p>
                       </div>
                     )}
 
                     <h1
                       style={{
+                        display:'flex',
+                        flexDirection:'row',
+                        border:"solid 3px red",
                         color: "greenyellow",
                         fontFamily: "sans-serif",
                         fontWeight: 8,
                       }}
                     >
-                      <AirIcon></AirIcon> Over All AQI : {}
+                      <AirIcon style={{ opacity: "0" }}></AirIcon>{" "}
+                      <p
+                        style={{
+                          
+                         
+                          fontSize: "1.7rem",
+                         
+                          width: "20rem",
+
+                        }}
+                      >
+                        Over All AQI 
+                      </p>{" "}
+                      
                     </h1>
 
                     {weatherData && weatherData.current && (
                       <h1
+                        className="aiqLocation"
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -252,7 +268,7 @@ const Earth = () => {
                           color: "white",
                           fontFamily: "sans-serif",
                           fontWeight: 3,
-                          fontSize: 15,
+                          fontSize: "1rem",
                           gap: 8,
                         }}
                       >
@@ -324,7 +340,7 @@ const Earth = () => {
                           Concentration : ({})
                         </strong>
                       </li>
-                      <li style={{ color: "green" }}>
+                      <li className="oxy" style={{ color: "green" }}>
                         <strong
                           style={{
                             color: "aqua",
