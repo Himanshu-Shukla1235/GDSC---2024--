@@ -77,8 +77,11 @@ const Gmap = ({ onMapChange}) => {
 
   return (
     <>
+       <div></div>
     {/* --------------------------------------------------------------------------------------| boxE1 |-------------*/}
       <div className="boxE1">
+      
+   
         <AutocompletePl onLocationSelect={handleLocationSelect} />
         <div className="boxE12">
           <button

@@ -1,54 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// LottieComponent.jsx
 
-function AirQualityData() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+import React, { useEffect } from 'react';
 
+const LottieComponent = () => {
   useEffect(() => {
-    const fetchAirQualityData = async () => {
-      try {
-        const response = await axios.get('https://air-quality.p.rapidapi.com/history/airquality', {
-          params: {
-            lon: '-78.638',
-            lat: '35.779'
-          },
-          headers: {
-            'X-RapidAPI-Key': 'd8cd4583e0msh5da198a5cabe78cp17051cjsn3e8d0135eafd',
-            'X-RapidAPI-Host': 'air-quality.p.rapidapi.com'
-          }
-        });
-        setData(response.data);
-        console.log(response.data)
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-        setError('Error fetching data');
-        setLoading(false);
-      }
+    // Load Lottie player script dynamically
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
     };
-
-    fetchAirQualityData();
   }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   return (
     <div>
-      <h1>Air Quality Data</h1>
-      <p>Location: {data && data.location}</p>
-      <p>Date: {data && data.date}</p>
-      <p>Air Quality Index: {data && data.aqi}</p>
-      {/* Display other air quality data as needed */}
+      <lottie-player
+        src="https://lottie.host/f0568d49-ed3a-4bd3-8332-46c92b4305af/hlVCcTCKXx.json"
+        background="#FFFFFF"
+        speed="1"
+        style={{ width: '300px', height: '300px' }}
+        loop
+        controls
+        autoplay
+        direction="1"
+        mode="normal"
+      ></lottie-player>
     </div>
   );
-}
+};
 
-export default AirQualityData;
+export default LottieComponent;
+

@@ -46,7 +46,10 @@ const Earth = () => {
         `http://localhost:5000/api/v1/carbonFootPrint/getCFPbyday?day=${dayOnly}&month=${monthOnly}&year=${yearOnly}`
       );
       setCFPdatabyday(todayCFP.data);
-      console.log(CFPdatabyday[13].carbonFootprint);
+      console.log(
+        "this is fetching cfp data from backent ",
+        CFPdatabyday[13].carbonFootprint
+      );
     } catch (err) {
       console.log("err in finding  CFP by day", err);
     }
@@ -62,7 +65,7 @@ const Earth = () => {
   //--------------------------------------------------------fetching whether data
   const fetchData = async (latitude, longitude) => {
     try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=d07a3987fb6b1409e5e36912f397be05`;
+      const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=d07a3987fb6b1409e5e36912f397be05`;
 
       // Fetch data and handle response
       const response = await fetch(url);
@@ -76,10 +79,10 @@ const Earth = () => {
         const data = await response.json();
 
         // Log the data to the console
-        console.log("Weather Data:", data);
+        console.log("Weather Data:", data.list[0]);
 
         // Set the weather data state
-        setWeatherData1(data);
+        setWeatherData1(data.list[0]);
       } else {
         // If the request was not successful, log the error
         console.error("Error fetching weather data. Status:", response.status);
@@ -197,7 +200,7 @@ const Earth = () => {
           <div className="boxE32">
             {/* ------------------------ */}
             <div className="boxE321">
-              {airData && (
+              {weatherData1 && (
                 <>
                   <div className="boxE3211">
                     {weatherData && weatherData.location && (
@@ -237,7 +240,7 @@ const Earth = () => {
                         fontWeight: 8,
                       }}
                     >
-                      <AirIcon></AirIcon> Over All AQI : {airData.overall_aqi}
+                      <AirIcon></AirIcon> Over All AQI : {}
                     </h1>
 
                     {weatherData && weatherData.current && (
@@ -279,7 +282,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          ~ A Q I : {airData.CO.aqi}{" "}
+                          ~ A Q I : {}{" "}
                         </strong>
                         <strong
                           style={{
@@ -288,7 +291,7 @@ const Earth = () => {
                             fontWeight: 30,
                           }}
                         >
-                          ~ Concentration : {airData.CO.concentration}
+                          ~ Concentration : {weatherData1.components.co}
                         </strong>
                       </li>
                       <li style={{ color: "green" }}>
@@ -309,7 +312,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          A Q I : {airData.NO2.aqi}{" "}
+                          A Q I : {}{" "}
                         </strong>
                         <strong
                           style={{
@@ -318,7 +321,7 @@ const Earth = () => {
                             fontWeight: 30,
                           }}
                         >
-                          Concentration : ({airData.NO2.concentration})
+                          Concentration : ({})
                         </strong>
                       </li>
                       <li style={{ color: "green" }}>
@@ -339,7 +342,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          A Q I :{airData.O3.aqi}{" "}
+                          A Q I :{}{" "}
                         </strong>
                         <strong
                           style={{
@@ -349,7 +352,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          Concentration ({airData.O3.concentration})
+                          Concentration ({})
                         </strong>
                       </li>
                     </ul>
@@ -375,7 +378,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          A Q I : {airData.PM10.aqi}{" "}
+                          A Q I : {}{" "}
                         </strong>
                         <strong
                           style={{
@@ -385,10 +388,10 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          Concentration : ({airData.PM10.concentration})
+                          Concentration : ({})
                         </strong>
                       </li>
-                      {airData && airData["PM2.5"] && (
+                      {weatherData1 && weatherData1["PM2.5"] && (
                         <li>
                           <strong
                             style={{
@@ -406,7 +409,7 @@ const Earth = () => {
                               fontWeight: 30,
                             }}
                           >
-                            A Q I : {airData["PM2.5"]?.aqi}{" "}
+                            A Q I : {}{" "}
                           </strong>
                           <strong
                             style={{
@@ -415,7 +418,7 @@ const Earth = () => {
                               fontWeight: 30,
                             }}
                           >
-                            Concentration : ({airData["PM2.5"]?.concentration})
+                            Concentration : ({})
                           </strong>
                         </li>
                       )}
@@ -437,7 +440,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          A Q I :{airData.SO2.aqi}{" "}
+                          A Q I :{}{" "}
                         </strong>
                         <strong
                           style={{
@@ -447,7 +450,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          Concentration : {airData.SO2.concentration}{" "}
+                          Concentration : {}{" "}
                         </strong>
                       </li>
                     </ul>
@@ -455,7 +458,7 @@ const Earth = () => {
                   <div className="boxE3213"></div>
                 </>
               )}
-              {!airData && (
+              {!weatherData1 && (
                 <div>
                   <p>
                     Unable to fetch air quality data. Please try again later.
@@ -463,6 +466,7 @@ const Earth = () => {
                 </div>
               )}
             </div>
+
             <div
               className="boxE322"
               style={{
@@ -483,37 +487,37 @@ const Earth = () => {
                     data: [
                       {
                         id: 0,
-                        value: airData?.CO?.concentration || 0,
+                        value: 8 || 0,
                         label: "CO",
                         color: "yellow",
                       },
                       {
                         id: 1,
-                        value: airData?.NO2?.concentration || 0,
+                        value: 7 || 0,
                         label: " NO2",
                         color: "violet",
                       },
                       {
                         id: 2,
-                        value: airData?.O3?.concentration,
+                        value: 6,
                         label: "O3",
                         color: "aqua",
                       },
                       {
                         id: 3,
-                        value: airData?.SO2?.concentration,
+                        value: 5,
                         label: "SO2",
                         color: "pink",
                       },
                       {
                         id: 4,
-                        value: airData?.PM10?.concentration,
+                        value: 4,
                         label: "PM10",
                         color: "orange",
                       },
                       {
                         id: 5,
-                        value: airData?.["PM2.5"]?.concentration || 0,
+                        value: 5,
                         label: "PM2.5",
                         color: "green",
                       },
@@ -650,7 +654,7 @@ const Earth = () => {
                       data: [
                         {
                           id: 0,
-                          value: 2000-todayCFP,
+                          value: 2000 - todayCFP,
                           label: "Limit",
                           color: "Green",
                         },
@@ -690,10 +694,13 @@ const Earth = () => {
                     borderRadius: "1px",
                   }}
                 >
-                  <span style={{color:"gray",marginRight:"1px"}}>
+                  <span style={{ color: "gray", marginRight: "1px" }}>
                     {dayOnly}/{monthOnly}/{yearOnly}
                   </span>{" "}
-                   <span style={{color:"green"}}>| Your Todays C.F.P |</span> <span><span>Total:</span> {todayCFP} kg</span>
+                  <span style={{ color: "green" }}>| Your Todays C.F.P |</span>{" "}
+                  <span>
+                    <span>Total:</span> {todayCFP} kg
+                  </span>
                 </div>
 
                 {CFPdatabyday.map((item) => (
@@ -734,17 +741,17 @@ const Earth = () => {
               </div>{" "}
               {isModalOpen && (
                 <PopupModal onClose={() => setIsModalOpen(false)}>
-                  <Corboncal addlist={fetchCFPdata()}></Corboncal>
+                  <Corboncal addlist={fetchCFPdata}></Corboncal>
                 </PopupModal>
               )}
               {isModalOpen2 && !isModalOpen && (
                 <PopupModal onClose={() => setIsModalOpen2(false)}>
-                  <Carbcal2 addlist={fetchCFPdata()}></Carbcal2>
+                  <Carbcal2 addlist={fetchCFPdata}></Carbcal2>
                 </PopupModal>
               )}
               {isModalOpen3 && (
                 <PopupModal onClose={() => setIsModalOpen3(false)}>
-                  <Carbcal3 addlist={fetchCFPdata()}></Carbcal3>
+                  <Carbcal3 addlist={fetchCFPdata}></Carbcal3>
                 </PopupModal>
               )}
             </div>
