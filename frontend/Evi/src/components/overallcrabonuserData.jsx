@@ -4,10 +4,12 @@ import { LineChart } from "@mui/x-charts/LineChart";
 
 const GraphicalCFP = () => {
   const [CFPdataByYear, setCFPdataByYear] = useState([]);
+  const [dailySum, setDailySum] = useState(null);
+  const [GraphBYday, setGraphByday] = useState(null);
+
   const dayOnly = new Date().getDate();
   const monthOnly = new Date().getMonth() + 1;
   const yearOnly = new Date().getFullYear();
-  const [dayCFPhistory, setdayCFPhistory] = useState();
 
   const CFPhistorybyday = (CFPByyear, date, month, year) => {
     let element = 0;
@@ -21,33 +23,37 @@ const GraphicalCFP = () => {
         element += CFPByyear[index].carbonFootprint;
       }
     }
-    setdayCFPhistory(element);
+
     return element;
   };
 
-  // const addDailyCFP = () => {
-  //   const data = {
-  //     value: dayCFPhistory,
-  //     time: {
-  //       date: "",
-  //       month: "",
-  //       year: "",
-  //     },
-  //   };
-  //   try {
-  //     axios.patch("http://localhost:5000/api/v1/footprint/update", data);
-  //   } catch (err) {
-  //     console.log("err in ading CFP by day", err);
-  //   }
-  // };
-  // useEffect(() => {
-  //   addDailyCFP();
-  // }, [dayCFPhistory]);
+  const addDailyCFP = async (value) => {
+    const data = {
+      value: value,
+      time: {},
+    };
 
-  // const updateDailyCFP = {};
+    try {
+      await axios.patch("http://localhost:5000/api/v1/footprint/update", data);
 
-  // const getDailyCFP = {};
+      console.log("Daily CFP added successfully");
+    } catch (err) {
+      console.log("Error in adding CFP by day", err);
+    }
+  };
+  const getailyCFP = async (value) => {
+    try {
+      const data = await axios.patch(
+        "http://localhost:5000/api/v1/footprint/update"
+      );
 
+      console.log("Daily CFP getting successfully", data.data.data);
+      setGraphByday(data.data.data);
+      console.log(GraphBYday);
+    } catch (err) {
+      console.log("Error in adding CFP by day", err);
+    }
+  };
   const fetchCFPdataByYear = async () => {
     try {
       const yearlyCFP = await axios.get(
@@ -55,7 +61,7 @@ const GraphicalCFP = () => {
       );
       setCFPdataByYear(yearlyCFP.data);
     } catch (err) {
-      console.log("err in finding CFP by year", err);
+      console.log("Error in finding CFP by year", err);
     }
   };
 
@@ -65,11 +71,21 @@ const GraphicalCFP = () => {
     };
 
     fetchData();
-   
-  }, []); // Empty dependencies array to run only on mount
+    getailyCFP();
+  }, []); // Empty dependency array to run only on mount
 
-  const x = CFPhistorybyday(CFPdataByYear, dayOnly, monthOnly, yearOnly);
-  console.log(x);
+  useEffect(() => {
+    const dailyCFP = CFPhistorybyday(
+      CFPdataByYear,
+      dayOnly,
+      monthOnly,
+      yearOnly
+    );
+    setDailySum(dailyCFP);
+    addDailyCFP(dailyCFP);
+  }, [CFPdataByYear, dayOnly, monthOnly, yearOnly]);
+
+  console.log(dailySum);
 
   return (
     <>
@@ -87,9 +103,7 @@ const GraphicalCFP = () => {
           ]}
           series={[
             {
-              data: [
-                CFPhistorybyday(CFPdataByYear, dayOnly, monthOnly, yearOnly),
-              ],
+              data: [dailySum || 0],
             },
           ]}
           width={500}
