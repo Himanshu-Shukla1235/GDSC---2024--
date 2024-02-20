@@ -5,7 +5,6 @@ import { LineChart } from "@mui/x-charts/LineChart";
 const GraphicalCFP = () => {
   const [CFPdataByYear, setCFPdataByYear] = useState([]);
   const [dailySum, setDailySum] = useState(null);
-  const [GraphBYday, setGraphByday] = useState(null);
 
   const dayOnly = new Date().getDate();
   const monthOnly = new Date().getMonth() + 1;
@@ -35,25 +34,12 @@ const GraphicalCFP = () => {
 
     try {
       await axios.patch("http://localhost:5000/api/v1/footprint/update", data);
-
       console.log("Daily CFP added successfully");
     } catch (err) {
       console.log("Error in adding CFP by day", err);
     }
   };
-  const getailyCFP = async (value) => {
-    try {
-      const data = await axios.patch(
-        "http://localhost:5000/api/v1/footprint/update"
-      );
 
-      console.log("Daily CFP getting successfully", data.data.data);
-      setGraphByday(data.data.data);
-      console.log(GraphBYday);
-    } catch (err) {
-      console.log("Error in adding CFP by day", err);
-    }
-  };
   const fetchCFPdataByYear = async () => {
     try {
       const yearlyCFP = await axios.get(
@@ -71,19 +57,26 @@ const GraphicalCFP = () => {
     };
 
     fetchData();
-    getailyCFP();
   }, []); // Empty dependency array to run only on mount
 
   useEffect(() => {
-    const dailyCFP = CFPhistorybyday(
+    const newDailySum = CFPhistorybyday(
       CFPdataByYear,
       dayOnly,
       monthOnly,
       yearOnly
     );
-    setDailySum(dailyCFP);
-    addDailyCFP(dailyCFP);
+
+    if (newDailySum !== dailySum) {
+      setDailySum(newDailySum);
+    }
   }, [CFPdataByYear, dayOnly, monthOnly, yearOnly]);
+
+  useEffect(() => {
+    if (dailySum !== null) {
+      addDailyCFP(dailySum);
+    }
+  }, [dailySum]);
 
   console.log(dailySum);
 
