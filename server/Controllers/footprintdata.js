@@ -3,12 +3,11 @@ const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, UnauthenciatedError } = require("../Errors");
 const FootprintData = require("../Models/footPrintdata");
 
-
-
 const updateData = async (req, res, next) => {
   try {
     const senderId = req.user.userId;
     const newData = req.body; // Assuming req.body is an object
+    
 
     // Find the data with the specified senderId
     let existingData = await FootprintData.findOne({ "sender.id": senderId });
@@ -27,6 +26,9 @@ const updateData = async (req, res, next) => {
 
     // Update the data array by pushing the entire newData object
     if (newData) {
+      newData.time.date = new Date().getDate();
+      newData.time.month = new Date().getMonth();
+      newData.time.year = new Date().getFullYear();
       existingData.data.push(newData);
 
       // Save the updated document
@@ -41,6 +43,5 @@ const updateData = async (req, res, next) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
 
 module.exports = { updateData };
