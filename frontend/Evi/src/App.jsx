@@ -26,6 +26,8 @@ import Testing2 from "../src/components/testing2.jsx"
 import Comment from "../src/components/comments.jsx"
 import AboutPage from "./pages/about.jsx";
 import UserCFPoverview from "../src/components/overallcrabonuserData.jsx"
+import ClimateProjects from './pages/projects.jsx'
+
 
 function App() {
   useEffect(() => {
@@ -49,20 +51,29 @@ function App() {
           <Route path="/earth" element={<Earth />} />
           <Route path="/airQuality" element={<Air></Air>} />
           <Route path="/feed" element={<Feed />} />
-          <Route path="/about" element={<AboutPage/>}/>
+          <Route path="/about" element={<AboutPage />} />
 
           <Route path="/education" element={<Education />} />
           <Route path="/corbon" element={<Corboncal></Corboncal>} />
           <Route path="/web" element={<ScrapingPage></ScrapingPage>} />
           <Route path="/popup" element={<PopupPage></PopupPage>} />
           <Route path="/corbon2" element={<Carbcal2></Carbcal2>} />
-          <Route path="/corbon3" element={<CarbonCalculator3></CarbonCalculator3>} />
+          <Route
+            path="/corbon3"
+            element={<CarbonCalculator3></CarbonCalculator3>}
+          />
           <Route path="/fb" element={<Feedbox></Feedbox>} />
           <Route path="/afb" element={<Addfeed></Addfeed>} />
           <Route path="/test2" element={<Testing2></Testing2>} />
           <Route path="/comment" element={<Comment></Comment>} />
-          <Route path="/UserCFPover" element={<UserCFPoverview></UserCFPoverview>} />
-          
+          <Route
+            path="/UserCFPover"
+            element={<UserCFPoverview></UserCFPoverview>}
+          />
+          <Route
+            path="/projects"
+            element={<ClimateProjects></ClimateProjects>}
+          />
         </Routes>
       </BrowserRouter>
     </>
