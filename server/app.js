@@ -18,6 +18,7 @@ const roomsRouter = require('./Routes/chatRooms');
 const cors = require('cors');
 const feedRouter=require('./Routes/feed')
 const cfpRouter=require('./Routes/carboFootprint')
+const footprintRouter=require('./Routes/footprintdata')
 //----------------------------------------------------cors-------------------------------------->>>
 
 //---------------------------------------------------middlewares--------------------------------->>>
@@ -39,6 +40,7 @@ app.use('/api/v1/messages', messagesRouter);
 app.use('/api/v1/chat', roomsRouter);
 app.use('/api/v1/feed',feedRouter);
 app.use('/api/v1/carbonFootPrint',cfpRouter);
+app.use('/api/v1/footprint',footprintRouter);
 
 //errors
 app.use(notFound);
