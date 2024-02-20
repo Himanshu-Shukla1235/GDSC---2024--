@@ -19,6 +19,7 @@ import PopupModal from "../components/function components/modalpop";
 import TouchAppIcon from "@mui/icons-material/TouchApp";
 import Carbcal2 from "../components/carboncal2";
 import Carbcal3 from "../components/carbocal3";
+import Overview from "../components/overallcrabonuserData"
 
 //* ------------------------------------------------------------------------------------------- MAIN FUNCTION -------------------------------------------------------------------
 const Earth = () => {
@@ -172,6 +173,7 @@ const Earth = () => {
   useEffect(() => {
     getDefaultLocation();
     fetchCFPdata();
+    Overview
   }, []);
 
   useEffect(() => {
@@ -637,6 +639,7 @@ const Earth = () => {
                   ></TouchAppIcon>
                 </button>
               </div>
+              <Overview></Overview>
             </div>
 
             <div className="boxE332">
