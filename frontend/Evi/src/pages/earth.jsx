@@ -55,8 +55,6 @@ const Earth = () => {
     }
   };
 
-
-
   const todayTotalCFP = () => {
     var totalCFP = 0;
     for (let index = 0; index < CFPdatabyday.length; index++) {
@@ -236,8 +234,8 @@ const Earth = () => {
 
                     <h1
                       style={{
-                        display:'flex',
-                        flexDirection:'row',
+                        display: "flex",
+                        flexDirection: "row",
                         // border:"solid 3px red",
                         color: "greenyellow",
                         fontFamily: "sans-serif",
@@ -247,17 +245,13 @@ const Earth = () => {
                       <AirIcon style={{ opacity: "0" }}></AirIcon>{" "}
                       <p
                         style={{
-                          
-                         
                           fontSize: "1.7rem",
-                         
-                          width: "20rem",
 
+                          width: "20rem",
                         }}
                       >
                         Over All AQI : 3
                       </p>{" "}
-                      
                     </h1>
 
                     {weatherData && weatherData.current && (
@@ -339,7 +333,7 @@ const Earth = () => {
                             fontWeight: 30,
                           }}
                         >
-                          Concentration : ({})
+                          Concentration : ({weatherData1.components.no2})
                         </strong>
                       </li>
                       <li className="oxy" style={{ color: "green" }}>
@@ -370,7 +364,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          Concentration ({})
+                          Concentration ({weatherData1.components.o3})
                         </strong>
                       </li>
                     </ul>
@@ -406,7 +400,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          Concentration : ({})
+                          Concentration : ({weatherData1.components.PM10})
                         </strong>
                       </li>
                       {weatherData1 && weatherData1["PM2.5"] && (
@@ -468,7 +462,7 @@ const Earth = () => {
                           }}
                         >
                           {" "}
-                          Concentration : {}{" "}
+                          Concentration : {weatherData1.components.so2}{" "}
                         </strong>
                       </li>
                     </ul>
@@ -499,59 +493,59 @@ const Earth = () => {
                 Concentration
               </h1>
               <PieChart
-                className="piechart1"
-                series={[
-                  {
-                    data: [
-                      {
-                        id: 0,
-                        value: 8 || 0,
-                        label: "CO",
-                        color: "yellow",
-                      },
-                      {
-                        id: 1,
-                        value: 7 || 0,
-                        label: " NO2",
-                        color: "violet",
-                      },
-                      {
-                        id: 2,
-                        value: 6,
-                        label: "O3",
-                        color: "aqua",
-                      },
-                      {
-                        id: 3,
-                        value: 5,
-                        label: "SO2",
-                        color: "pink",
-                      },
-                      {
-                        id: 4,
-                        value: 4,
-                        label: "PM10",
-                        color: "orange",
-                      },
-                      {
-                        id: 5,
-                        value: 5,
-                        label: "PM2.5",
-                        color: "green",
-                      },
-                    ],
+  className="piechart1"
+  series={[
+    {
+      data: [
+        {
+          id: 0,
+          value: weatherData1?.components?.co || 0,
+          label: "CO",
+          color: "yellow",
+        },
+        {
+          id: 1,
+          value: weatherData1?.components?.no2 || 0,
+          label: " NO2",
+          color: "violet",
+        },
+        {
+          id: 2,
+          value: weatherData1?.components?.o3 || 0,
+          label: "O3",
+          color: "aqua",
+        },
+        {
+          id: 3,
+          value: weatherData1?.components?.so2 || 0,
+          label: "SO2",
+          color: "pink",
+        },
+        // {
+        //   id: 4,
+        //   value: 4,
+        //   label: "PM10",
+        //   color: "orange",
+        // },
+        // {
+        //   id: 5,
+        //   value: 5,
+        //   label: "PM2.5",
+        //   color: "green",
+        // },
+      ],
+      highlightScope: { faded: "global", highlighted: "item" },
+      faded: {
+        innerRadius: 30,
+        additionalRadius: -30,
+        color: "gray",
+      },
+    },
+  ]}
+  width={400}
+  height={200}
+/>
 
-                    highlightScope: { faded: "global", highlighted: "item" },
-                    faded: {
-                      innerRadius: 30,
-                      additionalRadius: -30,
-                      color: "gray",
-                    },
-                  },
-                ]}
-                width={400}
-                height={200}
-              />
             </div>
           </div>
 
@@ -631,6 +625,7 @@ const Earth = () => {
                     border: "none",
                     borderRadius: "10px",
                     border: "solid 1px black",
+                    backgroundColor: "none",
                   }}
                 >
                   <TouchAppIcon

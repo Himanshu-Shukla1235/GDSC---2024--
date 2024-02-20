@@ -366,7 +366,7 @@
   }
   .boxE3311 {
     padding: 0%;
-    height: 10%;
+    height: 8%;
     margin-left: 13%;
     margin-right: 13%;
     gap: 0%;
@@ -375,13 +375,14 @@
   }
   .boxE3311 button {
     margin-right: 14%;
+    background-color: none;
   }
 
   .HeadingE1 {
     border: none;
     margin-top: 7%;
     width: 80%;
-    height: 20%;
+    height: 10%;
   }
   .boxE322 {
     margin-top: 20px;
