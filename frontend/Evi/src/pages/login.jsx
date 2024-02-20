@@ -86,6 +86,7 @@ const AuthForm = () => {
       console.log(person);
     } else {
       // Registration logic
+      setLoaderClass('');
       console.log(
         "Registering with:",
         formData.username,
@@ -118,6 +119,7 @@ const AuthForm = () => {
         }
       } else {
         setError(errorMessages.confirmPassword);
+        setLoaderClass("spinnerLoader");
       }
     }
   };
