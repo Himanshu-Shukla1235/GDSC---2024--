@@ -5,6 +5,7 @@ import { LineChart } from "@mui/x-charts/LineChart";
 const GraphicalCFP = () => {
   const [CFPdataByYear, setCFPdataByYear] = useState([]);
   const [dailySum, setDailySum] = useState(null);
+  const [GraphBYday, setGraphByday] = useState(null);
 
   const dayOnly = new Date().getDate();
   const monthOnly = new Date().getMonth() + 1;
@@ -40,6 +41,19 @@ const GraphicalCFP = () => {
     }
   };
 
+  const getailyCFP = async () => {
+    try {
+      const data = await axios.patch(
+        "http://localhost:5000/api/v1/footprint/update"
+      );
+
+      console.log("Daily CFP getting successfully", data.data.data);
+      setGraphByday(data.data.data);
+    } catch (err) {
+      console.log("Error in adding CFP by day", err);
+    }
+  };
+
   const fetchCFPdataByYear = async () => {
     try {
       const yearlyCFP = await axios.get(
@@ -54,54 +68,61 @@ const GraphicalCFP = () => {
   useEffect(() => {
     const fetchData = async () => {
       await fetchCFPdataByYear();
+      getailyCFP();
     };
 
     fetchData();
   }, []); // Empty dependency array to run only on mount
 
   useEffect(() => {
-    const newDailySum = CFPhistorybyday(
+    const dailyCFP = CFPhistorybyday(
       CFPdataByYear,
       dayOnly,
       monthOnly,
       yearOnly
     );
-
-    if (newDailySum !== dailySum) {
-      setDailySum(newDailySum);
-    }
+    setDailySum(dailyCFP);
+    addDailyCFP(dailyCFP);
   }, [CFPdataByYear, dayOnly, monthOnly, yearOnly]);
-
-  useEffect(() => {
-    if (dailySum !== null) {
-      addDailyCFP(dailySum);
-    }
-  }, [dailySum]);
 
   console.log(dailySum);
 
   return (
     <>
-      <div className="mainOveallCarbo"></div>
-      <div className="O.C.U">heading</div>
-      <div>
-        <LineChart
-          xAxis={[
-            {
-              data: [
-                1, 2, 3, 5, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-                22, 23, 24, 25, 27, 28, 29, 30,
-              ],
-            },
-          ]}
-          series={[
-            {
-              data: [dailySum || 0],
-            },
-          ]}
-          width={500}
-          height={300}
-        />
+      <div
+        className="mainOveallCarbo"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          marginTop: '2em'
+        }}
+      >
+        {" "}
+        <div className="O.C.U" style={{ fontSize: "2em" }}>
+          Overview your C.F.P graph{" "}
+        </div>
+        <div>
+          {GraphBYday && GraphBYday.length > 0 ? (
+            <LineChart
+              xAxis={[
+                {
+                  data: GraphBYday.map((item) => item.time.date),
+                },
+              ]}
+              series={[
+                {
+                  data: GraphBYday.map((item) => item.value),
+                },
+              ]}
+              width={600}
+              height={400}
+            />
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
       </div>
     </>
   );
