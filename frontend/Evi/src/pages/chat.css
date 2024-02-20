@@ -132,7 +132,7 @@
   background-color: rgba(0, 5, 160, 0.436);
 }
 .chatRoom:hover {
-  background-color: rgba(0, 5, 160, 0.22);
+  background-color: rgba(136, 190, 219, 0.285);
   transition-delay: 0.1s;
 }
 /* ==================messages section */
@@ -257,7 +257,7 @@
 .formContainer button {
   margin-top: 10px;
   padding: 5px;
-  background-color: rgba(31, 92, 150, 0.845);
+  background-color: rgba(47, 122, 192, 0.845);
   width: 100%;
   color: white;
   font-weight: bold;
@@ -295,7 +295,11 @@
   border: none;
   background-color: rgba(255, 255, 255, 0);
   align-items: center;
-  color: rgba(0, 5, 160, 0.436);
+  color: rgba(0, 5, 160, 0);
+  
+}
+.addedandPlus:hover{
+  background-color: rgba(240, 248, 255, 0);
 }
 .joinedText {
   margin-left: 10px;
@@ -307,4 +311,9 @@
     margin-top: 20px;
     width: 100vw;
   }
+}
+.displayYes {
+  background-color: rgba(34, 70, 94, 0.254);
+  display: absolute;
+  right: 0;
 }
