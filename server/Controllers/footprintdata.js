@@ -44,4 +44,4 @@ const updateData = async (req, res, next) => {
 };
 
 
-module.exports = { getData, updateData };
+module.exports = { updateData };
