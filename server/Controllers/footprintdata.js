@@ -9,6 +9,7 @@ const updateData = async (req, res, next) => {
   try {
     const senderId = req.user.userId;
     const newData = req.body; // Assuming req.body is an object
+    console.log("request for overall data is for graph reached")
 
     // Find the data with the specified senderId
     let existingData = await FootprintData.findOne({ "sender.id": senderId });
