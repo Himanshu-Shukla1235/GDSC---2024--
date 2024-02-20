@@ -25,6 +25,7 @@ import CarbonCalculator3 from "../src/components/carbocal3.jsx"
 import Testing2 from "../src/components/testing2.jsx"
 import Comment from "../src/components/comments.jsx"
 import AboutPage from "./pages/about.jsx";
+import UserCFPoverview from "../src/components/overallcrabonuserData.jsx"
 
 function App() {
   useEffect(() => {
@@ -60,6 +61,7 @@ function App() {
           <Route path="/afb" element={<Addfeed></Addfeed>} />
           <Route path="/test2" element={<Testing2></Testing2>} />
           <Route path="/comment" element={<Comment></Comment>} />
+          <Route path="/UserCFPover" element={<UserCFPoverview></UserCFPoverview>} />
           
         </Routes>
       </BrowserRouter>

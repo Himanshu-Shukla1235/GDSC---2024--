@@ -55,6 +55,8 @@ const Earth = () => {
     }
   };
 
+
+
   const todayTotalCFP = () => {
     var totalCFP = 0;
     for (let index = 0; index < CFPdatabyday.length; index++) {
@@ -236,7 +238,7 @@ const Earth = () => {
                       style={{
                         display:'flex',
                         flexDirection:'row',
-                        border:"solid 3px red",
+                        // border:"solid 3px red",
                         color: "greenyellow",
                         fontFamily: "sans-serif",
                         fontWeight: 8,
@@ -253,7 +255,7 @@ const Earth = () => {
 
                         }}
                       >
-                        Over All AQI 
+                        Over All AQI : 3
                       </p>{" "}
                       
                     </h1>
